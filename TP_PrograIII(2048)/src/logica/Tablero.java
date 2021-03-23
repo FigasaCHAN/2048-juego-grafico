@@ -122,23 +122,27 @@ public class Tablero {
 			nuevaArray.add(array.get(0));
 			return nuevaArray;
 		}
-		for(int i=0; i<array.size()-1; i++) { //va solo hasta el ante ultimo
-			
+		for(int i=0; i<=array.size()-1; i++) { //va solo hasta el ante ultimo
+			if(i==array.size()-1) {
+				nuevaArray.add(array.get(i));
+				return nuevaArray;
+			}
 			if(array.get(i)==array.get(i+1)) {
 				int suma= array.get(i)+array.get(i+1); //los sumo
 				nuevaArray.add(suma);
 				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
 			}
 			else {
+				
 				nuevaArray.add(i);
-			}
-
+					
+				}
 		}
 		return nuevaArray;
 	}
 
 	public static void main(String[] args) {
-		int[][] mat= { {0,2,2,8},{4,2,2,8},{0,2,2,0},{4,2,4,0} };
+		int[][] mat= { {4,2,2,16},{4,32,2,8},{0,64,2,0},{4,2,4,16} };
 		System.out.println(imprimirTablero(mat));
 		System.out.println("Muevo para arriba");
 		moverArriba(mat);
