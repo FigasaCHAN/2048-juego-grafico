@@ -8,13 +8,13 @@ public class Tablero {
 	private int lugaresPreviosOcupados; //la utilizo para corroborar que no tengo lugares ocupados 
 										//antes de la celda actual.
 	
-	public Tablero() {
-		//this.tabla=new int[4][4];
-		int[][] mat= { {4,4,2,0},
-				{2,4,2,2},
-				{64,2,64,2},
-				{0,16,0,16} 
-		};
+	public Tablero(int [][] mat) {
+		if(mat.length==0 || mat==null) {
+			throw new RuntimeException("Para crear el tablero la matriz no tiene que estar vacia ni debe ser null");
+		}
+		if(mat.length==1) {
+			throw new RuntimeException("La matriz no puede tener solo una fila");
+		}
 		this.tabla=mat;
 		this.lugaresPreviosOcupados=0;
 	}

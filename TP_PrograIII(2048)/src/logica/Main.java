@@ -8,7 +8,13 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		Tablero tablero=new Tablero();
+		int[][] mat= { {4,4,2,0},
+				{2,4,2,2},
+				{64,2,64,2},
+				{0,16,0,16} 
+		};
+
+		Tablero tablero=new Tablero(mat);
 		
 //		empezarJuego(tablero);
 		
