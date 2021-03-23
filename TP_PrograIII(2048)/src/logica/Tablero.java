@@ -24,7 +24,7 @@ public class Tablero {
 		}
 		
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(matriz, columna) ); 
-
+		System.out.println("Columna: " + columna + arrayColumna.toString() + "Columna Array: " + columnaToArray(matriz, columna).toString() );
 		int iArrayList=0; //indice del arrayList de columna
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
 		for(int fila=0; fila<matriz.length;fila++) { 
@@ -67,7 +67,6 @@ public class Tablero {
 		}
 		
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales( columnaToArray(matriz, columna) ); 
-
 		int iArrayList=arrayColumna.size()-1; //indice del arrayList de columna, agarro el ultimo
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
 		for(int fila=matriz.length-1; fila>=0;fila--) { 
@@ -124,7 +123,7 @@ public class Tablero {
 		}
 		for(int i=0; i<=array.size()-1; i++) { //va solo hasta el ante ultimo
 			if(i==array.size()-1) {
-				nuevaArray.add(array.get(i));
+				nuevaArray.add(array.get(i)); //cuando llega al ultimo
 				return nuevaArray;
 			}
 			if(array.get(i)==array.get(i+1)) {
@@ -133,9 +132,7 @@ public class Tablero {
 				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
 			}
 			else {
-				
-				nuevaArray.add(i);
-					
+				nuevaArray.add(array.get(i));
 				}
 		}
 		return nuevaArray;
