@@ -22,6 +22,7 @@ public class Tablero {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
 		}
+		
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(matriz, columna) ); 
 
 		int iArrayList=0; //indice del arrayList de columna
@@ -142,6 +143,9 @@ public class Tablero {
 		System.out.println("Muevo para arriba");
 		moverArriba(mat);
 		System.out.println(imprimirTablero(mat));
+		moverAbajo(mat);
+		moverAbajo(mat);
+		moverArriba(mat);
 		moverAbajo(mat);
 		moverAbajo(mat);
 		moverArriba(mat);
