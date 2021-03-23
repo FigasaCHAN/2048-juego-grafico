@@ -65,6 +65,7 @@ public class Tablero {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
 		}
+		
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales( columnaToArray(matriz, columna) ); 
 
 		int iArrayList=arrayColumna.size()-1; //indice del arrayList de columna, agarro el ultimo
@@ -102,7 +103,6 @@ public class Tablero {
 		}
 		return columnaArray;
 	}
-
 	public static String imprimirTablero(int[][] matriz) {
 		StringBuilder tableroS= new StringBuilder();
 		for(int[] fila: matriz) {
@@ -122,8 +122,8 @@ public class Tablero {
 			nuevaArray.add(array.get(0));
 			return nuevaArray;
 		}
-		for(int i=0; i<=array.size()-1; i++) { //va solo hasta el ante ultimo
-
+		for(int i=0; i<array.size()-1; i++) { //va solo hasta el ante ultimo
+			
 			if(array.get(i)==array.get(i+1)) {
 				int suma= array.get(i)+array.get(i+1); //los sumo
 				nuevaArray.add(suma);
@@ -138,16 +138,9 @@ public class Tablero {
 	}
 
 	public static void main(String[] args) {
-		int[][] mat= { {0,2,0,8},{4,2,0,8},{0,2,0,0},{4,2,0,0} };
+		int[][] mat= { {0,2,2,8},{4,2,2,8},{0,2,2,0},{4,2,4,0} };
 		System.out.println(imprimirTablero(mat));
 		System.out.println("Muevo para arriba");
-		moverArriba(mat);
-		System.out.println(imprimirTablero(mat));
-		moverAbajo(mat);
-		moverAbajo(mat);
-		moverArriba(mat);
-		moverAbajo(mat);
-		moverAbajo(mat);
 		moverArriba(mat);
 		System.out.println(imprimirTablero(mat));
 	}
