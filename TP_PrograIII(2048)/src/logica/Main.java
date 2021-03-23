@@ -2,8 +2,16 @@ package logica;
 
 public class Main {
 
+	public void empezarJuego(Tablero tablero) {
+		
+	}
+	
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Tablero tablero=new Tablero();
+		
+//		empezarJuego(tablero);
+		
 
 	}
 
