@@ -52,31 +52,31 @@ public class Tablero {
 	
 	
 	
-	public void moverArriba(int[][] matriz) {
-		if(matriz.length==0) {
+	public void moverArriba() {
+		if(this.tabla.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
 		}
 
-		for(int columna= 0; columna<matriz[0].length; columna++) {
+		for(int columna= 0; columna<this.tabla[0].length; columna++) {
 			//suponiendo que la matriz es cuadrada
-			moverColumArriba(matriz,columna);
+			moverColumArriba(columna);
 		}
 	}
 
 
-	public void moverColumArriba(int[][] matriz, int columna) {
-		if(columna<0 || columna>matriz[0].length ) {
+	private void moverColumArriba(int columna) {
+		if(columna<0 || columna>this.tabla[0].length ) {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
 		}
 		
-		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(matriz, columna) ); 
-		System.out.println("Columna: " + columna + arrayColumna.toString() + "Columna Array: " + columnaToArray(matriz, columna).toString() );
+		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(this.tabla, columna) ); 
+		System.out.println("Columna: " + columna + arrayColumna.toString() + "Columna Array: " + columnaToArray(this.tabla, columna).toString() );
 		int iArrayList=0; //indice del arrayList de columna
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
-		for(int fila=0; fila<matriz.length;fila++) { 
+		for(int fila=0; fila<this.tabla.length;fila++) { 
 			if(cantElemArrayList>0) {
-				matriz[fila][columna]= arrayColumna.get(iArrayList);
+				this.tabla[fila][columna]= arrayColumna.get(iArrayList);
 				iArrayList++; //sumo el indice
 				cantElemArrayList--; //resto la cantidad de elem
 				/*
@@ -88,7 +88,7 @@ public class Tablero {
 				 */
 			}
 			else {
-				matriz[fila][columna]=0;
+				this.tabla[fila][columna]=0;
 			}
 		}
 	}
@@ -99,25 +99,25 @@ public class Tablero {
 		}
 
 		for(int columna= 0; columna<this.tabla[0].length; columna++) {
-			moverColumAbajo(this.tabla,columna);
+			moverColumAbajo(columna);
 		}
 	}
 
 
-	public void moverColumAbajo(int[][] matriz, int columna) {
-		if(columna<0 || columna>matriz[0].length ) {
+	private void moverColumAbajo(int columna) {
+		if(columna<0 || columna>this.tabla[0].length ) {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
 		}
 		
-		ArrayList<Integer> arrayColumna= sumarNumerosIguales( columnaToArray(matriz, columna) ); 
+		ArrayList<Integer> arrayColumna= sumarNumerosIguales( columnaToArray(this.tabla, columna) ); 
 		int iArrayList=arrayColumna.size()-1; //indice del arrayList de columna, agarro el ultimo
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
-		for(int fila=matriz.length-1; fila>=0;fila--) { 
+		for(int fila=this.tabla.length-1; fila>=0;fila--) { 
 
 			if(cantElemArrayList>0) {
 
-				matriz[fila][columna]= arrayColumna.get(iArrayList);
+				this.tabla[fila][columna]= arrayColumna.get(iArrayList);
 
 				iArrayList--; //resto el indice
 				cantElemArrayList--; //resto la cantidad de elem
@@ -125,12 +125,12 @@ public class Tablero {
 			}
 			else {
 
-				matriz[fila][columna]=0;
+				this.tabla[fila][columna]=0;
 			}
 		}
 	}
 
-	public ArrayList<Integer> columnaToArray(int[][]matriz, int columna) {
+	private ArrayList<Integer> columnaToArray(int[][]matriz, int columna) {
 		ArrayList<Integer>  columnaArray= new ArrayList<Integer>();
 
 		if(columna<0 || columna>matriz[0].length ) {
