@@ -12,7 +12,8 @@ public class Main {
 		
 //		empezarJuego(tablero);
 		
-
+		System.out.println(tablero.toString());
+		
 	}
 
 }

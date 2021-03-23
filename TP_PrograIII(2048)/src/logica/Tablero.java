@@ -3,9 +3,19 @@ package logica;
 import java.util.ArrayList;
 
 public class Tablero {
+	
+	private int [][] tabla;
+	
+	public Tablero() {
+		//this.tabla=new int[4][4];
+		int[][] mat= { {4,2,2,16},{4,32,2,8},{0,64,2,0},{4,2,4,16} };
+		this.tabla=mat;
+	}
 
-
-	public static void moverArriba(int[][] matriz) {
+	
+	
+	
+	public  void moverArriba(int[][] matriz) {
 		if(matriz.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
 		}
@@ -17,7 +27,7 @@ public class Tablero {
 	}
 
 
-	public static void moverColumArriba(int[][] matriz, int columna) {
+	public void moverColumArriba(int[][] matriz, int columna) {
 		if(columna<0 || columna>matriz[0].length ) {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
@@ -46,21 +56,18 @@ public class Tablero {
 		}
 	}
 
-
-
-
-	public static void moverAbajo(int[][] matriz) {
-		if(matriz.length==0) {
+	public void moverAbajo() {
+		if(this.tabla.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
 		}
 
-		for(int columna= 0; columna<matriz[0].length; columna++) {
-			moverColumAbajo(matriz,columna);
+		for(int columna= 0; columna<this.tabla[0].length; columna++) {
+			moverColumAbajo(this.tabla,columna);
 		}
 	}
 
 
-	public static void moverColumAbajo(int[][] matriz, int columna) {
+	public void moverColumAbajo(int[][] matriz, int columna) {
 		if(columna<0 || columna>matriz[0].length ) {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
@@ -86,7 +93,7 @@ public class Tablero {
 		}
 	}
 
-	public static ArrayList<Integer> columnaToArray(int[][]matriz, int columna) {
+	public ArrayList<Integer> columnaToArray(int[][]matriz, int columna) {
 		ArrayList<Integer>  columnaArray= new ArrayList<Integer>();
 
 		if(columna<0 || columna>matriz[0].length ) {
@@ -102,9 +109,46 @@ public class Tablero {
 		}
 		return columnaArray;
 	}
-	public static String imprimirTablero(int[][] matriz) {
+	
+	public void movimientoIzq(int filaActual,int columnaActual,int valor) {
+		for(int colum=0;colum<filaActual;colum++) { //ej si pulsa tecla izquierda 
+			if(this.tabla[filaActual][colum]==0) {
+				this.tabla[filaActual][columnaActual]=0;
+				this.tabla[filaActual][colum]=valor;
+				break;
+			}
+			else if(this.tabla[filaActual][colum]==valor) {
+				this.tabla[filaActual][columnaActual]=0;
+				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
+				break;
+			}
+		}
+	}
+	
+	public void movimientoDer(int filaActual,int columnaActual, int valor) {
+
+		for(int colum=3;colum>filaActual;colum--) { //ej si pulsa tecla derecha 
+			if(this.tabla[filaActual][colum]==0) {
+				this.tabla[filaActual][columnaActual]=0;
+				this.tabla[filaActual][colum]=valor;
+				break;
+			}
+			else if(this.tabla[filaActual][columnaActual]==valor) {
+				this.tabla[filaActual][columnaActual]=0;
+				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
+				break;
+			}
+		}
+	}
+	
+	private int sumarLinea(int valor1,int valor2) {
+		return valor1+valor2;
+	}
+	
+	@Override
+	public String toString() {
 		StringBuilder tableroS= new StringBuilder();
-		for(int[] fila: matriz) {
+		for(int[] fila:this.tabla ) {
 			tableroS.append('|');
 			for(int elem : fila) {
 				tableroS.append(elem + "|"); //agrega el elem
@@ -114,7 +158,7 @@ public class Tablero {
 		return tableroS.toString();
 	}
 
-	private static ArrayList<Integer> sumarNumerosIguales(ArrayList<Integer> array){
+	private ArrayList<Integer> sumarNumerosIguales(ArrayList<Integer> array){
 		//solo suma si estan uno al lado del otro
 		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
 		if(array.size()==1) {
@@ -138,11 +182,11 @@ public class Tablero {
 		return nuevaArray;
 	}
 
-	public static void main(String[] args) {
-		int[][] mat= { {4,2,2,16},{4,32,2,8},{0,64,2,0},{4,2,4,16} };
-		System.out.println(imprimirTablero(mat));
-		System.out.println("Muevo para arriba");
-		moverArriba(mat);
-		System.out.println(imprimirTablero(mat));
-	}
+//	public static void main(String[] args) {
+////		int[][] mat= { {4,2,2,16},{4,32,2,8},{0,64,2,0},{4,2,4,16} };
+////		System.out.println(imprimirTablero(mat));
+////		System.out.println("Muevo para arriba");
+////		moverArriba(mat);
+////		System.out.println(imprimirTablero(mat));
+//	}
 }
