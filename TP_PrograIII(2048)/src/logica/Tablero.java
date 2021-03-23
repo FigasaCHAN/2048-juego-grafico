@@ -5,17 +5,54 @@ import java.util.ArrayList;
 public class Tablero {
 	
 	private int [][] tabla;
+	private int lugaresPreviosOcupados; //la utilizo para corroborar que no tengo lugares ocupados 
+										//antes de la celda actual.
 	
 	public Tablero() {
 		//this.tabla=new int[4][4];
-		int[][] mat= { {4,2,2,16},{4,32,2,8},{0,64,2,0},{4,2,4,16} };
+		int[][] mat= { {4,4,2,0},
+				{2,4,2,2},
+				{64,2,64,2},
+				{0,16,0,16} 
+		};
 		this.tabla=mat;
+		this.lugaresPreviosOcupados=0;
+	}
+	
+	public void recorrerMatrix(String direccion,int fila,int columna,int ultimoIndiceRevisado) {
+		if(this.tabla[fila][columna]!=0) {	
+			
+			if(direccion.equals("izquierda")) {
+//			movimientoIzq(...);
+			movimientoIzq(fila,columna,this.tabla[fila][columna]);
+			this.lugaresPreviosOcupados++;
+			}else if(direccion.equals("derecha")) {
+//			movimientoDer(...);
+			}
+		}
 	}
 
+	public void movimientoUsuario(String direccion) {
+		int fila=0, columna=0,ultimoIndiceRevisado=0;
+		
+		while(fila<this.tabla.length) {//empieza a recorrer la tabla segun la direccion que diga el usuario
+				recorrerMatrix(direccion,fila,columna,ultimoIndiceRevisado);	
+			 if(columna==this.tabla[0].length-1) {
+				fila++;
+				columna=0;
+				ultimoIndiceRevisado=0;
+				this.lugaresPreviosOcupados=0;
+			}else {
+				columna++;
+				ultimoIndiceRevisado++;				
+			}
+			
+		}
+	}
 	
 	
 	
-	public  void moverArriba(int[][] matriz) {
+	public void moverArriba(int[][] matriz) {
 		if(matriz.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
 		}
@@ -111,13 +148,17 @@ public class Tablero {
 	}
 	
 	public void movimientoIzq(int filaActual,int columnaActual,int valor) {
-		for(int colum=0;colum<filaActual;colum++) { //ej si pulsa tecla izquierda 
-			if(this.tabla[filaActual][colum]==0) {
+		
+		for(int colum=0;colum<columnaActual;colum++) { //ej si pulsa tecla izquierda 
+			if(this.tabla[filaActual][colum]==0) { 
+
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=valor;
+				this.lugaresPreviosOcupados--;
 				break;
 			}
-			else if(this.tabla[filaActual][colum]==valor) {
+			else if(this.tabla[filaActual][colum]==valor && colum>=this.lugaresPreviosOcupados-1) {
+			
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
 				break;
@@ -127,10 +168,11 @@ public class Tablero {
 	
 	public void movimientoDer(int filaActual,int columnaActual, int valor) {
 
-		for(int colum=3;colum>filaActual;colum--) { //ej si pulsa tecla derecha 
+		for(int colum=3;colum>columnaActual;colum--) { //ej si pulsa tecla derecha 
 			if(this.tabla[filaActual][colum]==0) {
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=valor;
+			
 				break;
 			}
 			else if(this.tabla[filaActual][columnaActual]==valor) {

@@ -13,7 +13,8 @@ public class Main {
 //		empezarJuego(tablero);
 		
 		System.out.println(tablero.toString());
-		
+		tablero.movimientoUsuario("izquierda");
+		System.out.println(tablero.toString());
 	}
 
 }
