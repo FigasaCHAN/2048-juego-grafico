@@ -20,13 +20,19 @@ public class Main {
 		
 		System.out.println(tablero.toString());
 		//tablero.moverArriba();
-		tablero.moverDerecha();
-		//tablero.movimientoUsuario("derecha");
+//		tablero.moverDerecha();
+//		//tablero.movimientoUsuario("derecha");
+////		System.out.println(tablero.toString());
+////		tablero.moverDerecha();
+////		System.out.println(tablero.toString());
+////		tablero.moverAbajo();
+////		System.out.println(tablero.toString());
+		tablero.movimientoUsuario("derecha");
 		System.out.println(tablero.toString());
-		tablero.moverDerecha();
-		System.out.println(tablero.toString());
-		tablero.moverAbajo();
-		System.out.println(tablero.toString());
+			tablero.movimientoUsuario("izquierda");
+			System.out.println(tablero.toString());
+			
 	}
+	
 
 }

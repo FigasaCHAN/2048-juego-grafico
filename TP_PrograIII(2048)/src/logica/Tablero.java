@@ -19,32 +19,51 @@ public class Tablero {
 		this.lugaresPreviosOcupados=0;
 	}
 	
-	public void recorrerMatrix(String direccion,int fila,int columna,int ultimoIndiceRevisado) {
+	public void recorrerMatrix(String direccion,int fila,int columna) {
 		if(this.tabla[fila][columna]!=0) {	
 			
 			if(direccion.equals("izquierda")) {
-//			movimientoIzq(...);
-			movimientoIzq(fila,columna,this.tabla[fila][columna]);
-			this.lugaresPreviosOcupados++;
+	//			movimientoIzq(...);
+				movimientoIzq(fila,columna,this.tabla[fila][columna]);
+				this.lugaresPreviosOcupados++;
 			}else if(direccion.equals("derecha")) {
 //			movimientoDer(...);
+				movimientoDer(fila,columna,this.tabla[fila][columna]);
+				this.lugaresPreviosOcupados++;
+				
 			}
 		}
 	}
 
 	public void movimientoUsuario(String direccion) {
-		int fila=0, columna=0,ultimoIndiceRevisado=0;
-		
+		int fila=0, columna=0;
+		if(direccion.equals("derecha")) {
+			columna=this.tabla[0].length-1;
+			this.lugaresPreviosOcupados=0;
+			while(fila<this.tabla.length) {
+				recorrerMatrix(direccion,fila,columna);	
+				if(columna==0) {
+					fila++;
+					columna=this.tabla[0].length-1;
+				
+					this.lugaresPreviosOcupados=0;
+				}else {
+					columna--;			
+				}			
+			}
+		}else {
+			
+		}
 		while(fila<this.tabla.length) {//empieza a recorrer la tabla segun la direccion que diga el usuario
-				recorrerMatrix(direccion,fila,columna,ultimoIndiceRevisado);	
+				recorrerMatrix(direccion,fila,columna);	
 			 if(columna==this.tabla[0].length-1) {
 				fila++;
 				columna=0;
-				ultimoIndiceRevisado=0;
+				
 				this.lugaresPreviosOcupados=0;
 			}else {
 				columna++;
-				ultimoIndiceRevisado++;				
+							
 			}
 			
 		}
@@ -169,17 +188,20 @@ public class Tablero {
 	public void movimientoDer(int filaActual,int columnaActual, int valor) {
 
 		for(int colum=3;colum>columnaActual;colum--) { //ej si pulsa tecla derecha 
-			if(this.tabla[filaActual][colum]==0) {
+			if(this.tabla[filaActual][colum]==0) { 
+
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=valor;
-			
+				this.lugaresPreviosOcupados--;
 				break;
 			}
-			else if(this.tabla[filaActual][columnaActual]==valor) {
+			else if(this.tabla[filaActual][colum]==valor && columnaActual>=this.lugaresPreviosOcupados) {
+				
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
 				break;
 			}
+			
 		}
 	}
 	
