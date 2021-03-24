@@ -19,15 +19,14 @@ public class Tablero {
 		this.lugaresPreviosOcupados=0;
 	}
 	
-	public void recorrerMatrix(String direccion,int fila,int columna) {
+	private void recorrerMatrix(String direccion,int fila,int columna) {
 		if(this.tabla[fila][columna]!=0) {	
 			
 			if(direccion.equals("izquierda")) {
-	//			movimientoIzq(...);
 				movimientoIzq(fila,columna,this.tabla[fila][columna]);
 				this.lugaresPreviosOcupados++;
+				
 			}else if(direccion.equals("derecha")) {
-//			movimientoDer(...);
 				movimientoDer(fila,columna,this.tabla[fila][columna]);
 				this.lugaresPreviosOcupados++;
 				
@@ -166,8 +165,8 @@ public class Tablero {
 		return columnaArray;
 	}
 	
-	public void movimientoIzq(int filaActual,int columnaActual,int valor) {
-		int columAux=0;
+	private void movimientoIzq(int filaActual,int columnaActual,int valor) {
+		
 		for(int colum=0;colum<columnaActual;colum++) { //ej si pulsa tecla izquierda 
 			if(this.tabla[filaActual][colum]==0) { 
 
@@ -179,16 +178,16 @@ public class Tablero {
 				}
 				break;
 			}
-			else if(this.tabla[filaActual][colum]==valor && columAux>=this.lugaresPreviosOcupados-1) {
+			else if(this.tabla[filaActual][colum]==valor && colum>=this.lugaresPreviosOcupados-1) {
 			
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
 				break;
-			} columAux++;
+			} 
 		}
 	}
 	
-	public void movimientoDer(int filaActual,int columnaActual, int valor) {
+	private void movimientoDer(int filaActual,int columnaActual, int valor) {
 		int columAux=0;
 		
 		for(int colum=3;colum>columnaActual;colum--) { //ej si pulsa tecla derecha 
@@ -201,7 +200,7 @@ public class Tablero {
 					this.lugaresPreviosOcupados--;
 				}
 				break;
-			} //columnaActual>=this.lugaresPreviosOcupados
+			} 
 			else if(this.tabla[filaActual][colum]==valor && columAux>=this.lugaresPreviosOcupados-1) {
 				
 				this.tabla[filaActual][columnaActual]=0;
