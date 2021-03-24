@@ -167,21 +167,24 @@ public class Tablero {
 	}
 	
 	public void movimientoIzq(int filaActual,int columnaActual,int valor) {
-		
+		int columAux=0;
 		for(int colum=0;colum<columnaActual;colum++) { //ej si pulsa tecla izquierda 
 			if(this.tabla[filaActual][colum]==0) { 
 
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=valor;
-				this.lugaresPreviosOcupados--;
+				if(this.lugaresPreviosOcupados>1) {
+					
+					this.lugaresPreviosOcupados--;
+				}
 				break;
 			}
-			else if(this.tabla[filaActual][colum]==valor && colum>=this.lugaresPreviosOcupados-1) {
+			else if(this.tabla[filaActual][colum]==valor && columAux>=this.lugaresPreviosOcupados-1) {
 			
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
 				break;
-			}
+			} columAux++;
 		}
 	}
 	
@@ -193,7 +196,10 @@ public class Tablero {
 
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=valor;
-				this.lugaresPreviosOcupados--;
+				if(this.lugaresPreviosOcupados>1) {
+					
+					this.lugaresPreviosOcupados--;
+				}
 				break;
 			} //columnaActual>=this.lugaresPreviosOcupados
 			else if(this.tabla[filaActual][colum]==valor && columAux>=this.lugaresPreviosOcupados-1) {
