@@ -9,9 +9,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		int[][] mat= { {4,4,2,0},
-				{2,4,2,2},
-				{64,2,64,2},
-				{0,16,0,16}
+				{2,4,4,2},
+				{64,64,64,2},
+				{8,0,8,16}
 		};
 
 		Tablero tablero=new Tablero(mat);

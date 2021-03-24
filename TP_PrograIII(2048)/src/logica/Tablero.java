@@ -39,7 +39,7 @@ public class Tablero {
 		int fila=0, columna=0;
 		if(direccion.equals("derecha")) {
 			columna=this.tabla[0].length-1;
-			this.lugaresPreviosOcupados=0;
+
 			while(fila<this.tabla.length) {
 				recorrerMatrix(direccion,fila,columna);	
 				if(columna==0) {
@@ -186,7 +186,8 @@ public class Tablero {
 	}
 	
 	public void movimientoDer(int filaActual,int columnaActual, int valor) {
-
+		int columAux=0;
+		
 		for(int colum=3;colum>columnaActual;colum--) { //ej si pulsa tecla derecha 
 			if(this.tabla[filaActual][colum]==0) { 
 
@@ -194,13 +195,13 @@ public class Tablero {
 				this.tabla[filaActual][colum]=valor;
 				this.lugaresPreviosOcupados--;
 				break;
-			}
-			else if(this.tabla[filaActual][colum]==valor && columnaActual>=this.lugaresPreviosOcupados) {
+			} //columnaActual>=this.lugaresPreviosOcupados
+			else if(this.tabla[filaActual][colum]==valor && columAux>=this.lugaresPreviosOcupados-1) {
 				
 				this.tabla[filaActual][columnaActual]=0;
 				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
 				break;
-			}
+			} columAux++;
 			
 		}
 	}
