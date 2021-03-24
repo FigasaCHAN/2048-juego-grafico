@@ -223,12 +223,58 @@ public class Tablero {
 		}
 		return nuevaArray;
 	}
-
-//	public static void main(String[] args) {
-////		int[][] mat= { {4,2,2,16},{4,32,2,8},{0,64,2,0},{4,2,4,16} };
-////		System.out.println(imprimirTablero(mat));
-////		System.out.println("Muevo para arriba");
-////		moverArriba(mat);
-////		System.out.println(imprimirTablero(mat));
-//	}
+	public void moverIzquierda() {
+		for(int numFila=0; numFila<this.tabla.length;numFila++) {
+			moverFilaIzquierda(this.tabla[numFila],numFila);
+		}
+	}
+	private void moverFilaIzquierda(int[] fila, int numFila) {
+		ArrayList<Integer> arraylistFila= sumarNumerosIguales( filaToArrayList(fila) );
+		System.out.println("Fila: " + filaToArrayList(fila).toString() + numFila + "Array: " + arraylistFila.toString());
+		int cantElemEnElArray= arraylistFila.size();
+		int iArrayList=0;
+		for(int i=0; i<fila.length; i++) {
+			if(cantElemEnElArray>0) {
+				this.tabla[numFila][i]= arraylistFila.get(iArrayList);
+				iArrayList++;
+				cantElemEnElArray--;
+			}
+			else {
+				this.tabla[numFila][i]= 0;
+			}
+		}
+	}
+	
+	public void moverDerecha() {
+		for(int numFila=0; numFila<this.tabla.length;numFila++) {
+			moverFilaDerecha(this.tabla[numFila],numFila);
+		}
+	}
+	private void moverFilaDerecha(int[] fila, int numFila) {
+		ArrayList<Integer> arraylistFila= sumarNumerosIguales( filaToArrayList(fila) );
+		System.out.println("Fila: " + filaToArrayList(fila).toString() + numFila + "Array: " + arraylistFila.toString());
+		int cantElemEnElArray= arraylistFila.size();
+		int iArrayList=arraylistFila.size()-1;
+		for(int i=fila.length-1; i>=0; i--) {
+			if(cantElemEnElArray>0) {
+				this.tabla[numFila][i]= arraylistFila.get(iArrayList);
+				iArrayList--;
+				cantElemEnElArray--;
+			}
+			else {
+				this.tabla[numFila][i]= 0;
+			}
+		}
+	}
+	
+	private ArrayList<Integer> filaToArrayList(int[] array){
+		//devuelve arraylist integer sin 0
+		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
+		for(int elem : array) {
+			if(elem!=0) {
+				nuevaArray.add(elem);
+			}
+		}
+		return nuevaArray;
+	}
 }
