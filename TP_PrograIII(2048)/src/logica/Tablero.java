@@ -1,12 +1,17 @@
 package logica;
 
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tablero {
 	
 	private int [][] tabla;
 	private int lugaresPreviosOcupados; //la utilizo para corroborar que no tengo lugares ocupados 
 										//antes de la celda actual.
+	public Map<Point, Integer> diccionario;
+	final byte[] NUM_RANDOM_POSIBLES;
 	
 	public Tablero(int [][] mat) {
 		if(mat.length==0 || mat==null) {
@@ -18,8 +23,15 @@ public class Tablero {
 		if(!laMatrizEsCuadrada(mat)) {
 			throw new RuntimeException("La matriz no es cuadrada");
 		}
+		this.NUM_RANDOM_POSIBLES= new byte[]{2,4}; //los numeros randoms posibles que puedo agregar
 		this.tabla=mat;
 		this.lugaresPreviosOcupados=0;
+		this.diccionario= new HashMap<Point,Integer>();
+		for (int iFila= 0; iFila<mat.length; iFila++) { //al diccionario le agrego todos los puntos con sus valores correspondientes
+			for(int iColumna= 0;iColumna<mat[iFila].length;iColumna++ ) {
+				diccionario.put(new Point(iFila,iColumna), mat[iFila][iColumna]);
+			}
+		}
 	}
 	
 	private void recorrerMatrix(String direccion,int fila,int columna) {
@@ -112,6 +124,7 @@ public class Tablero {
 			else {
 				this.tabla[fila][columna]=0;
 			}
+			this.diccionario.replace(new Point(fila,columna), this.tabla[fila][columna]); //reemplazo la key del punto
 		}
 		
 	}
@@ -147,9 +160,9 @@ public class Tablero {
 
 			}
 			else {
-
 				this.tabla[fila][columna]=0;
 			}
+			this.diccionario.replace(new Point(fila,columna),this.tabla[fila][columna]);
 		}
 	}
 
@@ -302,6 +315,7 @@ public class Tablero {
 			else {
 				this.tabla[numFila][i]= 0;
 			}
+			this.diccionario.replace(new Point( numFila, i), this.tabla[numFila][i]);
 		}
 	}
 	
@@ -323,6 +337,7 @@ public class Tablero {
 			else {
 				this.tabla[numFila][i]= 0;
 			}
+			this.diccionario.replace(new Point( numFila, i), this.tabla[numFila][i] );
 		}
 	}
 	
@@ -350,5 +365,19 @@ public class Tablero {
 			}
 		}
 		return todasIguales;
+	}
+	public void insertarRandom() {
+		ArrayList<Point> iPosibles= new ArrayList<Point>();
+		for (Point elem: this.diccionario.keySet()) {
+			if(this.diccionario.get(elem)==0) {
+				iPosibles.add(elem);
+			}
+		}
+		int iRandom_delArray =  (int) (Math.random()* (iPosibles.size()) ); //num random para un i 
+		int numRandom =  (int) (Math.random()* 2); //va a ser 0 o 1 y lo voy a utilizar para seleccionar un elem del array de numerosRandom(2 o 4)
+		if(iPosibles.size()==0) {
+			throw new RuntimeException("No se pueden insertar random, tablero completo");
+		}
+		this.tabla[iPosibles.get(iRandom_delArray).x][iPosibles.get(iRandom_delArray).y]= this.NUM_RANDOM_POSIBLES[numRandom]; //a la casilla random, le asigno el numero random
 	}
 }
