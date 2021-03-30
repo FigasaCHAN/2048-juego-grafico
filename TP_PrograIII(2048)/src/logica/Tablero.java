@@ -343,10 +343,10 @@ public class Tablero {
 		int cantDeFilas= mat.length; 
 		for (int[] fila : mat) {
 			if( fila.length == cantDeFilas ) {
-				todasIguales= true&&todasIguales;
+				todasIguales= todasIguales&& true;
 			}
 			else {
-				todasIguales= false&&todasIguales;
+				todasIguales= todasIguales && false;
 			}
 		}
 		return todasIguales;
