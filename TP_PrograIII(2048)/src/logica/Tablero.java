@@ -235,6 +235,7 @@ public class Tablero {
 
 	private ArrayList<Integer> sumarNumerosIguales(ArrayList<Integer> array){
 		//solo suma si estan uno al lado del otro
+		//suma de izquierda a derecha
 		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
 		if(array.size()==1) {
 			nuevaArray.add(array.get(0));
@@ -245,8 +246,9 @@ public class Tablero {
 				nuevaArray.add(array.get(i)); //cuando llega al ultimo
 				return nuevaArray;
 			}
-			if(array.get(i)==array.get(i+1)) {
-				int suma= array.get(i)+array.get(i+1); //los sumo
+			if(array.get(i).equals(array.get(i+1))) {
+			//if(array.get(i)==array.get(i+1)) {
+				int suma= (array.get(i)+array.get(i+1)); //los sumo
 				nuevaArray.add(suma);
 				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
 			}
@@ -256,6 +258,32 @@ public class Tablero {
 		}
 		return nuevaArray;
 	}
+	private ArrayList<Integer> sumarNumerosIgualesReves(ArrayList<Integer> array){
+		//suma de derecha a izquierda, ideal para el movimiento a la derecha y abajo
+		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
+		if(array.size()==1) {
+			nuevaArray.add(array.get(0));
+			return nuevaArray;
+		}
+		for(int i=array.size()-1; i>=0; i--) { //va solo hasta el ante ultimo
+			if(i==0) {
+				nuevaArray.add(array.get(i)); //cuando llega al ultimo
+				return nuevaArray;
+			}
+			if(array.get(i).equals(array.get(i-1))) {
+			//if(array.get(i)==array.get(i+1)) {
+				int suma= (array.get(i)+array.get(i-1)); //los sumo
+				System.out.println(suma);
+				nuevaArray.add(suma);
+				i--; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
+			}
+			else {
+				nuevaArray.add(array.get(i));
+				}
+		}
+		return nuevaArray;
+	}
+	
 	public void moverIzquierda() {
 		for(int numFila=0; numFila<this.tabla.length;numFila++) {
 			moverFilaIzquierda(this.tabla[numFila],numFila);
@@ -282,15 +310,14 @@ public class Tablero {
 			moverFilaDerecha(this.tabla[numFila],numFila);
 		}
 	}
-	private void moverFilaDerecha(int[] fila, int numFila) {
-		ArrayList<Integer> arraylistFila= sumarNumerosIguales( filaToArrayList(fila) );
-		System.out.println("Fila: " + filaToArrayList(fila).toString() + numFila + "Array: " + arraylistFila.toString());
+	private void moverFilaDerecha(int [] fila, int numFila) {
+		ArrayList<Integer> arraylistFila= sumarNumerosIgualesReves( filaToArrayList(fila) );
 		int cantElemEnElArray= arraylistFila.size();
-		int iArrayList=arraylistFila.size()-1;
+		int iArrayList=0;
 		for(int i=fila.length-1; i>=0; i--) {
 			if(cantElemEnElArray>0) {
 				this.tabla[numFila][i]= arraylistFila.get(iArrayList);
-				iArrayList--;
+				iArrayList++;
 				cantElemEnElArray--;
 			}
 			else {
@@ -298,6 +325,7 @@ public class Tablero {
 			}
 		}
 	}
+	
 	
 	private ArrayList<Integer> filaToArrayList(int[] array){
 		//devuelve arraylist integer sin 0
@@ -318,7 +346,7 @@ public class Tablero {
 				todasIguales= true&&todasIguales;
 			}
 			else {
-				todasIguales=false&&todasIguales;
+				todasIguales= false&&todasIguales;
 			}
 		}
 		return todasIguales;
