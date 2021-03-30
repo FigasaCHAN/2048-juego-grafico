@@ -4,11 +4,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.Component;
+
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Grafica {
 
@@ -44,11 +48,26 @@ public class Grafica {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		
 		frame.setResizable(false);
 		frame.setTitle("2048");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		this.tableroGrafico.setBounds(0, 35, 784, 526); //lo doy la forma
+		frame.getContentPane().add(this.tableroGrafico); //lo agrego a la ventana
+		
+		
+		frame.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(e.getKeyChar()=='w') {
+					System.out.println("eliminaste el panel");
+					quitarPanel(tableroGrafico);
+				}
+			}
+		});
 		
 		JPanel hub = new JPanel();
 		hub.setBounds(0, 0, 784, 35);
@@ -65,8 +84,11 @@ public class Grafica {
 		frame.getContentPane().add(tableroGrafico);
 		tableroGrafico.setLayout(new GridLayout(1, 0, 0, 0));
 		*/
-		this.tableroGrafico.setBounds(0, 35, 784, 526); //lo doy la forma
-		frame.getContentPane().add(this.tableroGrafico); //lo agrego a la ventana
+	
 		
+	}
+	private void quitarPanel(JPanel panel) {
+		frame.getContentPane().remove(panel);
+		frame.repaint(); //es obligatorio redibujar
 	}
 }
