@@ -96,53 +96,52 @@ public class TableroGrafico extends JPanel {
 	}
 	public void actualizar() {
 		ArrayList<Integer> tableroArray= this.tablero.matrizToArray();
-	    System.out.println(this.tablero.toString());
-	    int cont= 0;
+	    int indice= 0;
 		for(JLabel elem: this.listLabel) {
-			if(tableroArray.get(cont).toString().equals("0")) {
+			if(tableroArray.get(indice).toString().equals("0")) {
 				elem.setBackground(this.colorTablero);	
 			}
-			if(tableroArray.get(cont).toString().equals("2")) {
+			if(tableroArray.get(indice).toString().equals("2")) {
 				elem.setBackground(this.colorN2);
 			}
-			if(tableroArray.get(cont).toString().equals("4")) {
+			if(tableroArray.get(indice).toString().equals("4")) {
 				elem.setBackground(this.colorN4);
 			}
-			if(tableroArray.get(cont).toString().equals("8")) {
+			if(tableroArray.get(indice).toString().equals("8")) {
 				elem.setBackground(this.colorN8);
 			}
-			if(tableroArray.get(cont).toString().equals("16")) {
+			if(tableroArray.get(indice).toString().equals("16")) {
 				elem.setBackground(this.colorN16);	
 			}
-			if(tableroArray.get(cont).toString().equals("32")) {
+			if(tableroArray.get(indice).toString().equals("32")) {
 				elem.setBackground(this.colorN32);
 			}
-			if(tableroArray.get(cont).toString().equals("64")) {
+			if(tableroArray.get(indice).toString().equals("64")) {
 				elem.setBackground(this.colorN64);
 			}
-			if(tableroArray.get(cont).toString().equals("128")) {
+			if(tableroArray.get(indice).toString().equals("128")) {
 				elem.setBackground(this.colorN128);
 			}
-			if(tableroArray.get(cont).toString().equals("256")) {
+			if(tableroArray.get(indice).toString().equals("256")) {
 				elem.setBackground(this.colorN256);
 			}
-			if(tableroArray.get(cont).toString().equals("512")) {
+			if(tableroArray.get(indice).toString().equals("512")) {
 				elem.setBackground(this.colorN512);	
 			}
-			if(tableroArray.get(cont).toString().equals("1024")) {
+			if(tableroArray.get(indice).toString().equals("1024")) {
 				elem.setBackground(this.colorN1024);
 			}
-			if(tableroArray.get(cont).toString().equals("2048")) {
+			if(tableroArray.get(indice).toString().equals("2048")) {
 				elem.setBackground(this.colorN2048);
 			}
 			
-			if(tableroArray.get(cont).toString().equals("0")) {
+			if(tableroArray.get(indice).toString().equals("0")) {
 				elem.setText("");
 			}
 			else {
-				elem.setText(tableroArray.get(cont).toString());
+				elem.setText(tableroArray.get(indice).toString());
 			}
-			cont++;
+			indice++;
 		}
 	}
 }
