@@ -8,8 +8,6 @@ import java.util.Map;
 public class Tablero {
 	
 	private int [][] tabla;
-	private int lugaresPreviosOcupados; //la utilizo para corroborar que no tengo lugares ocupados 
-										//antes de la celda actual.
 	public Map<Point, Integer> diccionario;
 	final byte[] NUM_RANDOM_POSIBLES;
 	
@@ -25,7 +23,6 @@ public class Tablero {
 		}
 		this.NUM_RANDOM_POSIBLES= new byte[]{2,4}; //los numeros randoms posibles que puedo agregar
 		this.tabla=mat;
-		this.lugaresPreviosOcupados=0;
 		this.diccionario= new HashMap<Point,Integer>();
 		for (int iFila= 0; iFila<mat.length; iFila++) { //al diccionario le agrego todos los puntos con sus valores correspondientes
 			for(int iColumna= 0;iColumna<mat[iFila].length;iColumna++ ) {
@@ -33,58 +30,7 @@ public class Tablero {
 			}
 		}
 	}
-	
-	private void recorrerMatrix(String direccion,int fila,int columna) {
-		if(this.tabla[fila][columna]!=0) {	
-			
-			if(direccion.equals("izquierda")) {
-				movimientoIzq(fila,columna,this.tabla[fila][columna]);
-				this.lugaresPreviosOcupados++;
-				
-			}else if(direccion.equals("derecha")) {
-				movimientoDer(fila,columna,this.tabla[fila][columna]);
-				this.lugaresPreviosOcupados++;
-				
-			}
-		}
-	}
 
-	public void movimientoUsuario(String direccion) {
-		int fila=0, columna=0;
-		if(direccion.equals("derecha")) {
-			columna=this.tabla[0].length-1;
-
-			while(fila<this.tabla.length) {
-				recorrerMatrix(direccion,fila,columna);	
-				if(columna==0) {
-					fila++;
-					columna=this.tabla[0].length-1;
-				
-					this.lugaresPreviosOcupados=0;
-				}else {
-					columna--;			
-				}			
-			}
-		}else {
-			
-		}
-		while(fila<this.tabla.length) {//empieza a recorrer la tabla segun la direccion que diga el usuario
-				recorrerMatrix(direccion,fila,columna);	
-			 if(columna==this.tabla[0].length-1) {
-				fila++;
-				columna=0;
-				
-				this.lugaresPreviosOcupados=0;
-			}else {
-				columna++;
-							
-			}
-			
-		}
-	}
-	
-	
-	
 	public void moverArriba() {
 		if(this.tabla.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
@@ -185,55 +131,6 @@ public class Tablero {
 		return columnaArray;
 	}
 	
-	private void movimientoIzq(int filaActual,int columnaActual,int valor) {
-		
-		for(int colum=0;colum<columnaActual;colum++) { //ej si pulsa tecla izquierda 
-			if(this.tabla[filaActual][colum]==0) { 
-
-				this.tabla[filaActual][columnaActual]=0;
-				this.tabla[filaActual][colum]=valor;
-				if(this.lugaresPreviosOcupados>1) {
-					
-					this.lugaresPreviosOcupados--;
-				}
-				break;
-			}
-			else if(this.tabla[filaActual][colum]==valor && colum>=this.lugaresPreviosOcupados-1) {
-			
-				this.tabla[filaActual][columnaActual]=0;
-				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
-				break;
-			} 
-		}
-	}
-	
-	private void movimientoDer(int filaActual,int columnaActual, int valor) {
-		int columAux=0;
-		
-		for(int colum=3;colum>columnaActual;colum--) { //ej si pulsa tecla derecha 
-			if(this.tabla[filaActual][colum]==0) { 
-
-				this.tabla[filaActual][columnaActual]=0;
-				this.tabla[filaActual][colum]=valor;
-				if(this.lugaresPreviosOcupados>1) {
-					
-					this.lugaresPreviosOcupados--;
-				}
-				break;
-			} 
-			else if(this.tabla[filaActual][colum]==valor && columAux>=this.lugaresPreviosOcupados-1) {
-				
-				this.tabla[filaActual][columnaActual]=0;
-				this.tabla[filaActual][colum]=sumarLinea(valor,this.tabla[filaActual][colum]);				
-				break;
-			} columAux++;
-			
-		}
-	}
-	
-	private int sumarLinea(int valor1,int valor2) {
-		return valor1+valor2;
-	}
 	
 	@Override
 	public String toString() {

@@ -19,6 +19,7 @@ public class Grafica {
 	private JFrame frame;
 	TableroGrafico tableroGrafico;
 	JLabel puntajes; 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -56,13 +57,15 @@ public class Grafica {
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null); //centro la ventana
 		
-		this.tableroGrafico.setBounds(0, 35, 784, 526); //lo doy la forma
+		this.tableroGrafico.setBounds(0, 35, 784, 526); //lo doy las medidas 
 		frame.getContentPane().add(this.tableroGrafico); //lo agrego a la ventana
 
 		JPanel hub = new JPanel();
 		hub.setBounds(0, 0, 784, 35);
-		frame.getContentPane().add(hub);
+		//frame.getContentPane().add(hub);
+		añadirPanel(hub);
 		hub.setLayout(null);
 		
 		this.puntajes = new JLabel("Puntos: ");
@@ -104,8 +107,11 @@ public class Grafica {
 	void actualizarPuntos() {
 		this.puntajes.setText("Puntaje: " + this.tableroGrafico.puntos);
 	}
+	private void añadirPanel(JPanel panel) {
+		frame.getContentPane().add(panel);
+	}
 	private void quitarPanel(JPanel panel) {
-		frame.getContentPane().remove(panel);
+		frame.getContentPane().remove(panel); //O(n)
 		frame.repaint(); //es obligatorio redibujar
 	}
 }

@@ -27,7 +27,7 @@ public class TableroTest {
 			{0,8,8,8}
 		});
 		
-		tablero.movimientoUsuario("derecha");
+		tablero.moverDerecha();
 		
 
 		assertEquals(tableroAComparar.toString(),tablero.toString());
@@ -42,7 +42,7 @@ public class TableroTest {
 			{8,8,8,0}
 		});
 		
-		tablero.movimientoUsuario("izquierda");
+		tablero.moverIzquierda();
 		
 
 		assertEquals(tableroAComparar.toString(),tablero.toString());

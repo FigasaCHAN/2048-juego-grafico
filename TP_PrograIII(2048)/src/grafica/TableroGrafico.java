@@ -1,6 +1,8 @@
 package grafica;
 
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import logica.Tablero;
 
@@ -16,18 +18,21 @@ import javax.swing.JLabel;
 public class TableroGrafico extends JPanel {
 	Tablero tablero;
 	private final int CANT_DE_FILAS_Y_COLUMNA;
-	private final Color colorTablero,colorN2,colorN4,colorN8,colorN16,colorN32,colorN64,colorN128,colorN256,colorN512,colorN1024,colorN2048;
+	private Color colorTablero;
+	private final Color colorN2,colorN4,colorN8,colorN16,colorN32,colorN64,colorN128,colorN256,colorN512,colorN1024,colorN2048;
 	ArrayList<JLabel> listLabel;
-	int puntos; 
+	int puntos; //hay que ponerlo en la parte logica
+	
 	/**
 	 * Create the panel.
 	 */
 	public TableroGrafico() {
 		int[][] matrizTablero= new int [][]{  //creo la matriz provisoria aca
-			{2,0,0,2},
-			{0,0,0,2},
-			{0,0,0,0},
-			{0,0,0,0},
+			{0,2,2,4},
+			{2,4,8,4},
+			{32,32,32,2},
+			{8,4,4,8}
+	
 		};
 		this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;
 		this.tablero= new Tablero(matrizTablero);
@@ -72,8 +77,9 @@ public class TableroGrafico extends JPanel {
 				if(Integer.toString(elem).toString().equals("4")) {
 					elemento.setBackground(this.colorN4);
 				}
-				elemento.setFont(new Font("Tahoma", Font.PLAIN, 80));
-
+				elemento.setFont(new Font("Tahoma", Font.PLAIN, 80)); //Forma 
+				elemento.setHorizontalAlignment(SwingConstants.CENTER); //Centramos los numeros 
+				elemento.setBorder(new LineBorder(Color.PINK, 4)); //Borde
 				add(elemento); //agrego el elem al panel
 				this.listLabel.add(elemento); //lo agrego al arraylist
 			}
