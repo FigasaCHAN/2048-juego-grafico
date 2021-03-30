@@ -63,8 +63,16 @@ public class Grafica {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				if(e.getKeyChar()=='w') {
-					System.out.println("eliminaste el panel");
-					quitarPanel(tableroGrafico);
+					tableroGrafico.moverArriba();
+				}
+				if(e.getKeyChar()=='a') {
+					tableroGrafico.moverIzquierda();
+				}
+				if(e.getKeyChar()=='s') {
+					tableroGrafico.moverAbajo();
+				}
+				if(e.getKeyChar()=='d') {
+					tableroGrafico.moverDerecha();
 				}
 			}
 		});

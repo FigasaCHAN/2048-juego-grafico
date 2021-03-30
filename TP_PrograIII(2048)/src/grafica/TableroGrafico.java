@@ -15,8 +15,8 @@ import javax.swing.JLabel;
 
 public class TableroGrafico extends JPanel {
 	Tablero tablero;
-	final int CANT_DE_FILAS_Y_COLUMNA;
-	final Color colorTablero,colorN2,colorN4;
+	private final int CANT_DE_FILAS_Y_COLUMNA;
+	private final Color colorTablero,colorN2,colorN4,colorN8,colorN16,colorN32,colorN64,colorN128,colorN256,colorN512,colorN1024,colorN2048;
 	ArrayList<JLabel> listLabel;
 	/**
 	 * Create the panel.
@@ -33,6 +33,19 @@ public class TableroGrafico extends JPanel {
 		this.colorTablero= new Color(252,181,255);
 		this.colorN2=new Color(248,91,255);
 		this.colorN4=new Color(181,67,187);
+		this.colorN8=new Color(187,67,123);
+		this.colorN16=new Color(215,39,121);
+		this.colorN32=new Color(173,0,32);
+		this.colorN64=new Color(140,5,32);
+		this.colorN128=new Color(184,58,81);
+		this.colorN256=new Color(77,60,187);
+		this.colorN512=new Color(115,100,216);
+		this.colorN1024=new Color(100,161,216);
+		this.colorN2048=new Color(52,150,183);
+		
+		
+		
+		
 		this.listLabel= new ArrayList<JLabel>();
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -65,4 +78,72 @@ public class TableroGrafico extends JPanel {
 			}
 		}
 	}
+	public void moverIzquierda() {
+		this.tablero.moverIzquierda();
+		actualizar();
+	}
+	public void moverDerecha() {
+		this.tablero.moverDerecha();
+		actualizar();
+	}
+	public void moverArriba() {
+		this.tablero.moverArriba();
+		actualizar();
+	}
+	public void moverAbajo() {
+		this.tablero.moverAbajo();
+		actualizar();
+	}
+	public void actualizar() {
+		ArrayList<Integer> tableroArray= this.tablero.matrizToArray();
+	    System.out.println(this.tablero.toString());
+	    int cont= 0;
+		for(JLabel elem: this.listLabel) {
+			if(tableroArray.get(cont).toString().equals("0")) {
+				elem.setBackground(this.colorTablero);	
+			}
+			if(tableroArray.get(cont).toString().equals("2")) {
+				elem.setBackground(this.colorN2);
+			}
+			if(tableroArray.get(cont).toString().equals("4")) {
+				elem.setBackground(this.colorN4);
+			}
+			if(tableroArray.get(cont).toString().equals("8")) {
+				elem.setBackground(this.colorN8);
+			}
+			if(tableroArray.get(cont).toString().equals("16")) {
+				elem.setBackground(this.colorN16);	
+			}
+			if(tableroArray.get(cont).toString().equals("32")) {
+				elem.setBackground(this.colorN32);
+			}
+			if(tableroArray.get(cont).toString().equals("64")) {
+				elem.setBackground(this.colorN64);
+			}
+			if(tableroArray.get(cont).toString().equals("128")) {
+				elem.setBackground(this.colorN128);
+			}
+			if(tableroArray.get(cont).toString().equals("256")) {
+				elem.setBackground(this.colorN256);
+			}
+			if(tableroArray.get(cont).toString().equals("512")) {
+				elem.setBackground(this.colorN512);	
+			}
+			if(tableroArray.get(cont).toString().equals("1024")) {
+				elem.setBackground(this.colorN1024);
+			}
+			if(tableroArray.get(cont).toString().equals("2048")) {
+				elem.setBackground(this.colorN2048);
+			}
+			
+			if(tableroArray.get(cont).toString().equals("0")) {
+				elem.setText("");
+			}
+			else {
+				elem.setText(tableroArray.get(cont).toString());
+			}
+			cont++;
+		}
+	}
 }
+
