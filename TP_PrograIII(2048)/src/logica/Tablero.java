@@ -92,7 +92,7 @@ public class Tablero {
 		}
 		
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(this.tabla, columna) ); 
-		System.out.println("Columna: " + columna + arrayColumna.toString() + "Columna Array: " + columnaToArray(this.tabla, columna).toString() );
+		//O(3*n + 12)
 		int iArrayList=0; //indice del arrayList de columna
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
 		for(int fila=0; fila<this.tabla.length;fila++) { 
@@ -107,11 +107,13 @@ public class Tablero {
 					arrayColumna.remove(0);
 
 				 */
+				
 			}
 			else {
 				this.tabla[fila][columna]=0;
 			}
 		}
+		
 	}
 
 	public void moverAbajo() {
