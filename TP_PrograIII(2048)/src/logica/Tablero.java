@@ -15,6 +15,9 @@ public class Tablero {
 		if(mat.length==1) {
 			throw new RuntimeException("La matriz no puede tener solo una fila");
 		}
+		if(!laMatrizEsCuadrada(mat)) {
+			throw new RuntimeException("La matriz no es cuadrada");
+		}
 		this.tabla=mat;
 		this.lugaresPreviosOcupados=0;
 	}
@@ -304,5 +307,19 @@ public class Tablero {
 			}
 		}
 		return nuevaArray;
+	}
+	
+	private boolean laMatrizEsCuadrada(int[][] mat) {
+		boolean todasIguales=true;
+		int cantDeFilas= mat.length; 
+		for (int[] fila : mat) {
+			if( fila.length == cantDeFilas ) {
+				todasIguales= true&&todasIguales;
+			}
+			else {
+				todasIguales=false&&todasIguales;
+			}
+		}
+		return todasIguales;
 	}
 }
