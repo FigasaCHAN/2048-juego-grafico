@@ -384,4 +384,13 @@ public class Tablero {
 		}
 		this.tabla[iPosibles.get(iRandom_delArray).x][iPosibles.get(iRandom_delArray).y]= this.NUM_RANDOM_POSIBLES[numRandom]; //a la casilla random, le asigno el numero random
 	}
+	public ArrayList<Integer> matrizToArray(){
+		ArrayList<Integer> nueva= new ArrayList<Integer>();
+		for(int [] fila: this.tabla) {
+			for(int  elem: fila) {
+				nueva.add(elem);
+			}
+		}
+		return nueva;
+	}
 }
