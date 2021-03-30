@@ -40,7 +40,7 @@ public class Tablero {
 			//suponiendo que la matriz es cuadrada
 			moverColumArriba(columna);
 		}
-		//insertarRandom();
+		insertarRandom();
 	}
 
 
@@ -84,7 +84,7 @@ public class Tablero {
 		for(int columna= 0; columna<this.tabla[0].length; columna++) {
 			moverColumAbajo(columna);
 		}
-		//insertarRandom();
+		insertarRandom();
 	}
 
 
@@ -200,7 +200,7 @@ public class Tablero {
 		for(int numFila=0; numFila<this.tabla.length;numFila++) {
 			moverFilaIzquierda(this.tabla[numFila],numFila);
 		}
-		//insertarRandom();
+		insertarRandom();
 	}
 	private void moverFilaIzquierda(int [] fila, int numFila) {
 		ArrayList<Integer> arraylistFila= sumarNumerosIguales( filaToArrayList(fila) );
@@ -223,7 +223,7 @@ public class Tablero {
 		for(int numFila=0; numFila<this.tabla.length;numFila++) {
 			moverFilaDerecha(this.tabla[numFila],numFila);
 		}
-		//insertarRandom();
+		insertarRandom();
 	}
 	private void moverFilaDerecha(int [] fila, int numFila) {
 		ArrayList<Integer> arraylistFila= sumarNumerosIgualesReves( filaToArrayList(fila) );
