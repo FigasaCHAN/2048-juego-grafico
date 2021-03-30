@@ -261,9 +261,8 @@ public class Tablero {
 			moverFilaIzquierda(this.tabla[numFila],numFila);
 		}
 	}
-	private void moverFilaIzquierda(int[] fila, int numFila) {
+	private void moverFilaIzquierda(int [] fila, int numFila) {
 		ArrayList<Integer> arraylistFila= sumarNumerosIguales( filaToArrayList(fila) );
-		System.out.println("Fila: " + filaToArrayList(fila).toString() + numFila + "Array: " + arraylistFila.toString());
 		int cantElemEnElArray= arraylistFila.size();
 		int iArrayList=0;
 		for(int i=0; i<fila.length; i++) {
