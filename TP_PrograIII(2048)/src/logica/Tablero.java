@@ -133,16 +133,16 @@ public class Tablero {
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
 		}
 		
-		ArrayList<Integer> arrayColumna= sumarNumerosIguales( columnaToArray(this.tabla, columna) ); 
-		int iArrayList=arrayColumna.size()-1; //indice del arrayList de columna, agarro el ultimo
+		ArrayList<Integer> arrayColumna= sumarNumerosIgualesReves( columnaToArray(this.tabla, columna) ); 
+		int iArrayList=0; //indice del arrayList de columna, agarro el primero ya que la lista esta al reves (los primeros numeros son los ultimos que tengo que agregar
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
-		for(int fila=this.tabla.length-1; fila>=0;fila--) { 
+		for(int fila=this.tabla.length-1; fila>=0;fila--) { //reemplazo los valores de atras para adelante 
 
 			if(cantElemArrayList>0) {
 
 				this.tabla[fila][columna]= arrayColumna.get(iArrayList);
 
-				iArrayList--; //resto el indice
+				iArrayList++; //sumo el indice para no chequear el siguiente
 				cantElemArrayList--; //resto la cantidad de elem
 
 			}
