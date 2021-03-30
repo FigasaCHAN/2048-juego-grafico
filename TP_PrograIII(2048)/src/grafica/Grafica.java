@@ -13,7 +13,7 @@ import java.awt.Font;
 public class Grafica {
 
 	private JFrame frame;
-
+	TableroGrafico xsss;
 	/**
 	 * Launch the application.
 	 */
@@ -34,7 +34,9 @@ public class Grafica {
 	 * Create the application.
 	 */
 	public Grafica() {
+		this.xsss= new TableroGrafico();
 		initialize();
+		
 	}
 
 	/**
@@ -58,9 +60,13 @@ public class Grafica {
 		puntaje.setBounds(513, 0, 271, 35);
 		hub.add(puntaje);
 		
-		JPanel tableroGrafico = new JPanel();
+		/*JPanel tableroGrafico = new JPanel();
 		tableroGrafico.setBounds(0, 35, 784, 526);
 		frame.getContentPane().add(tableroGrafico);
 		tableroGrafico.setLayout(new GridLayout(1, 0, 0, 0));
+		*/
+		this.xsss.setBounds(0, 35, 784, 526);
+		frame.getContentPane().add(this.xsss);
+		
 	}
 }
