@@ -18,6 +18,7 @@ public class Grafica {
 
 	private JFrame frame;
 	TableroGrafico tableroGrafico;
+	JLabel puntajes; 
 	/**
 	 * Launch the application.
 	 */
@@ -39,6 +40,7 @@ public class Grafica {
 	 */
 	public Grafica() {
 		this.tableroGrafico= new TableroGrafico();
+		
 		initialize();
 		
 	}
@@ -57,6 +59,16 @@ public class Grafica {
 		
 		this.tableroGrafico.setBounds(0, 35, 784, 526); //lo doy la forma
 		frame.getContentPane().add(this.tableroGrafico); //lo agrego a la ventana
+
+		JPanel hub = new JPanel();
+		hub.setBounds(0, 0, 784, 35);
+		frame.getContentPane().add(hub);
+		hub.setLayout(null);
+		
+		this.puntajes = new JLabel("Puntos: ");
+		puntajes.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		puntajes.setBounds(513, 0, 271, 35);
+		hub.add(puntajes);
 		
 		
 		frame.addKeyListener(new KeyAdapter() {
@@ -64,28 +76,22 @@ public class Grafica {
 			public void keyTyped(KeyEvent e) {
 				if(e.getKeyChar()=='w') {
 					tableroGrafico.moverArriba();
+					actualizarPuntos();
 				}
 				if(e.getKeyChar()=='a') {
 					tableroGrafico.moverIzquierda();
+					actualizarPuntos();
 				}
 				if(e.getKeyChar()=='s') {
 					tableroGrafico.moverAbajo();
+					actualizarPuntos();
 				}
 				if(e.getKeyChar()=='d') {
 					tableroGrafico.moverDerecha();
+					actualizarPuntos();
 				}
 			}
 		});
-		
-		JPanel hub = new JPanel();
-		hub.setBounds(0, 0, 784, 35);
-		frame.getContentPane().add(hub);
-		hub.setLayout(null);
-		
-		JLabel puntaje = new JLabel("Puntos: ");
-		puntaje.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		puntaje.setBounds(513, 0, 271, 35);
-		hub.add(puntaje);
 		
 		/*JPanel tableroGrafico = new JPanel();
 		tableroGrafico.setBounds(0, 35, 784, 526);
@@ -94,6 +100,9 @@ public class Grafica {
 		*/
 	
 		
+	}
+	void actualizarPuntos() {
+		this.puntajes.setText("Puntaje: " + this.tableroGrafico.puntos);
 	}
 	private void quitarPanel(JPanel panel) {
 		frame.getContentPane().remove(panel);
