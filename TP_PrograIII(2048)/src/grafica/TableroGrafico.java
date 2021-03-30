@@ -17,6 +17,7 @@ public class TableroGrafico extends JPanel {
 	Tablero tablero;
 	final int CANT_DE_FILAS_Y_COLUMNA;
 	final Color colorTablero,colorN2,colorN4;
+	ArrayList<JLabel> listLabel;
 	/**
 	 * Create the panel.
 	 */
@@ -32,7 +33,7 @@ public class TableroGrafico extends JPanel {
 		this.colorTablero= new Color(252,181,255);
 		this.colorN2=new Color(248,91,255);
 		this.colorN4=new Color(181,67,187);
-
+		this.listLabel= new ArrayList<JLabel>();
 
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setLayout(new GridLayout(CANT_DE_FILAS_Y_COLUMNA, CANT_DE_FILAS_Y_COLUMNA, 0, 0)); //defino la cantidad de filas y colum que va a tener el layout
@@ -60,7 +61,7 @@ public class TableroGrafico extends JPanel {
 				elemento.setFont(new Font("Tahoma", Font.PLAIN, 80));
 
 				add(elemento); //agrego el elem al panel
-
+				this.listLabel.add(elemento); //lo agrego al arraylist
 			}
 		}
 	}
