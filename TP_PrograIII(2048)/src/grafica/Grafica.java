@@ -65,7 +65,7 @@ public class Grafica {
 		JPanel hub = new JPanel();
 		hub.setBounds(0, 0, 784, 35);
 		//frame.getContentPane().add(hub);
-		añadirPanel(hub);
+		agregarPanel(hub);
 		hub.setLayout(null);
 		
 		this.puntajes = new JLabel("Puntos: ");
@@ -107,7 +107,7 @@ public class Grafica {
 	void actualizarPuntos() {
 		this.puntajes.setText("Puntaje: " + this.tableroGrafico.puntos);
 	}
-	private void añadirPanel(JPanel panel) {
+	private void agregarPanel(JPanel panel) {
 		frame.getContentPane().add(panel);
 	}
 	private void quitarPanel(JPanel panel) {
