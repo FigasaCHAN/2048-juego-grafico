@@ -1,26 +1,62 @@
 package grafica;
 
-import javax.swing.JPanel;
-import java.awt.Rectangle;
-import javax.swing.JLabel;
 import java.awt.Color;
-import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import java.awt.Rectangle;
 
-public class MenuGrafico extends JPanel {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class MenuGrafico {
+
+	private JFrame frame;
 	private JTextField txtFieldNombre;
+	public JButton  btnJugar;
+	
 
 	/**
-	 * Create the panel.
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MenuGrafico window = new MenuGrafico();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
 	 */
 	public MenuGrafico() {
-		setBackground(new Color(169, 169, 169));
-		setBounds(new Rectangle(0, 0, 784, 526));
-		setLayout(null);
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
 		
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.setBackground(new Color(169, 169, 169));
+		frame.setBounds(new Rectangle(0, 0, 784, 526));
+		frame.getContentPane().setLayout(null);
+		frame.setLocationRelativeTo(null); //centro la ventana
 		JLabel lblNewLabel = new JLabel("2");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
@@ -29,7 +65,7 @@ public class MenuGrafico extends JPanel {
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(new Color(222, 184, 135));
 		lblNewLabel.setBounds(140, 84, 87, 76);
-		add(lblNewLabel);
+		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("0");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
@@ -40,7 +76,7 @@ public class MenuGrafico extends JPanel {
 		
 		lblNewLabel_1.setOpaque(true);
 		lblNewLabel_1.setBounds(260, 84, 87, 76);
-		add(lblNewLabel_1);
+		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("4");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
@@ -50,7 +86,7 @@ public class MenuGrafico extends JPanel {
 		lblNewLabel_2.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lblNewLabel_2.setOpaque(true);
 		lblNewLabel_2.setBounds(380, 84, 87, 76);
-		add(lblNewLabel_2);
+		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("8");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
@@ -60,7 +96,7 @@ public class MenuGrafico extends JPanel {
 		lblNewLabel_3.setBackground(new Color(0, 191, 255));
 		lblNewLabel_3.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lblNewLabel_3.setBounds(490, 84, 87, 76);
-		add(lblNewLabel_3);
+		frame.getContentPane().add(lblNewLabel_3);
 		
 		txtFieldNombre = new JTextField();
 		txtFieldNombre.setBackground(new Color(255, 140, 0));
@@ -68,22 +104,37 @@ public class MenuGrafico extends JPanel {
 		txtFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		txtFieldNombre.setName("");
 		txtFieldNombre.setBounds(260, 268, 221, 39);
-		add(txtFieldNombre);
+		frame.getContentPane().add(txtFieldNombre);
 		txtFieldNombre.setColumns(10);
 		
 		JLabel lbl_IngresarNombre = new JLabel("Ingresa tu nombre:");
 		lbl_IngresarNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lbl_IngresarNombre.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lbl_IngresarNombre.setBounds(291, 239, 165, 26);
-		add(lbl_IngresarNombre);
+		frame.getContentPane().add(lbl_IngresarNombre);
 		
-		JButton btnJugar = new JButton("Jugar");
+		btnJugar = new JButton("Jugar");
+			
 		btnJugar.setBorderPainted(false);
 		btnJugar.setBorder(new LineBorder(new Color(222, 184, 135)));
 		btnJugar.setBackground(new Color(255, 140, 0));
 		btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnJugar.setBounds(315, 332, 122, 54);
-		add(btnJugar);
-
+		frame.getContentPane().add(btnJugar);
+		
+		btnJugar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Grafica grafica=new Grafica();
+				mostrarVentana(false);		
+				grafica.setVisible(true);
+					
+			}
+		});
 	}
+	
+	private void mostrarVentana(boolean opcion) {
+		this.frame.setVisible(opcion);
+	}
+
 }

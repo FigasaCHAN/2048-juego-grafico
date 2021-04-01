@@ -13,13 +13,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Grafica {
 
 	private JFrame frame;
 	TableroGrafico tableroGrafico;
-	MenuGrafico menuGrafico;
 	JLabel puntajes; 
+	JPanel hub;
 	
 	/**
 	 * Launch the application.
@@ -42,7 +44,6 @@ public class Grafica {
 	 */
 	public Grafica() {
 		this.tableroGrafico= new TableroGrafico();
-		this.menuGrafico=new MenuGrafico();
 		initialize();
 		
 	}
@@ -52,7 +53,7 @@ public class Grafica {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		
+
 		frame.setResizable(false);
 		frame.setTitle("2048");
 		frame.setBounds(100, 100, 800, 600);
@@ -63,10 +64,9 @@ public class Grafica {
 		this.tableroGrafico.setBounds(0, 35, 784, 526); //lo doy las medidas 
 		frame.getContentPane().add(this.tableroGrafico); //lo agrego a la ventana
 
-		JPanel hub = new JPanel();
+		hub = new JPanel();
 		hub.setBounds(0, 0, 784, 35);
-		//frame.getContentPane().add(hub);
-		agregarPanel(hub);
+		agregarPanel(this.hub);
 		hub.setLayout(null);
 		
 		this.puntajes = new JLabel("Puntos: ");
@@ -74,6 +74,7 @@ public class Grafica {
 		puntajes.setBounds(513, 0, 271, 35);
 		hub.add(puntajes);
 		
+
 		
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
@@ -115,4 +116,28 @@ public class Grafica {
 		frame.getContentPane().remove(panel); //O(n)
 		frame.repaint(); //es obligatorio redibujar
 	}
+	
+	public void setVisible(boolean opcion) {
+		this.frame.setVisible(opcion);
+	}
+	
+//	private void quitarPanelGrafico() {
+//		frame.getContentPane().remove(this.menuGrafico); 
+//		//frame.getContentPane().add(this.hub);	
+//		agregarPanel(this.hub);
+//		agregarPanel(this.tableroGrafico);
+//		System.out.println("click");
+//		frame.repaint();
+//		
+//	}
+//	
+//	void eventoJugar() {
+//		this.menuGrafico.btnJugar.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				quitarPanelGrafico();
+//				
+//			}
+//		});
+//	}
 }
