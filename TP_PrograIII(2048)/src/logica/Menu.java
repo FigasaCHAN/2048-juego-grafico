@@ -5,8 +5,6 @@ import java.util.stream.IntStream;
 
 public class Menu {
 	
-	
-	
 	private static boolean contieneNumeros(String nombre) {
 		
 		for(char caracter:nombre.toCharArray()) {
@@ -25,15 +23,6 @@ public class Menu {
 			
 			return true;
 		}
-		
-	
 	}
-//	
-//	public static void main(String[] args) {
-//		
-//		
-//		
-//		
-//	}
 
 }

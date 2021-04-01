@@ -1,6 +1,7 @@
 package grafica;
 
 import java.awt.Color;
+import logica.Menu;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -125,9 +126,13 @@ public class MenuGrafico {
 		btnJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Grafica grafica=new Grafica();
-				mostrarVentana(false);		
-				grafica.setVisible(true);
+				if(esNombreValido()) {				
+					Grafica grafica=new Grafica();
+					mostrarVentana(false);		
+					grafica.setVisible(true);
+				}else {
+					System.out.println("El nombre no puede contener numeros o espacios en blanco");
+				}
 					
 			}
 		});
@@ -136,5 +141,11 @@ public class MenuGrafico {
 	private void mostrarVentana(boolean opcion) {
 		this.frame.setVisible(opcion);
 	}
+	
+	private boolean esNombreValido() {
+		return Menu.validarNombreJugador(this.txtFieldNombre.getText());
+	}
+	
+	
 
 }
