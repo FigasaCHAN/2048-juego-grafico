@@ -29,9 +29,9 @@ public class TableroGrafico extends JPanel {
 	public TableroGrafico() {
 		int[][] matrizTablero= new int [][]{  //creo la matriz provisoria aca
 			{0,0,0,0},
-			{2,0,0,0},
 			{0,0,0,0},
-			{0,0,4,0}
+			{0,0,0,0},
+			{0,0,0,0}
 	
 		};
 		this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;

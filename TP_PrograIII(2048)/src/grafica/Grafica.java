@@ -18,6 +18,7 @@ public class Grafica {
 
 	private JFrame frame;
 	TableroGrafico tableroGrafico;
+	MenuGrafico menuGrafico;
 	JLabel puntajes; 
 	
 	/**
@@ -41,7 +42,7 @@ public class Grafica {
 	 */
 	public Grafica() {
 		this.tableroGrafico= new TableroGrafico();
-		
+		this.menuGrafico=new MenuGrafico();
 		initialize();
 		
 	}
