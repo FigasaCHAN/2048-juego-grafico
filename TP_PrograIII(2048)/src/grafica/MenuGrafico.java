@@ -2,6 +2,8 @@ package grafica;
 
 import java.awt.Color;
 import logica.Menu;
+import multimedia.Fuente;
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Rectangle;
@@ -20,6 +22,7 @@ public class MenuGrafico {
 	private JFrame frame;
 	private JTextField txtFieldNombre;
 	public JButton  btnJugar;
+	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
 	
 
 	/**
@@ -42,6 +45,10 @@ public class MenuGrafico {
 	 * Create the application.
 	 */
 	public MenuGrafico() {
+		Fuente fuente= new Fuente();
+		this.pixelNum= fuente.generarFuente("Pixel.ttf", 50);
+		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 20);
+		this.pixelCarteles= fuente.generarFuente("Pixel.ttf", 16);
 		initialize();
 	}
 
@@ -60,7 +67,7 @@ public class MenuGrafico {
 		frame.setLocationRelativeTo(null); //centro la ventana
 		JLabel lblNewLabel = new JLabel("2");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		lblNewLabel.setFont(this.pixelNum);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBorder(new LineBorder(new Color(218, 165, 32)));
 		lblNewLabel.setOpaque(true);
@@ -70,7 +77,7 @@ public class MenuGrafico {
 		
 		JLabel lblNewLabel_1 = new JLabel("0");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		lblNewLabel_1.setFont(this.pixelNum);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lblNewLabel_1.setBackground(new Color(233, 150, 122));
@@ -81,7 +88,7 @@ public class MenuGrafico {
 		
 		JLabel lblNewLabel_2 = new JLabel("4");
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		lblNewLabel_2.setFont(this.pixelNum);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBackground(new Color(50, 205, 50));
 		lblNewLabel_2.setBorder(new LineBorder(new Color(222, 184, 135)));
@@ -91,7 +98,7 @@ public class MenuGrafico {
 		
 		JLabel lblNewLabel_3 = new JLabel("8");
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 50));
+		lblNewLabel_3.setFont(this.pixelNum);
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setOpaque(true);
 		lblNewLabel_3.setBackground(new Color(0, 191, 255));
@@ -102,16 +109,16 @@ public class MenuGrafico {
 		txtFieldNombre = new JTextField();
 		txtFieldNombre.setBackground(new Color(255, 140, 0));
 		txtFieldNombre.setForeground(new Color(255, 255, 255));
-		txtFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtFieldNombre.setFont(this.pixelNombreUsuario);
 		txtFieldNombre.setName("");
 		txtFieldNombre.setBounds(260, 268, 221, 39);
 		frame.getContentPane().add(txtFieldNombre);
 		txtFieldNombre.setColumns(10);
 		
 		JLabel lbl_IngresarNombre = new JLabel("Ingresa tu nombre:");
-		lbl_IngresarNombre.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lbl_IngresarNombre.setFont(this.pixelCarteles);
 		lbl_IngresarNombre.setBorder(new LineBorder(new Color(222, 184, 135)));
-		lbl_IngresarNombre.setBounds(291, 239, 165, 26);
+		lbl_IngresarNombre.setBounds(260, 239, 221, 26);
 		frame.getContentPane().add(lbl_IngresarNombre);
 		
 		btnJugar = new JButton("Jugar");
@@ -119,7 +126,7 @@ public class MenuGrafico {
 		btnJugar.setBorderPainted(false);
 		btnJugar.setBorder(new LineBorder(new Color(222, 184, 135)));
 		btnJugar.setBackground(new Color(255, 140, 0));
-		btnJugar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnJugar.setFont(this.pixelCarteles);
 		btnJugar.setBounds(315, 332, 122, 54);
 		frame.getContentPane().add(btnJugar);
 		
