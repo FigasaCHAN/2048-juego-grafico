@@ -145,7 +145,6 @@ public class MenuGrafico {
 	private boolean esNombreValido() {
 		return Menu.validarNombreJugador(this.txtFieldNombre.getText());
 	}
-	
-	
+		
 
 }
