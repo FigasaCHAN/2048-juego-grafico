@@ -15,6 +15,17 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLayeredPane;
+import javax.swing.JProgressBar;
+import java.awt.Button;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import javax.swing.KeyStroke;
 
 public class Grafica {
 
@@ -22,7 +33,8 @@ public class Grafica {
 	TableroGrafico tableroGrafico;
 	JLabel puntajes; 
 	JPanel hub;
-	
+	MenuPanel menu;
+	boolean isMenu, isTablero;
 	/**
 	 * Launch the application.
 	 */
@@ -32,6 +44,8 @@ public class Grafica {
 				try {
 					Grafica window = new Grafica();
 					window.frame.setVisible(true);
+					window.cargarMenu(); //cargo el menu
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,101 +57,102 @@ public class Grafica {
 	 * Create the application.
 	 */
 	public Grafica() {
-		this.tableroGrafico= new TableroGrafico();
-		initialize();
-		
+		this.tableroGrafico= new TableroGrafico(); //creo el tablero grafico
+		this.menu= new MenuPanel(); //creo el menu panel
+		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu
+		this.menu.setBounds(0, 0, 784, 561);//medidas al menu panel
+		initialize(); //inicializo
+		//y eso es lo unico que debe hacer el constructor, los eventos y estado de la clase las voy a cambiar en el main
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		//Inicializo la ventana, solo la ventana 
 		frame = new JFrame();
-
 		frame.setResizable(false);
 		frame.setTitle("2048");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setLocationRelativeTo(null); //centro la ventana
-		
-		this.tableroGrafico.setBounds(0, 35, 784, 526); //lo doy las medidas 
-		frame.getContentPane().add(this.tableroGrafico); //lo agrego a la ventana
-
-		hub = new JPanel();
-		hub.setBounds(0, 0, 784, 35);
-		agregarPanel(this.hub);
-		hub.setLayout(null);
-		
-		this.puntajes = new JLabel("Puntos: ");
-		puntajes.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		puntajes.setBounds(513, 0, 271, 35);
-		hub.add(puntajes);
-		
-
-		
-		frame.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if(e.getKeyChar()=='w') {
-					tableroGrafico.moverArriba();
-					actualizarPuntos();
-				}
-				if(e.getKeyChar()=='a') {
-					tableroGrafico.moverIzquierda();
-					actualizarPuntos();
-				}
-				if(e.getKeyChar()=='s') {
-					tableroGrafico.moverAbajo();
-					actualizarPuntos();
-				}
-				if(e.getKeyChar()=='d') {
-					tableroGrafico.moverDerecha();
-					actualizarPuntos();
-				}
-			}
-		});
-		
-		/*JPanel tableroGrafico = new JPanel();
-		tableroGrafico.setBounds(0, 35, 784, 526);
-		frame.getContentPane().add(tableroGrafico);
-		tableroGrafico.setLayout(new GridLayout(1, 0, 0, 0));
-		*/
-	
-		
+		frame.setLocationRelativeTo(null);
 	}
+	
 	void actualizarPuntos() {
 		this.puntajes.setText("Puntaje: " + this.tableroGrafico.puntos);
 	}
 	private void agregarPanel(JPanel panel) {
-		frame.getContentPane().add(panel);
+		frame.getContentPane().removeAll(); //elimino todos los componentes
+		frame.getContentPane().add(panel); //agrego el panel
+		frame.getContentPane().repaint(); //repinto
+		frame.getContentPane().revalidate(); // revalido esto es importante ya que el frame tiene que fijarse el estado de sus componentes
+		
 	}
-	private void quitarPanel(JPanel panel) {
-		frame.getContentPane().remove(panel); //O(n)
-		frame.repaint(); //es obligatorio redibujar
+	private void cargarTablero() {
+		agregarPanel(this.tableroGrafico); //agrego el tablero
+		agregarMenuBar(); //agrego la barra de menu
+		frame.repaint(); //repinto
+		frame.revalidate();//revalido
+	}
+	private void cargarMenu() {
+		agregarPanel(this.menu); //agrego el menu (panel)
+		eventoClick();
+		frame.repaint();
+		frame.revalidate();
+		
 	}
 	
-	public void setVisible(boolean opcion) {
-		this.frame.setVisible(opcion);
+	private void eventoClick() {
+		//evento de click
+		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
+		public void actionPerformed(ActionEvent e) {
+			cargarTablero(); //cargo el tablero
+		}
+	});
 	}
-	
-//	private void quitarPanelGrafico() {
-//		frame.getContentPane().remove(this.menuGrafico); 
-//		//frame.getContentPane().add(this.hub);	
-//		agregarPanel(this.hub);
-//		agregarPanel(this.tableroGrafico);
-//		System.out.println("click");
-//		frame.repaint();
-//		
-//	}
-//	
-//	void eventoJugar() {
-//		this.menuGrafico.btnJugar.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				quitarPanelGrafico();
-//				
-//			}
-//		});
-//	}
+	private void agregarMenuBar() { //agrega la barra del menu
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu menMovimiento = new JMenu("Movimiento");
+		menuBar.add(menMovimiento);
+		
+		JMenuItem menuMovArriba = new JMenuItem("Arriba");
+		menuMovArriba.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0)); //el acceso directo 
+		menuMovArriba.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { 
+				tableroGrafico.moverArriba(); //el evento es moverArriba
+			}
+		});
+		menMovimiento.add(menuMovArriba); //agrego el item al menu
+		
+		JMenuItem menuMovAbajo = new JMenuItem("Abajo");
+		menuMovAbajo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tableroGrafico.moverAbajo();
+				
+			}
+		});
+		menuMovAbajo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0));
+		menMovimiento.add(menuMovAbajo);
+		
+		JMenuItem menuMovIzquierda = new JMenuItem("Izquierda");
+		menuMovIzquierda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tableroGrafico.moverIzquierda();
+			}
+		});
+		menuMovIzquierda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
+		menMovimiento.add(menuMovIzquierda);
+		
+		JMenuItem menuMovDerecha = new JMenuItem("Derecha");
+		menuMovDerecha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tableroGrafico.moverDerecha();
+			}
+		});
+		menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));
+		menMovimiento.add(menuMovDerecha);
+	}
 }
