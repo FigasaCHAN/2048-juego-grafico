@@ -38,7 +38,7 @@ public class MenuPanel extends JPanel {
 		lblNewLabel.setBorder(new LineBorder(new Color(218, 165, 32)));
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(new Color(222, 184, 135));
-		lblNewLabel.setBounds(175, 7, 39, 93);
+		lblNewLabel.setBounds(192, 129, 88, 93);
 		add(lblNewLabel);
 		
 		//Num 0 titulo
@@ -49,7 +49,7 @@ public class MenuPanel extends JPanel {
 		lblNewLabel_1.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lblNewLabel_1.setBackground(new Color(233, 150, 122));
 		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBounds(224, 7, 39, 93);
+		lblNewLabel_1.setBounds(290, 129, 88, 93);
 		add(lblNewLabel_1);
 		
 		//Num 4 titulo
@@ -60,7 +60,7 @@ public class MenuPanel extends JPanel {
 		lblNewLabel_2.setBackground(new Color(50, 205, 50));
 		lblNewLabel_2.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lblNewLabel_2.setOpaque(true);
-		lblNewLabel_2.setBounds(285, 7, 39, 93);
+		lblNewLabel_2.setBounds(388, 129, 88, 93);
 		add(lblNewLabel_2);
 		
 		//Num 8 titulo
@@ -71,7 +71,7 @@ public class MenuPanel extends JPanel {
 		lblNewLabel_3.setOpaque(true);
 		lblNewLabel_3.setBackground(new Color(0, 191, 255));
 		lblNewLabel_3.setBorder(new LineBorder(new Color(222, 184, 135)));
-		lblNewLabel_3.setBounds(352, 7, 39, 93);
+		lblNewLabel_3.setBounds(486, 129, 88, 93);
 		add(lblNewLabel_3);
 		
 		//Campo de Texto
@@ -80,7 +80,7 @@ public class MenuPanel extends JPanel {
 		txtFieldNombre.setForeground(new Color(255, 255, 255));
 		txtFieldNombre.setFont(this.pixelNombreUsuario);
 		txtFieldNombre.setName("");
-		txtFieldNombre.setBounds(175, 233, 222, 20);
+		txtFieldNombre.setBounds(175, 336, 412, 36);
 		txtFieldNombre.setColumns(10);
 		add(txtFieldNombre);
 		
@@ -88,7 +88,7 @@ public class MenuPanel extends JPanel {
 		JLabel lbl_IngresarNombre = new JLabel("Ingresa tu nombre: ");
 		lbl_IngresarNombre.setFont(this.pixelCarteles);
 		lbl_IngresarNombre.setBorder(new LineBorder(new Color(222, 184, 135)));
-		lbl_IngresarNombre.setBounds(175, 206, 222, 16);
+		lbl_IngresarNombre.setBounds(175, 297, 412, 28);
 		add(lbl_IngresarNombre);
 		
 		//Boton jugar
@@ -97,7 +97,7 @@ public class MenuPanel extends JPanel {
 		btnJugar.setBorder(new LineBorder(new Color(222, 184, 135)));
 		btnJugar.setBackground(new Color(255, 140, 0));
 		btnJugar.setFont(this.pixelCarteles);
-		btnJugar.setBounds(189, 295, 188, 72);
+		btnJugar.setBounds(224, 401, 307, 77);
 		add(btnJugar);
 	}
 

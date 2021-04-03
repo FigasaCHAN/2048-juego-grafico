@@ -188,7 +188,6 @@ public class Tablero {
 			if(array.get(i).equals(array.get(i-1))) {
 			//if(array.get(i)==array.get(i+1)) {
 				int suma= (array.get(i)+array.get(i-1)); //los sumo
-				System.out.println(suma);
 				nuevaArray.add(suma);
 				i--; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
 				this.puntos+= suma; //a los puntos le agrego la suma
