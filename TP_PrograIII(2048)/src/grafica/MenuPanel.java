@@ -18,7 +18,7 @@ import logica.Menu;
 import multimedia.Fuente;
 
 public class MenuPanel extends JPanel {
-	private JTextField txtFieldNombre;
+	public JTextField txtFieldNombre;
 	public JButton  btnJugar;
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
 

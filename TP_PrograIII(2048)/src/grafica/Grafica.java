@@ -34,6 +34,7 @@ public class Grafica {
 	JLabel puntajes; 
 	Hub hub;
 	MenuPanel menu;
+	private String nombreDeUsuario;
 	/**
 	 * Launch the application.
 	 */
@@ -93,7 +94,7 @@ public class Grafica {
 	private void cargarTablero() {
 		agregarPanel(this.tableroGrafico); //agrego el tablero
 		agregarMenuBar(); //agrego la barra de menu
-		cargarHub();
+		cargarHub(nombreDeUsuario);//le paso el nombre que ingreso el usuario
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
 	}
@@ -103,8 +104,9 @@ public class Grafica {
 		frame.repaint();
 		frame.revalidate();
 	}
-	private void cargarHub() {
+	private void cargarHub(String nombreDeUsuario) {
 		frame.getContentPane().add(this.hub);//agrego el hub sin eliminar nada
+		this.hub.setNombreDeUsuario(nombreDeUsuario); //le paso el nombre de usuario
 		frame.repaint();
 		frame.revalidate();
 	}
@@ -112,6 +114,7 @@ public class Grafica {
 		//evento de click
 		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 		public void actionPerformed(ActionEvent e) {
+			nombreDeUsuario= menu.txtFieldNombre.getText(); //aca hay que hacer la comprobacion del nombre del usuario
 			cargarTablero(); //cargo el tablero
 		}
 	});

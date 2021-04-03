@@ -9,27 +9,34 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 public class Hub extends JPanel {
-	private JLabel nombreUsuario, puntaje;
+	private JLabel labelNombreDeUsuario, labelPuntaje;
 	private Font pixelNum,pixelNombreUsuario;
+	private String nombreDeUsuario;
 	public Hub() {
 		Fuente fuente= new Fuente();
-		this.pixelNum= fuente.generarFuente("Pixel.ttf", 20);
-		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 20);
+		this.pixelNum= fuente.generarFuente("Pixel.ttf", 30);
+		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 30);
 		
 		setLayout(null);
 		
-		nombreUsuario = new JLabel("Username");
-		nombreUsuario.setFont(this.pixelNum);
-		nombreUsuario.setBounds(10, 0, 381, 31);
-		add(nombreUsuario);
+		this.nombreDeUsuario="Username";
+		labelNombreDeUsuario = new JLabel(this.nombreDeUsuario);
+		labelNombreDeUsuario.setFont(this.pixelNum);
+		labelNombreDeUsuario.setBounds(10, 0, 381, 31);
+		add(labelNombreDeUsuario);
 		
-		puntaje = new JLabel("Puntos: 0");
-		puntaje.setFont(this.pixelNombreUsuario);
-		puntaje.setBounds(528, 0, 256, 31);
-		add(puntaje);
+		labelPuntaje = new JLabel("Puntos: 0");
+		labelPuntaje.setFont(this.pixelNombreUsuario);
+		labelPuntaje.setBounds(401, 0, 383, 31);
+		add(labelPuntaje);
+		
 
 	}
 	public void actualizarPuntaje(int puntos) {
-		this.puntaje.setText("Puntos: " + Integer.toString(puntos));
+		this.labelPuntaje.setText("Puntos: " + Integer.toString(puntos));
+	}
+	public void setNombreDeUsuario(String nombreDeUsuario) {
+		this.nombreDeUsuario= nombreDeUsuario;
+		this.labelNombreDeUsuario.setText(this.nombreDeUsuario);
 	}
 }
