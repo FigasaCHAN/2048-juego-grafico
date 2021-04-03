@@ -32,9 +32,8 @@ public class Grafica {
 	private JFrame frame;
 	TableroGrafico tableroGrafico;
 	JLabel puntajes; 
-	JPanel hub;
+	Hub hub;
 	MenuPanel menu;
-	boolean isMenu, isTablero;
 	/**
 	 * Launch the application.
 	 */
@@ -59,8 +58,10 @@ public class Grafica {
 	public Grafica() {
 		this.tableroGrafico= new TableroGrafico(); //creo el tablero grafico
 		this.menu= new MenuPanel(); //creo el menu panel
-		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu
+		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
 		this.menu.setBounds(0, 0, 784, 561);//medidas al menu panel
+		this.hub=new Hub(); //creo el hub
+		this.hub.setBounds(0, 0, 784, 35);//medidas del hub
 		initialize(); //inicializo
 		//y eso es lo unico que debe hacer el constructor, los eventos y estado de la clase las voy a cambiar en el main
 	}
@@ -92,6 +93,7 @@ public class Grafica {
 	private void cargarTablero() {
 		agregarPanel(this.tableroGrafico); //agrego el tablero
 		agregarMenuBar(); //agrego la barra de menu
+		cargarHub();
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
 	}
@@ -100,9 +102,12 @@ public class Grafica {
 		eventoClick();
 		frame.repaint();
 		frame.revalidate();
-		
 	}
-	
+	private void cargarHub() {
+		frame.getContentPane().add(this.hub);//agrego el hub sin eliminar nada
+		frame.repaint();
+		frame.revalidate();
+	}
 	private void eventoClick() {
 		//evento de click
 		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
