@@ -21,7 +21,6 @@ public class TableroGrafico extends JPanel {
 	private Color colorTablero;
 	private final Color colorN2,colorN4,colorN8,colorN16,colorN32,colorN64,colorN128,colorN256,colorN512,colorN1024,colorN2048;
 	ArrayList<JLabel> listLabel;
-	int puntos; //hay que ponerlo en la parte logica
 	
 	/**
 	 * Create the panel.
@@ -48,7 +47,6 @@ public class TableroGrafico extends JPanel {
 		this.colorN512=new Color(115,100,216);
 		this.colorN1024=new Color(100,161,216);
 		this.colorN2048=new Color(52,150,183);
-		this.puntos= 0;
 		
 		
 		
@@ -104,9 +102,7 @@ public class TableroGrafico extends JPanel {
 	public void actualizar() {
 		ArrayList<Integer> tableroArray= this.tablero.matrizToArray();
 	    int indice= 0;
-	    this.puntos= 0;
 		for(JLabel elem: this.listLabel) {
-			this.puntos+= tableroArray.get(indice);
 			if(tableroArray.get(indice).toString().equals("0")) {
 				elem.setBackground(this.colorTablero);	
 			}

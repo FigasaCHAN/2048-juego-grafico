@@ -81,7 +81,7 @@ public class Grafica {
 	}
 	
 	void actualizarPuntos() {
-		this.puntajes.setText("Puntaje: " + this.tableroGrafico.puntos);
+		this.hub.actualizarPuntaje(tableroGrafico.tablero.getPuntos());
 	}
 	private void agregarPanel(JPanel panel) {
 		frame.getContentPane().removeAll(); //elimino todos los componentes
@@ -128,6 +128,7 @@ public class Grafica {
 		menuMovArriba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 				tableroGrafico.moverArriba(); //el evento es moverArriba
+				actualizarPuntos();
 			}
 		});
 		menMovimiento.add(menuMovArriba); //agrego el item al menu
@@ -136,6 +137,7 @@ public class Grafica {
 		menuMovAbajo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tableroGrafico.moverAbajo();
+				actualizarPuntos();
 				
 			}
 		});
@@ -146,6 +148,7 @@ public class Grafica {
 		menuMovIzquierda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tableroGrafico.moverIzquierda();
+				actualizarPuntos();
 			}
 		});
 		menuMovIzquierda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
@@ -155,6 +158,7 @@ public class Grafica {
 		menuMovDerecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tableroGrafico.moverDerecha();
+				actualizarPuntos();
 			}
 		});
 		menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));

@@ -10,6 +10,7 @@ public class Tablero {
 	private int [][] tabla;
 	public Map<Point, Integer> diccionario;
 	final byte[] NUM_RANDOM_POSIBLES;
+	private int puntos;
 	
 	public Tablero(int [][] mat) {
 		if(mat.length==0 || mat==null) {
@@ -29,6 +30,7 @@ public class Tablero {
 				diccionario.put(new Point(iFila,iColumna), mat[iFila][iColumna]);
 			}
 		}
+		this.puntos=0;
 	}
 
 	public void moverArriba() {
@@ -163,6 +165,7 @@ public class Tablero {
 				int suma= (array.get(i)+array.get(i+1)); //los sumo
 				nuevaArray.add(suma);
 				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
+				this.puntos+= suma; //a los puntos le agrego la suma
 			}
 			else {
 				nuevaArray.add(array.get(i));
@@ -188,6 +191,7 @@ public class Tablero {
 				System.out.println(suma);
 				nuevaArray.add(suma);
 				i--; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
+				this.puntos+= suma; //a los puntos le agrego la suma
 			}
 			else {
 				nuevaArray.add(array.get(i));
@@ -289,5 +293,8 @@ public class Tablero {
 			}
 		}
 		return nueva;
+	}
+	public int getPuntos() {
+		return this.puntos;
 	}
 }

@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 public class Hub extends JPanel {
+	private JLabel nombreUsuario, puntaje;
 	private Font pixelNum,pixelNombreUsuario;
 	public Hub() {
 		Fuente fuente= new Fuente();
@@ -17,15 +18,18 @@ public class Hub extends JPanel {
 		
 		setLayout(null);
 		
-		JLabel nombreUsuario = new JLabel("Username");
+		nombreUsuario = new JLabel("Username");
 		nombreUsuario.setFont(this.pixelNum);
 		nombreUsuario.setBounds(10, 0, 381, 31);
 		add(nombreUsuario);
 		
-		JLabel puntaje = new JLabel("Puntos:");
+		puntaje = new JLabel("Puntos: 0");
 		puntaje.setFont(this.pixelNombreUsuario);
 		puntaje.setBounds(528, 0, 256, 31);
 		add(puntaje);
 
+	}
+	public void actualizarPuntaje(int puntos) {
+		this.puntaje.setText("Puntos: " + Integer.toString(puntos));
 	}
 }
