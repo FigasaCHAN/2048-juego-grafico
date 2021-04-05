@@ -27,6 +27,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.KeyStroke;
 
+import logica.Menu;
+
 public class Grafica {
 
 	private JFrame frame;
@@ -115,7 +117,12 @@ public class Grafica {
 		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 		public void actionPerformed(ActionEvent e) {
 			nombreDeUsuario= menu.txtFieldNombre.getText(); //aca hay que hacer la comprobacion del nombre del usuario
-			cargarTablero(); //cargo el tablero
+			if(Menu.validarNombreJugador(nombreDeUsuario)) {	
+				menu.mostrarErrorNombre(false);
+				cargarTablero(); //cargo el tablero
+			}else {
+				menu.mostrarErrorNombre(true);
+			}
 		}
 	});
 	}
