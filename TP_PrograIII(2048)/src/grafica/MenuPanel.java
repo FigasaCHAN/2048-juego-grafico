@@ -21,6 +21,7 @@ public class MenuPanel extends JPanel {
 	public JTextField txtFieldNombre;
 	public JButton  btnJugar;
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
+	private JLabel lblErrorNombre;
 
 	public MenuPanel() {
 		//Fuente
@@ -99,6 +100,14 @@ public class MenuPanel extends JPanel {
 		btnJugar.setFont(this.pixelCarteles);
 		btnJugar.setBounds(224, 401, 307, 77);
 		add(btnJugar);
+		
+		lblErrorNombre = new JLabel("El nombre solo puede contener caracteres alfabeticos");
+		lblErrorNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErrorNombre.setBackground(new Color(255, 0, 0));
+		lblErrorNombre.setOpaque(true);
+		lblErrorNombre.setBounds(185, 376, 404, 14);
+		add(lblErrorNombre);
+		lblErrorNombre.setVisible(false);
 	}
 
 	
@@ -106,7 +115,7 @@ public class MenuPanel extends JPanel {
 		return Menu.validarNombreJugador(this.txtFieldNombre.getText());
 	}
 	
-	
-
-
+	public void mostrarErrorNombre(boolean opcion) {
+		this.lblErrorNombre.setVisible(opcion);
+	}
 }

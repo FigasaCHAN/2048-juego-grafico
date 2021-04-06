@@ -19,8 +19,7 @@ public class Menu {
 		
 		if(nombre.contains(" ") || contieneNumeros(nombre) || nombre.isEmpty()) {
 			return false;
-		}else {
-			
+		}else {		
 			return true;
 		}
 	}
