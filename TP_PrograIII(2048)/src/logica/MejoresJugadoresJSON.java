@@ -65,14 +65,24 @@ public class MejoresJugadoresJSON {
 		MejoresJugadoresJSON mejoresJugadores=new MejoresJugadoresJSON();
 		
 		ArrayList<Jugador> jugadoresLeidos=mejoresJugadores.leerJSON("MejoresJugadores.JSON").getJugadores();
-		jugadoresLeidos.add(jugador);
 		
-		for(Jugador persona:jugadoresLeidos) {
-			mejoresJugadores.agregarJugadorALista(persona);
-		}
-				
+//		if(jugadoresLeidos.size()<5) {			
+//			jugadoresLeidos.add(jugador);
+//		}else if(jugadoresLeidos.get(jugadoresLeidos.size()-1).getPuntaje()<jugador.getPuntaje()) {
+//			jugadoresLeidos.remove(jugadoresLeidos.size()-1);
+//			jugadoresLeidos.add(jugador);
+//		}
+		
+					
 		String jsonPretty = mejoresJugadores.generarJSON();
 		mejoresJugadores.guardarJSON(jsonPretty, "MejoresJugadores.JSON");
+		
+	}
+	
+	private ArrayList<Jugador> ordenarPuntajes(ArrayList<Jugador> jugadores){
+		ArrayList<Jugador> puntajesOrdenados=new ArrayList<>();
+		//implementar
+		return puntajesOrdenados;
 		
 	}
 	
