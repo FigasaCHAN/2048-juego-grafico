@@ -10,15 +10,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 
-public class MejoresJugadores {
+
+public class MejoresJugadoresJSON {
 	private ArrayList<Jugador> jugadores;
 	
 	
-	public MejoresJugadores() {
+	public MejoresJugadoresJSON() {
 		this.jugadores=new ArrayList<>();
 	}
 	
-	public void agregarJugador(Jugador jugador) {
+	public void agregarJugadorALista(Jugador jugador) {
 		this.jugadores.add(jugador);
 	}
 
@@ -40,23 +41,38 @@ public class MejoresJugadores {
 			FileWriter writer=new FileWriter(archivoDestino);
 			writer.write(jsonParaGuardar);
 			writer.close();
-			
+			 
 		}catch(Exception e){
 			e.printStackTrace();
 		}	
 	}
 	
-	public static MejoresJugadores leerJSON(String archivo) {
+	public static MejoresJugadoresJSON leerJSON(String archivo) {
 		Gson gson= new Gson();
-		MejoresJugadores ret=null;
+		MejoresJugadoresJSON ret=null;
 		
 		try {
 			BufferedReader br= new BufferedReader(new FileReader(archivo));
-			ret=gson.fromJson(br, MejoresJugadores.class);
+			ret=gson.fromJson(br, MejoresJugadoresJSON.class);
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
 		
 		return ret;
+	}
+	
+	public void agregarJugadorAJSON(Jugador jugador) {
+		MejoresJugadoresJSON mejoresJugadores=new MejoresJugadoresJSON();
+		
+		ArrayList<Jugador> jugadoresLeidos=mejoresJugadores.leerJSON("MejoresJugadores.JSON").getJugadores();
+		jugadoresLeidos.add(jugador);
+		
+		for(Jugador persona:jugadoresLeidos) {
+			mejoresJugadores.agregarJugadorALista(persona);
+		}
+				
+		String jsonPretty = mejoresJugadores.generarJSON();
+		mejoresJugadores.guardarJSON(jsonPretty, "MejoresJugadores.JSON");
+		
 	}
 }
