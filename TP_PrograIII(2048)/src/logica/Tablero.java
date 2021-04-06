@@ -32,7 +32,15 @@ public class Tablero {
 		}
 		this.puntos=0;
 	}
-
+	public Tablero(int cantidadFilas) {
+		int[][] array= generarMatrizCuadradaAlAzar(cantidadFilas); 
+		Tablero tableroAux= new Tablero(array);
+		this.tabla= tableroAux.tabla;
+		this.diccionario= tableroAux.diccionario;
+		this.NUM_RANDOM_POSIBLES= tableroAux.NUM_RANDOM_POSIBLES;
+		this.puntos= tableroAux.puntos;
+		
+	}
 	public void moverArriba() {
 		if(this.tabla.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
@@ -295,5 +303,27 @@ public class Tablero {
 	}
 	public int getPuntos() {
 		return this.puntos;
+	}
+	
+	private int[][] generarMatrizCuadradaAlAzar(int cantidadFilas){
+		//inicializa todo con 0
+		int [][] array= new int[cantidadFilas][cantidadFilas];
+		int[] numPosibles= {2,4};
+		for(int fila= 0; fila<array.length;fila++) {
+			for(int elem=0; elem<array.length; elem++) {
+				array[fila][elem]= 0;
+			}
+		}
+		
+		for(int i=0; i<2; i++) {
+			int filaRandom= (int) (Math.random()* (cantidadFilas) ); //un numero al azar que va de 0 a cantidadFila
+			int columRandom= (int) (Math.random()* (cantidadFilas) );
+			int iNumRandom= (int) (Math.random()* (2) );
+			array[filaRandom][columRandom]= numPosibles[iNumRandom];
+		}
+		return array;
+	}
+	public int[][] getTablero(){
+		return this.tabla;
 	}
 }
