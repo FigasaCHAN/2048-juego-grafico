@@ -75,4 +75,13 @@ public class MejoresJugadoresJSON {
 		mejoresJugadores.guardarJSON(jsonPretty, "MejoresJugadores.JSON");
 		
 	}
+	
+	public ArrayList<Jugador> obtenerJugadoresJSON() {
+		MejoresJugadoresJSON mejoresJugadores=new MejoresJugadoresJSON();
+		
+		ArrayList<Jugador> jugadoresLeidos=mejoresJugadores.leerJSON("MejoresJugadores.JSON").getJugadores();
+		
+		return jugadoresLeidos;
+				
+	}
 }
