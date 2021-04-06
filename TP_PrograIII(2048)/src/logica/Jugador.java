@@ -1,6 +1,6 @@
 package logica;
 
-public class Jugador {
+public class Jugador implements Comparable{
 	private String nombre;
 	private int puntaje;
 	
@@ -15,6 +15,13 @@ public class Jugador {
 
 	public int getPuntaje() {
 		return puntaje;
+	}
+	
+
+	@Override
+	public int compareTo(Object o) {
+		int comparePuntaje=((Jugador)o).getPuntaje();
+		return this.puntaje - comparePuntaje;
 	}
 	
 

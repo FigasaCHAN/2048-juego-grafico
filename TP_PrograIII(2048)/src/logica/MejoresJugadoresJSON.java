@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -65,31 +66,26 @@ public class MejoresJugadoresJSON {
 		MejoresJugadoresJSON mejoresJugadores=new MejoresJugadoresJSON();
 		
 		ArrayList<Jugador> jugadoresLeidos=mejoresJugadores.leerJSON("MejoresJugadores.JSON").getJugadores();
+		Collections.sort(jugadoresLeidos);
 		
-//		if(jugadoresLeidos.size()<5) {			
-//			jugadoresLeidos.add(jugador);
-//		}else if(jugadoresLeidos.get(jugadoresLeidos.size()-1).getPuntaje()<jugador.getPuntaje()) {
-//			jugadoresLeidos.remove(jugadoresLeidos.size()-1);
-//			jugadoresLeidos.add(jugador);
-//		}
-		
-					
+		if(jugadoresLeidos.size()<5) {			
+			jugadoresLeidos.add(jugador);
+		}else if(jugadoresLeidos.get(jugadoresLeidos.size()-1).getPuntaje()<jugador.getPuntaje()) {
+			jugadoresLeidos.remove(jugadoresLeidos.size()-1);
+			jugadoresLeidos.add(jugador);
+		}
+							
 		String jsonPretty = mejoresJugadores.generarJSON();
 		mejoresJugadores.guardarJSON(jsonPretty, "MejoresJugadores.JSON");
 		
 	}
 	
-	private ArrayList<Jugador> ordenarPuntajes(ArrayList<Jugador> jugadores){
-		ArrayList<Jugador> puntajesOrdenados=new ArrayList<>();
-		//implementar
-		return puntajesOrdenados;
-		
-	}
 	
 	public ArrayList<Jugador> obtenerJugadoresJSON() {
 		MejoresJugadoresJSON mejoresJugadores=new MejoresJugadoresJSON();
 		
 		ArrayList<Jugador> jugadoresLeidos=mejoresJugadores.leerJSON("MejoresJugadores.JSON").getJugadores();
+		Collections.sort(jugadoresLeidos);
 		
 		return jugadoresLeidos;
 				
