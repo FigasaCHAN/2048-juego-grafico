@@ -59,12 +59,8 @@ public class Grafica {
 	 * Create the application.
 	 */
 	public Grafica() {
-		this.tableroGrafico= new TableroGrafico(); //creo el tablero grafico
 		this.menu= new MenuPanel(); //creo el menu panel
-		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
 		this.menu.setBounds(0, 0, 784, 561);//medidas al menu panel
-		this.hub=new Hub(); //creo el hub
-		this.hub.setBounds(0, 0, 784, 35);//medidas del hub
 		initialize(); //inicializo
 		//y eso es lo unico que debe hacer el constructor, los eventos y estado de la clase las voy a cambiar en el main
 	}
@@ -93,7 +89,9 @@ public class Grafica {
 		frame.getContentPane().revalidate(); // revalido esto es importante ya que el frame tiene que fijarse el estado de sus componentes
 		
 	}
-	private void cargarTablero() {
+	private void cargarTablero(int modoDeJuegoSeleccionado) {
+		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
+		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
 		agregarPanel(this.tableroGrafico); //agrego el tablero
 		agregarMenuBar(); //agrego la barra de menu
 		cargarHub(nombreDeUsuario);//le paso el nombre que ingreso el usuario
@@ -107,6 +105,8 @@ public class Grafica {
 		frame.revalidate();
 	}
 	private void cargarHub(String nombreDeUsuario) {
+		this.hub=new Hub(); //creo el hub
+		this.hub.setBounds(0, 0, 784, 35);//medidas del hub
 		frame.getContentPane().add(this.hub);//agrego el hub sin eliminar nada
 		this.hub.setNombreDeUsuario(nombreDeUsuario); //le paso el nombre de usuario
 		frame.repaint();
@@ -119,7 +119,7 @@ public class Grafica {
 			nombreDeUsuario= menu.txtFieldNombre.getText(); //aca hay que hacer la comprobacion del nombre del usuario
 			if(Menu.validarNombreJugador(nombreDeUsuario)) {	
 				menu.mostrarErrorNombre(false);
-				cargarTablero(); //cargo el tablero
+				cargarTablero(menu.getModoDeJuego()); //cargo el tablero
 			}else {
 				menu.mostrarErrorNombre(true);
 			}
