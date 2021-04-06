@@ -16,12 +16,15 @@ import javax.swing.border.LineBorder;
 
 import logica.Menu;
 import multimedia.Fuente;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuPanel extends JPanel {
 	public JTextField txtFieldNombre;
-	public JButton  btnJugar;
+	public JButton  btnJugar,btn4x4,btn5x5,btn6x6;
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
-	private JLabel lblErrorNombre;
+	private JLabel lblErrorNombre,cartelModoDeJuegoSeleccionado;
+	private int modoDeJuego=4; //el modo por defaul es 4x4
 
 	public MenuPanel() {
 		//Fuente
@@ -92,6 +95,12 @@ public class MenuPanel extends JPanel {
 		lbl_IngresarNombre.setBounds(175, 297, 412, 28);
 		add(lbl_IngresarNombre);
 		
+		//cartel modo de juego seleccionado
+		this.cartelModoDeJuegoSeleccionado = new JLabel("Modo de juego seleccionado: 4x4");
+		this.cartelModoDeJuegoSeleccionado.setBounds(10, 538, 449, 23);
+		this.cartelModoDeJuegoSeleccionado.setFont(this.pixelCarteles);
+		add(this.cartelModoDeJuegoSeleccionado);
+		
 		//Boton jugar
 		btnJugar = new JButton("Jugar");
 		btnJugar.setBorderPainted(false);
@@ -108,6 +117,50 @@ public class MenuPanel extends JPanel {
 		lblErrorNombre.setBounds(185, 376, 404, 14);
 		add(lblErrorNombre);
 		lblErrorNombre.setVisible(false);
+		
+		this.btn4x4 = new JButton("4x4");
+		btn4x4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartelModoDeJuegoSeleccionado.setText("Modo de juego seleccionado: 4x4");
+				modoDeJuego= 4;
+			}
+		});
+		btn4x4.setBounds(686, 11, 89, 36);
+		btn4x4.setBorderPainted(false);
+		btn4x4.setBorder(new LineBorder(new Color(222, 184, 135)));
+		btn4x4.setBackground(new Color(255, 140, 0));
+		btn4x4.setFont(this.pixelCarteles);
+		add(btn4x4);
+		
+		this.btn5x5 = new JButton("5x5");
+		btn5x5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartelModoDeJuegoSeleccionado.setText("Modo de juego seleccionado: 5x5");
+				modoDeJuego= 5;
+			}
+		});
+		btn5x5.setBounds(686, 58, 89, 36);
+		btn5x5.setBorderPainted(false);
+		btn5x5.setBorder(new LineBorder(new Color(222, 184, 135)));
+		btn5x5.setBackground(new Color(255, 140, 0));
+		btn5x5.setFont(this.pixelCarteles);
+		add(btn5x5);
+		
+		this.btn6x6 = new JButton("6x6");
+		btn6x6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cartelModoDeJuegoSeleccionado.setText("Modo de juego seleccionado: 6x6");
+				modoDeJuego= 6;
+			}
+		});
+		btn6x6.setBounds(686, 102, 89, 36);
+		btn6x6.setBorderPainted(false);
+		btn6x6.setBorder(new LineBorder(new Color(222, 184, 135)));
+		btn6x6.setBackground(new Color(255, 140, 0));
+		btn6x6.setFont(this.pixelCarteles);
+		add(this.btn6x6);
+		
+		
 	}
 
 	
@@ -117,5 +170,8 @@ public class MenuPanel extends JPanel {
 	
 	public void mostrarErrorNombre(boolean opcion) {
 		this.lblErrorNombre.setVisible(opcion);
+	}
+	public int getModoDeJuego() {
+		return this.modoDeJuego;
 	}
 }
