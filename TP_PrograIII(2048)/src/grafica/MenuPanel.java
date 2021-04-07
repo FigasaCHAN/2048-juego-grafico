@@ -90,6 +90,7 @@ public class MenuPanel extends JPanel {
 		
 		//Cartel de ingresarNombre
 		JLabel lbl_IngresarNombre = new JLabel("Ingresa tu nombre: ");
+		lbl_IngresarNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_IngresarNombre.setFont(this.pixelCarteles);
 		lbl_IngresarNombre.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lbl_IngresarNombre.setBounds(175, 297, 412, 28);
