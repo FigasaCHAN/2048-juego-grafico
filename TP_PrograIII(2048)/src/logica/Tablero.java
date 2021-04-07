@@ -56,22 +56,9 @@ public class Tablero {
 				//suponiendo que la matriz es cuadrada
 				moverColumArriba(columna);
 			}
-//			if(!puedeSumar()) {
-//				insertarRandom();
-//			}
 			
 		}
 		
-		else {
-			throw new RuntimeException("El juego finalizo");
-//			if(puedeSumar()) {
-//				this.gameOver=false;
-//			}
-//			else {
-//				throw new RuntimeException("El juego finalizo");
-//			}
-			
-		}
 		
 	}
 
@@ -119,16 +106,6 @@ public class Tablero {
 			}				
 			insertarRandom();	
 				
-		}
-		else {
-			throw new RuntimeException("El juego finalizo");
-//			if(puedeSumar()) {
-//				this.gameOver=false;
-//			}
-//			else {
-//				
-//			}
-			
 		}
 		
 		
@@ -266,16 +243,7 @@ public class Tablero {
 				insertarRandom();	
 			
 		}
-		else {
-			throw new RuntimeException("El juego finalizo");
-//			if(puedeSumar()) {
-//				this.gameOver=false;
-//			}
-//			else {
-//				throw new RuntimeException("El juego finalizo");
-//			}
-			
-		}
+
 	}
 	private void moverFilaIzquierda(int [] fila, int numFila) {
 		ArrayList<Integer> arraylistFila= sumarNumerosIguales( filaToArrayList(fila) );
@@ -301,16 +269,7 @@ public class Tablero {
 			}			
 			insertarRandom();					
 		}
-		else {
-			throw new RuntimeException("El juego finalizo");
-//			if(puedeSumar()) {
-//				this.gameOver=false;
-//			}
-//			else {
-//				throw new RuntimeException("El juego finalizo");
-//			}
-			
-		}
+
 	}
 	private void moverFilaDerecha(int [] fila, int numFila) {
 		ArrayList<Integer> arraylistFila= sumarNumerosIgualesReves( filaToArrayList(fila) );
