@@ -51,17 +51,22 @@ public class Tablero {
 		if(this.tabla.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
 		}
-		if(!this.gameOver || puedeSumar()) {
+		if(!this.gameOver) {
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				//suponiendo que la matriz es cuadrada
 				moverColumArriba(columna);
 			}
 			insertarRandom();
-			this.gameOver= false; 
 		}
 		
 		else {
-			throw new RuntimeException("El juego finalizo");
+			if(puedeSumar()) {
+				this.gameOver=false;
+			}
+			else {
+				throw new RuntimeException("El juego finalizo");
+			}
+			
 		}
 		
 	}
@@ -108,11 +113,16 @@ public class Tablero {
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				moverColumAbajo(columna);
 			}
-			insertarRandom();
-			this.gameOver= false; 
+			insertarRandom();	
 		}
 		else {
-			throw new RuntimeException("El juego finalizo");
+			if(puedeSumar()) {
+				this.gameOver=false;
+			}
+			else {
+				throw new RuntimeException("El juego finalizo");
+			}
+			
 		}
 		
 		
@@ -247,10 +257,15 @@ public class Tablero {
 				moverFilaIzquierda(this.tabla[numFila],numFila);
 			}
 			insertarRandom();
-			this.gameOver= false; 
 		}
 		else {
-			throw new RuntimeException("El juego finalizo");
+			if(puedeSumar()) {
+				this.gameOver=false;
+			}
+			else {
+				throw new RuntimeException("El juego finalizo");
+			}
+			
 		}
 	}
 	private void moverFilaIzquierda(int [] fila, int numFila) {
@@ -271,15 +286,20 @@ public class Tablero {
 	}
 	
 	public void moverDerecha() {
-		if(!this.gameOver || puedeSumar()) {
+		if(!this.gameOver) {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
 				moverFilaDerecha(this.tabla[numFila],numFila);
 			}
 			insertarRandom();
-			this.gameOver= false; 
 		}
 		else {
-			throw new RuntimeException("El juego finalizo");
+			if(puedeSumar()) {
+				this.gameOver=false;
+			}
+			else {
+				throw new RuntimeException("El juego finalizo");
+			}
+			
 		}
 	}
 	private void moverFilaDerecha(int [] fila, int numFila) {
@@ -341,7 +361,6 @@ public class Tablero {
 			if(!puedeSumar()) {
 				this.gameOver=true;
 			}
-			
 		}
 	}
 	
@@ -392,11 +411,11 @@ public class Tablero {
 		ArrayList<Integer> columArray;
 		for(int[] fila:this.tabla) {
 			filaArray= sumarNumerosIguales2(filaToArrayList(fila));
-			todasFilas= todasFilas || filaArray.isEmpty();
+			todasFilas= todasFilas || filaArray.size()!=fila.length; //si filaArray es distinto del length de la fila, significa que pudo sumar 
 		}
 		for(int i= 0; i<this.tabla.length;i++) {
 			columArray= sumarNumerosIguales2(columnaToArray(this.tabla,i));
-			todasColum= todasColum || columArray.isEmpty();
+			todasColum= todasColum || columArray.size()!=this.tabla.length;
 		}
 		return todasFilas || todasColum;
 		
