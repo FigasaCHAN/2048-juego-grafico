@@ -1,6 +1,8 @@
 {
-  "jugadores": [ {
-    "nombre": "Nicolas",
-    "puntaje": 1000
-  }]
+  "jugadores": [
+    {
+      "nombre": "Nicolas",
+      "puntaje": 1044
+    }  
+  ]
 }

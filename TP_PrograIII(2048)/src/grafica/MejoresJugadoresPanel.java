@@ -18,6 +18,9 @@ import java.awt.Color;
 public class MejoresJugadoresPanel extends JPanel {
 	private final JTable table = new JTable();
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
+	private MejoresJugadoresJSON mejoresJugadores;
+	private ArrayList<Jugador> jugadoresLeidos;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -33,15 +36,15 @@ public class MejoresJugadoresPanel extends JPanel {
 		setLayout(null);
 		Object[] columnas= {"Top", "Nombre", "Puntaje",};
 		ArrayList<Object> filas= new ArrayList<>();
-		DefaultTableModel model=new DefaultTableModel();
+		model=new DefaultTableModel();
 		filas.add("Top");
 		filas.add("Nombre");
 		filas.add("Puntaje");
 		
 		model.setColumnIdentifiers(columnas);
 		
-		MejoresJugadoresJSON mejoresJugadores=new MejoresJugadoresJSON();
-		ArrayList<Jugador> jugadoresLeidos=mejoresJugadores.obtenerJugadoresJSON();
+		this.mejoresJugadores=new MejoresJugadoresJSON();
+		this.jugadoresLeidos=mejoresJugadores.obtenerJugadoresJSON();
 		table.setBackground(new Color(220, 220, 220));
 		table.setRowMargin(5);
 		table.setShowGrid(false);
@@ -65,13 +68,10 @@ public class MejoresJugadoresPanel extends JPanel {
 		lblMejoresPuntajes.setBounds(292, 90, 264, 42);
 		add(lblMejoresPuntajes);
 		
-		mostrarJugadores(model, jugadoresLeidos);
 		
-		add(table);
-
 	}
 	
-	private void mostrarJugadores(DefaultTableModel model, ArrayList<Jugador> jugadoresLeidos) {
+	public void mostrarJugadores() {
 		Object[] datosJugador=new Object[3];
 		int indexMaximo=0;
 		for(Jugador jugador:jugadoresLeidos) {
@@ -84,5 +84,13 @@ public class MejoresJugadoresPanel extends JPanel {
 				indexMaximo++;
 			}
 		}
+		
+		add(table);
+	}
+	
+	public void registrarPuntajeJugador(String nombre,int puntaje) {
+		Jugador nuevoJugador=new Jugador(nombre,puntaje);
+		this.mejoresJugadores.agregarJugadorAJSON(nuevoJugador);
+		
 	}
 }

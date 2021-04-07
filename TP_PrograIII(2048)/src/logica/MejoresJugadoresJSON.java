@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 
 
 
+
 public class MejoresJugadoresJSON {
 	private ArrayList<Jugador> jugadores;
 	
@@ -68,16 +69,15 @@ public class MejoresJugadoresJSON {
 		ArrayList<Jugador> jugadoresLeidos=mejoresJugadores.leerJSON("MejoresJugadores.JSON").getJugadores();
 		Collections.sort(jugadoresLeidos);
 		
-		if(jugadoresLeidos.size()<5) {			
-			jugadoresLeidos.add(jugador);
-		}else if(jugadoresLeidos.get(jugadoresLeidos.size()-1).getPuntaje()<jugador.getPuntaje()) {
-			jugadoresLeidos.remove(jugadoresLeidos.size()-1);
-			jugadoresLeidos.add(jugador);
+		jugadoresLeidos.add(jugador);
+		
+		for(Jugador jugadorIterador:jugadoresLeidos) {
+			mejoresJugadores.agregarJugadorALista(jugadorIterador);
 		}
-							
+									
 		String jsonPretty = mejoresJugadores.generarJSON();
 		mejoresJugadores.guardarJSON(jsonPretty, "MejoresJugadores.JSON");
-		
+		System.out.println("Registro");
 	}
 	
 	

@@ -102,7 +102,10 @@ public class Grafica {
 	
 	private void cargarMejoresJugadores() {
 		this.mejoresJugadores= new MejoresJugadoresPanel();
-		agregarPanel(this.mejoresJugadores);
+		int puntajeJugador=this.tableroGrafico.tablero.getPuntos();
+		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
+		this.mejoresJugadores.mostrarJugadores();
+		agregarPanel(this.mejoresJugadores);	
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
 	}
