@@ -60,7 +60,6 @@ public class Grafica {
 	 * Create the application.
 	 */
 	public Grafica() {
-		this.mejoresJugadores=new MejoresJugadoresPanel();
 		this.menu= new MenuPanel(); //creo el menu panel
 		this.menu.setBounds(0, 0, 784, 561);//medidas al menu panel
 		initialize(); //inicializo
@@ -100,6 +99,14 @@ public class Grafica {
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
 	}
+	
+	private void cargarMejoresJugadores() {
+		this.mejoresJugadores= new MejoresJugadoresPanel();
+		agregarPanel(this.mejoresJugadores);
+		frame.repaint(); //repinto
+		frame.revalidate();//revalido
+	}
+	
 	private void cargarMenu() {
 		agregarPanel(this.menu); //agrego el menu (panel)
 		eventoClick();
@@ -139,8 +146,13 @@ public class Grafica {
 		menuMovArriba.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0)); //el acceso directo 
 		menuMovArriba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
-				tableroGrafico.moverArriba(); //el evento es moverArriba
-				actualizarPuntos();
+						
+					tableroGrafico.moverArriba(); //el evento es moverArriba
+					actualizarPuntos();
+					if(tableroGrafico.perdioElJuego()) {
+						cargarMejoresJugadores();
+					}
+				
 			}
 		});
 		menMovimiento.add(menuMovArriba); //agrego el item al menu
@@ -148,8 +160,14 @@ public class Grafica {
 		JMenuItem menuMovAbajo = new JMenuItem("Abajo");
 		menuMovAbajo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tableroGrafico.moverAbajo();
-				actualizarPuntos();
+				
+					
+					tableroGrafico.moverAbajo();
+					actualizarPuntos();
+					if(tableroGrafico.perdioElJuego()) {
+						cargarMejoresJugadores();
+					}
+				
 				
 			}
 		});
@@ -159,8 +177,13 @@ public class Grafica {
 		JMenuItem menuMovIzquierda = new JMenuItem("Izquierda");
 		menuMovIzquierda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tableroGrafico.moverIzquierda();
-				actualizarPuntos();
+								
+					tableroGrafico.moverIzquierda();
+					actualizarPuntos();
+					if(tableroGrafico.perdioElJuego()) {
+						cargarMejoresJugadores();
+					}
+				
 			}
 		});
 		menuMovIzquierda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
@@ -169,8 +192,13 @@ public class Grafica {
 		JMenuItem menuMovDerecha = new JMenuItem("Derecha");
 		menuMovDerecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tableroGrafico.moverDerecha();
-				actualizarPuntos();
+							
+					tableroGrafico.moverDerecha();
+					actualizarPuntos();
+					if(tableroGrafico.perdioElJuego()) {
+						cargarMejoresJugadores();
+					}
+				
 			}
 		});
 		menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));

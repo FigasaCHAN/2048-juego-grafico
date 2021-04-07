@@ -158,7 +158,7 @@ public class TableroGrafico extends JPanel {
 		}
 	}
 	
-	private boolean perdioElJuego() {
+	public boolean perdioElJuego() {
 		this.tablero.puedeSumar();
 		
 		return this.tablero.getGameOver();
