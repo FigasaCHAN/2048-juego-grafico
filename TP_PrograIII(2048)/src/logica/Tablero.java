@@ -56,7 +56,10 @@ public class Tablero {
 				//suponiendo que la matriz es cuadrada
 				moverColumArriba(columna);
 			}
-			insertarRandom();
+			if(!puedeSumar()) {
+				insertarRandom();
+			}
+			
 		}
 		
 		else {
@@ -108,7 +111,7 @@ public class Tablero {
 		if(this.tabla.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
 		}
-		if(!this.gameOver || puedeSumar()) {
+		if(!this.gameOver) {
 			
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				moverColumAbajo(columna);
@@ -252,7 +255,7 @@ public class Tablero {
 	
 	public void moverIzquierda() {
 
-		if(!this.gameOver || puedeSumar()) {
+		if(!this.gameOver ) {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
 				moverFilaIzquierda(this.tabla[numFila],numFila);
 			}
