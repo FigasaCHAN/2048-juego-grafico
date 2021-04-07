@@ -36,6 +36,7 @@ public class Grafica {
 	JLabel puntajes; 
 	Hub hub;
 	MenuPanel menu;
+	MejoresJugadoresPanel mejoresJugadores;
 	private String nombreDeUsuario;
 	/**
 	 * Launch the application.
@@ -59,6 +60,7 @@ public class Grafica {
 	 * Create the application.
 	 */
 	public Grafica() {
+		this.mejoresJugadores=new MejoresJugadoresPanel();
 		this.menu= new MenuPanel(); //creo el menu panel
 		this.menu.setBounds(0, 0, 784, 561);//medidas al menu panel
 		initialize(); //inicializo
@@ -116,8 +118,8 @@ public class Grafica {
 		//evento de click
 		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 		public void actionPerformed(ActionEvent e) {
-			nombreDeUsuario= menu.txtFieldNombre.getText(); //aca hay que hacer la comprobacion del nombre del usuario
-			if(Menu.validarNombreJugador(nombreDeUsuario)) {	
+			nombreDeUsuario= menu.txtFieldNombre.getText(); 
+			if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
 				menu.mostrarErrorNombre(false);
 				cargarTablero(menu.getModoDeJuego()); //cargo el tablero
 			}else {

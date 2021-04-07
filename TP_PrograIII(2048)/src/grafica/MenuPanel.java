@@ -107,7 +107,7 @@ public class MenuPanel extends JPanel {
 		btnJugar.setBorder(new LineBorder(new Color(222, 184, 135)));
 		btnJugar.setBackground(new Color(255, 140, 0));
 		btnJugar.setFont(this.pixelCarteles);
-		btnJugar.setBounds(224, 401, 307, 77);
+		btnJugar.setBounds(224, 401, 307, 60);
 		add(btnJugar);
 		
 		lblErrorNombre = new JLabel("El nombre solo puede contener caracteres alfabeticos");

@@ -1,3 +1,6 @@
 {
-  "jugadores": []
+  "jugadores": [ {
+    "nombre": "Nicolas",
+    "puntaje": 1000
+  }]
 }
