@@ -388,7 +388,6 @@ public class Tablero {
 			todasColum= todasColum || columArray.size()!=this.tabla.length;
 		}
 			if((!todasFilas && !todasColum)) {
-				System.out.println("game over");
 				this.gameOver=true;
 			}
 
