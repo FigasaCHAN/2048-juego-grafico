@@ -56,19 +56,20 @@ public class Tablero {
 				//suponiendo que la matriz es cuadrada
 				moverColumArriba(columna);
 			}
-			if(!puedeSumar()) {
-				insertarRandom();
-			}
+//			if(!puedeSumar()) {
+//				insertarRandom();
+//			}
 			
 		}
 		
 		else {
-			if(puedeSumar()) {
-				this.gameOver=false;
-			}
-			else {
-				throw new RuntimeException("El juego finalizo");
-			}
+			throw new RuntimeException("El juego finalizo");
+//			if(puedeSumar()) {
+//				this.gameOver=false;
+//			}
+//			else {
+//				throw new RuntimeException("El juego finalizo");
+//			}
 			
 		}
 		
@@ -115,16 +116,18 @@ public class Tablero {
 			
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				moverColumAbajo(columna);
-			}
+			}				
 			insertarRandom();	
+				
 		}
 		else {
-			if(puedeSumar()) {
-				this.gameOver=false;
-			}
-			else {
-				throw new RuntimeException("El juego finalizo");
-			}
+			throw new RuntimeException("El juego finalizo");
+//			if(puedeSumar()) {
+//				this.gameOver=false;
+//			}
+//			else {
+//				
+//			}
 			
 		}
 		
@@ -259,15 +262,18 @@ public class Tablero {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
 				moverFilaIzquierda(this.tabla[numFila],numFila);
 			}
-			insertarRandom();
+		
+				insertarRandom();	
+			
 		}
 		else {
-			if(puedeSumar()) {
-				this.gameOver=false;
-			}
-			else {
-				throw new RuntimeException("El juego finalizo");
-			}
+			throw new RuntimeException("El juego finalizo");
+//			if(puedeSumar()) {
+//				this.gameOver=false;
+//			}
+//			else {
+//				throw new RuntimeException("El juego finalizo");
+//			}
 			
 		}
 	}
@@ -292,16 +298,17 @@ public class Tablero {
 		if(!this.gameOver) {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
 				moverFilaDerecha(this.tabla[numFila],numFila);
-			}
-			insertarRandom();
+			}			
+			insertarRandom();					
 		}
 		else {
-			if(puedeSumar()) {
-				this.gameOver=false;
-			}
-			else {
-				throw new RuntimeException("El juego finalizo");
-			}
+			throw new RuntimeException("El juego finalizo");
+//			if(puedeSumar()) {
+//				this.gameOver=false;
+//			}
+//			else {
+//				throw new RuntimeException("El juego finalizo");
+//			}
 			
 		}
 	}
@@ -361,9 +368,9 @@ public class Tablero {
 			this.tabla[iPosibles.get(iRandom_delArray).x][iPosibles.get(iRandom_delArray).y]= this.NUM_RANDOM_POSIBLES[numRandom]; //a la casilla random, le asigno el numero random
 		}
 		else {
-			if(!puedeSumar()) {
-				this.gameOver=true;
-			}
+//			if(!puedeSumar()) {
+//				this.gameOver=true;
+//			}
 		}
 	}
 	
@@ -407,7 +414,8 @@ public class Tablero {
 	public int getMaximoNumEnElTablero() {
 		return this.maximoNumEnElTablero;
 	}
-	private boolean puedeSumar() {
+	
+	public void puedeSumar() {
 		boolean todasFilas= false;
 		boolean todasColum= false;
 		ArrayList<Integer> filaArray;
@@ -420,7 +428,11 @@ public class Tablero {
 			columArray= sumarNumerosIguales2(columnaToArray(this.tabla,i));
 			todasColum= todasColum || columArray.size()!=this.tabla.length;
 		}
-		return todasFilas || todasColum;
+			if((!todasFilas && !todasColum)) {
+				System.out.println("game over");
+				this.gameOver=true;
+			}
+
 		
 	}
 	private ArrayList<Integer> sumarNumerosIguales2(ArrayList<Integer> array){

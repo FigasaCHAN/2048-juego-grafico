@@ -87,22 +87,27 @@ public class TableroGrafico extends JPanel {
 		}
 	}
 	public void moverIzquierda() {
+	
 		this.tablero.moverIzquierda();
 		actualizar();
 	}
 	public void moverDerecha() {
+		
 		this.tablero.moverDerecha();
 		actualizar();
 	}
 	public void moverArriba() {
+	
 		this.tablero.moverArriba();
 		actualizar();
 	}
 	public void moverAbajo() {
+		
 		this.tablero.moverAbajo();
 		actualizar();
 	}
 	public void actualizar() {
+		this.tablero.puedeSumar();
 		ArrayList<Integer> tableroArray= this.tablero.matrizToArray();
 	    int indice= 0;
 		for(JLabel elem: this.listLabel) {
