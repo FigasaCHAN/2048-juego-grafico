@@ -44,7 +44,7 @@ public class MejoresJugadoresPanel extends JPanel {
 		model.setColumnIdentifiers(columnas);
 		
 		this.mejoresJugadores=new MejoresJugadoresJSON();
-		this.jugadoresLeidos=mejoresJugadores.obtenerJugadoresJSON();
+	
 		table.setBackground(new Color(220, 220, 220));
 		table.setRowMargin(5);
 		table.setShowGrid(false);
@@ -72,6 +72,7 @@ public class MejoresJugadoresPanel extends JPanel {
 	}
 	
 	public void mostrarJugadores() {
+		this.jugadoresLeidos=mejoresJugadores.obtenerJugadoresJSON();
 		Object[] datosJugador=new Object[3];
 		int indexMaximo=0;
 		for(Jugador jugador:jugadoresLeidos) {

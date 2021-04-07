@@ -107,7 +107,7 @@ public class TableroGrafico extends JPanel {
 		actualizar();
 	}
 	public void actualizar() {
-		perdioElJuego();
+		this.tablero.puedeSumar();
 		ArrayList<Integer> tableroArray= this.tablero.matrizToArray();
 	    int indice= 0;
 		for(JLabel elem: this.listLabel) {
@@ -159,7 +159,7 @@ public class TableroGrafico extends JPanel {
 	}
 	
 	public boolean perdioElJuego() {
-		this.tablero.puedeSumar();
+		
 		
 		return this.tablero.getGameOver();
 	}
