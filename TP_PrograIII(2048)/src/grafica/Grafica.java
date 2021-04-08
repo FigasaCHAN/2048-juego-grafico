@@ -39,6 +39,8 @@ public class Grafica {
 	MejoresJugadoresPanel mejoresJugadores;
 	private String nombreDeUsuario;
 	private boolean enGameOver;
+	private int cantDeMovimientosEnUnaDireccion;
+	private int cantMAXDeMovimientosEnUnaDireccion;
 	/**
 	 * Launch the application.
 	 */
@@ -96,7 +98,8 @@ public class Grafica {
 		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
 		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
 		agregarPanel(this.tableroGrafico); //agrego el tablero
-	
+		this.cantMAXDeMovimientosEnUnaDireccion= modoDeJuegoSeleccionado;//tengo que limitar la cantidad de movimiento en una misma direccion el max va a ser la cant de filas/columnas
+		this.cantDeMovimientosEnUnaDireccion= 0;
 		//agregarMenuBar(); //agrego la barra de menu
 		cargarHub(nombreDeUsuario);//le paso el nombre que ingreso el usuario
 		frame.repaint(); //repinto
@@ -246,9 +249,10 @@ public class Grafica {
 			public void keyReleased(KeyEvent e) {
 				System.out.println(e.getKeyCode() + "xdd");
 				if(e.getKeyChar()=='w' || e.getKeyCode() == 38) { //38 es el code de la flecha arriba
-					if(!tableroGrafico.perdioElJuego()) {
+					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
 						tableroGrafico.moverArriba();
 						actualizarPuntos();
+						cantDeMovimientosEnUnaDireccion=0;
 					}
 
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
@@ -256,10 +260,11 @@ public class Grafica {
 						enGameOver= true;
 					}
 				}
-				if(e.getKeyChar()=='a' || e.getKeyCode() == 37) { //39 es el code de la flecha izquierda
-					if(!tableroGrafico.perdioElJuego()) {
+				if(e.getKeyChar()=='a' || e.getKeyCode() == 37 ) { //39 es el code de la flecha izquierda
+					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
 						tableroGrafico.moverIzquierda();
 						actualizarPuntos();
+						cantDeMovimientosEnUnaDireccion=0;
 					}
 
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
@@ -268,20 +273,23 @@ public class Grafica {
 					}
 				}
 				if(e.getKeyChar()=='s' || e.getKeyCode() == 40) { //38 es el code de la flecha abajo
-					if(!tableroGrafico.perdioElJuego()) {
+					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
 						tableroGrafico.moverAbajo();
 						actualizarPuntos();
+						cantDeMovimientosEnUnaDireccion=0;
 					}
 
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
 						timeOutGameOver();
 						enGameOver= true;
+						cantDeMovimientosEnUnaDireccion=0;
 					}
 				}
 				if(e.getKeyChar()=='d' || e.getKeyCode() == 39) { //39 es el code de la flecha derecha
-					if(!tableroGrafico.perdioElJuego()) {
+					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
 						tableroGrafico.moverDerecha();
 						actualizarPuntos();
+						cantDeMovimientosEnUnaDireccion=0;
 					}
 
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
