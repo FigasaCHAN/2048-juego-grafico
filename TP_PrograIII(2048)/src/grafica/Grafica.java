@@ -38,6 +38,7 @@ public class Grafica {
 	MenuPanel menu;
 	MejoresJugadoresPanel mejoresJugadores;
 	private String nombreDeUsuario;
+	private boolean enGameOver;
 	/**
 	 * Launch the application.
 	 */
@@ -63,6 +64,7 @@ public class Grafica {
 		this.menu= new MenuPanel(); //creo el menu panel
 		this.menu.setBounds(0, 0, 784, 561);//medidas al menu panel
 		initialize(); //inicializo
+		this.enGameOver= false;
 		//y eso es lo unico que debe hacer el constructor, los eventos y estado de la clase las voy a cambiar en el main
 	}
 
@@ -79,7 +81,7 @@ public class Grafica {
 		frame.getContentPane().setLayout(null);
 		frame.setLocationRelativeTo(null);
 	}
-	
+
 	void actualizarPuntos() {
 		this.hub.actualizarPuntaje(tableroGrafico.tablero.getPuntos());
 	}
@@ -88,7 +90,7 @@ public class Grafica {
 		frame.getContentPane().add(panel); //agrego el panel
 		frame.getContentPane().repaint(); //repinto
 		frame.getContentPane().revalidate(); // revalido esto es importante ya que el frame tiene que fijarse el estado de sus componentes
-		
+
 	}
 	private void cargarTablero(int modoDeJuegoSeleccionado) {
 		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
@@ -99,25 +101,19 @@ public class Grafica {
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
 	}
-	
+
 	private void cargarMejoresJugadores() {
-		new Timer().schedule(new TimerTask() {
-			@Override
-			public void run() {								
-			
-			}
-		}, 3000);
-		
+		System.out.println("esta cargando");
+		dejarDeMostrarMenuBar();
 		this.mejoresJugadores= new MejoresJugadoresPanel();
 		int puntajeJugador=this.tableroGrafico.tablero.getPuntos();
 		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
 		this.mejoresJugadores.mostrarJugadores();
 		agregarPanel(this.mejoresJugadores);	
-		dejarDeMostrarMenuBar();
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
 	}
-	
+
 	private void cargarMenu() {
 		agregarPanel(this.menu); //agrego el menu (panel)
 		//eventoClick();
@@ -135,88 +131,99 @@ public class Grafica {
 	private void eventoClick() {
 		//evento de click
 		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
-		public void actionPerformed(ActionEvent e) {
-			nombreDeUsuario= menu.txtFieldNombre.getText(); 
-			if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
-				menu.mostrarErrorNombre(false);
-				cargarTablero(menu.getModoDeJuego()); //cargo el tablero
-			}else {
-				menu.mostrarErrorNombre(true);
+			public void actionPerformed(ActionEvent e) {
+				nombreDeUsuario= menu.txtFieldNombre.getText(); 
+				if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
+					menu.mostrarErrorNombre(false);
+					cargarTablero(menu.getModoDeJuego()); //cargo el tablero
+				}else {
+					menu.mostrarErrorNombre(true);
+				}
 			}
-		}
-	});
+		});
 	}
 	private void agregarMenuBar() { //agrega la barra del menu
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
-		
+
 		JMenu menMovimiento = new JMenu("Movimiento");
 		menuBar.add(menMovimiento);
-		
+
 		JMenuItem menuMovArriba = new JMenuItem("Arriba");
 		menuMovArriba.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0)); //el acceso directo 
 		menuMovArriba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
-						
-					tableroGrafico.moverArriba(); //el evento es moverArriba
+
+				if(!tableroGrafico.perdioElJuego()) {
+					tableroGrafico.moverArriba();
 					actualizarPuntos();
-					if(tableroGrafico.perdioElJuego()) {
-						timeOutGameOver();
-					}
-				
+				}
+				if(tableroGrafico.perdioElJuego() && !enGameOver) {
+					timeOutGameOver();
+					enGameOver= true;
+				}
+
 			}
 		});
 		menMovimiento.add(menuMovArriba); //agrego el item al menu
-		
+
 		JMenuItem menuMovAbajo = new JMenuItem("Abajo");
 		menuMovAbajo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-					
+
+				if(!tableroGrafico.perdioElJuego()) {
 					tableroGrafico.moverAbajo();
 					actualizarPuntos();
-					if(tableroGrafico.perdioElJuego()) {
-						timeOutGameOver();						
-					}
-				
-				
+				}
+				if(tableroGrafico.perdioElJuego() && !enGameOver) {
+					timeOutGameOver();
+					enGameOver= true;
+				}
+
+
 			}
 		});
 		menuMovAbajo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0));
 		menMovimiento.add(menuMovAbajo);
-		
+
 		JMenuItem menuMovIzquierda = new JMenuItem("Izquierda");
 		menuMovIzquierda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-								
+				if(!tableroGrafico.perdioElJuego()) {
 					tableroGrafico.moverIzquierda();
 					actualizarPuntos();
-					if(tableroGrafico.perdioElJuego()) {
-						timeOutGameOver(); 
-					}
-				
+				}
+				if(tableroGrafico.perdioElJuego() && !enGameOver) {
+					timeOutGameOver();
+					enGameOver= true;
+				}
+
 			}
 		});
 		menuMovIzquierda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
 		menMovimiento.add(menuMovIzquierda);
-		
+
 		JMenuItem menuMovDerecha = new JMenuItem("Derecha");
 		menuMovDerecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-							
+				if(!tableroGrafico.perdioElJuego()) {
 					tableroGrafico.moverDerecha();
 					actualizarPuntos();
-					if(tableroGrafico.perdioElJuego()) {
-						timeOutGameOver();
-					}
-				
+				}
+
+				if(tableroGrafico.perdioElJuego() && !enGameOver) {
+					timeOutGameOver();
+					enGameOver= true;
+				}
+
 			}
 		});
 		menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));
 		menMovimiento.add(menuMovDerecha);
 	}
-	
+
 	private void timeOutGameOver() {
+		System.out.println("ESTA LLAMANDO AL TIME OUT");
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {								

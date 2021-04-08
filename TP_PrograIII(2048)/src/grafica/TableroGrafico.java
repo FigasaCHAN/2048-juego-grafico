@@ -25,19 +25,21 @@ public class TableroGrafico extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	
+
 	public TableroGrafico(int cantDeFila) {
-		/*int[][] matrizTablero= new int [][]{  //creo la matriz provisoria aca
+		int[][] matrizTablero= new int [][]{  //creo la matriz provisoria aca
+			{1024,0,0,0},
 			{0,0,0,0},
 			{0,0,0,0},
-			{0,0,0,0},
-			{0,0,0,0}
+			{0,0,0,1024}
 	
 		};
 		this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;
-		this.tablero= new Tablero(matrizTablero);*/
-		this.tablero= new Tablero(cantDeFila);
-		int[][] matrizTablero= this.tablero.getTablero();
-		this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;
+		this.tablero= new Tablero(matrizTablero);
+		//this.tablero= new Tablero(cantDeFila);
+		//int[][] matrizTablero= this.tablero.getTablero();
+		//this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;
 		this.colorTablero= new Color(252,181,255);
 		this.colorN2=new Color(248,91,255);
 		this.colorN4=new Color(181,67,187);
