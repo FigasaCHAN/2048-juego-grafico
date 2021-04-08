@@ -101,6 +101,13 @@ public class Grafica {
 	}
 	
 	private void cargarMejoresJugadores() {
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {								
+			
+			}
+		}, 3000);
+		
 		this.mejoresJugadores= new MejoresJugadoresPanel();
 		int puntajeJugador=this.tableroGrafico.tablero.getPuntos();
 		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
@@ -154,7 +161,7 @@ public class Grafica {
 					tableroGrafico.moverArriba(); //el evento es moverArriba
 					actualizarPuntos();
 					if(tableroGrafico.perdioElJuego()) {
-						cargarMejoresJugadores();
+						timeOutGameOver();
 					}
 				
 			}
@@ -169,7 +176,7 @@ public class Grafica {
 					tableroGrafico.moverAbajo();
 					actualizarPuntos();
 					if(tableroGrafico.perdioElJuego()) {
-						cargarMejoresJugadores();
+						timeOutGameOver();						
 					}
 				
 				
@@ -185,7 +192,7 @@ public class Grafica {
 					tableroGrafico.moverIzquierda();
 					actualizarPuntos();
 					if(tableroGrafico.perdioElJuego()) {
-						cargarMejoresJugadores();
+						timeOutGameOver(); 
 					}
 				
 			}
@@ -200,13 +207,22 @@ public class Grafica {
 					tableroGrafico.moverDerecha();
 					actualizarPuntos();
 					if(tableroGrafico.perdioElJuego()) {
-						cargarMejoresJugadores();
+						timeOutGameOver();
 					}
 				
 			}
 		});
 		menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));
 		menMovimiento.add(menuMovDerecha);
+	}
+	
+	private void timeOutGameOver() {
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {								
+				cargarMejoresJugadores();
+			}
+		}, 3000);
 	}
 	private void dejarDeMostrarMenuBar() {
 		frame.getJMenuBar().setVisible(false);
