@@ -6,14 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Tablero {
-	
+
 	private int [][] tabla;
 	public Map<Point, Integer> diccionario;
 	final byte[] NUM_RANDOM_POSIBLES;
 	private int puntos;
 	private boolean gameOver;
 	private int maximoNumEnElTablero; //me va a servir para determinar si el jugador gano o perdio
-	
+
 	public Tablero(int [][] mat) {
 		if(mat.length==0 || mat==null) {
 			throw new RuntimeException("Para crear el tablero la matriz no tiene que estar vacia ni debe ser null");
@@ -36,7 +36,7 @@ public class Tablero {
 		this.gameOver= false;
 		this.maximoNumEnElTablero= 0;
 	}
-	
+
 	public Tablero(int cantidadFilas) {
 		int[][] array= generarMatrizCuadradaAlAzar(cantidadFilas); 
 		Tablero tableroAux= new Tablero(array);
@@ -47,6 +47,7 @@ public class Tablero {
 		this.gameOver= tableroAux.gameOver;
 		this.maximoNumEnElTablero= tableroAux.maximoNumEnElTablero;
 	}
+
 	public void moverArriba() {
 		if(this.tabla.length==0) {
 			throw new RuntimeException("La matriz no puede estar vacia");
@@ -58,17 +59,16 @@ public class Tablero {
 			}
 			insertarRandom();
 		}
-		
-		
-	}
 
+
+	}
 
 	private void moverColumArriba(int columna) {
 		if(columna<0 || columna>this.tabla[0].length ) {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
 		}
-		
+
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(this.tabla, columna) ); 
 		//O(3*n + 12)
 		int iArrayList=0; //indice del arrayList de columna
@@ -85,14 +85,12 @@ public class Tablero {
 					arrayColumna.remove(0);
 
 				 */
-				
 			}
 			else {
 				this.tabla[fila][columna]=0;
 			}
 			this.diccionario.replace(new Point(fila,columna), this.tabla[fila][columna]); //reemplazo la key del punto
 		}
-		
 	}
 
 	public void moverAbajo() {
@@ -100,23 +98,19 @@ public class Tablero {
 			throw new RuntimeException("La matriz no puede estar vacia");
 		}
 		if(!this.gameOver) {
-			
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				moverColumAbajo(columna);
 			}				
 			insertarRandom();			
 		}
-		
-		
 	}
-
 
 	private void moverColumAbajo(int columna) {
 		if(columna<0 || columna>this.tabla[0].length ) {
 			//suponiendo que la matriz es cuadrada
 			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
 		}
-		
+
 		ArrayList<Integer> arrayColumna= sumarNumerosIgualesReves( columnaToArray(this.tabla, columna) ); 
 		int iArrayList=0; //indice del arrayList de columna, agarro el primero ya que la lista esta al reves (los primeros numeros son los ultimos que tengo que agregar
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
@@ -137,110 +131,15 @@ public class Tablero {
 		}
 	}
 
-	private ArrayList<Integer> columnaToArray(int[][]matriz, int columna) {
-		ArrayList<Integer>  columnaArray= new ArrayList<Integer>();
-
-		if(columna<0 || columna>matriz[0].length ) {
-			//suponiendo que la matriz es cuadrada
-			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
-		}
-
-		for(int fila=0; fila<matriz.length; fila++) {
-			if(matriz[fila][columna]!=0) { //solo agrego aquellos que no son 0
-				columnaArray.add(matriz[fila][columna]);
-			}
-
-		}
-		return columnaArray;
-	}
-	
-	
-	@Override
-	public String toString() {
-		StringBuilder tableroS= new StringBuilder();
-		for(int[] fila:this.tabla ) {
-			tableroS.append('|');
-			for(int elem : fila) {
-				tableroS.append(elem + "|"); //agrega el elem
-			}
-			tableroS.append('\n'); //agrega el salto en linea
-		}
-		return tableroS.toString();
-	}
-
-	private ArrayList<Integer> sumarNumerosIguales(ArrayList<Integer> array){
-		//solo suma si estan uno al lado del otro
-		//suma de izquierda a derecha
-		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
-		if(array.size()==1) {
-			nuevaArray.add(array.get(0));
-			return nuevaArray;
-		}
-		for(int i=0; i<=array.size()-1; i++) { //va solo hasta el ante ultimo
-			if(i==array.size()-1) {
-				nuevaArray.add(array.get(i)); //cuando llega al ultimo
-				return nuevaArray;
-			}
-			if(array.get(i).equals(array.get(i+1))) {
-			//if(array.get(i)==array.get(i+1)) {
-				int suma= (array.get(i)+array.get(i+1)); //los sumo
-				nuevaArray.add(suma);
-				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
-				this.puntos+= suma; //a los puntos le agrego la suma
-				if(this.maximoNumEnElTablero<suma) { // si pasa esto, entonces encontre un numero mas grande
-					this.maximoNumEnElTablero= suma;
-				}
-				if(2048==suma) { //si la suma es 2048 entonces finaliza el juego
-					this.gameOver= true;
-				}
-			}
-			else {
-				nuevaArray.add(array.get(i));
-				}
-		}
-		return nuevaArray;
-	}
-	private ArrayList<Integer> sumarNumerosIgualesReves(ArrayList<Integer> array){
-		//suma de derecha a izquierda, ideal para el movimiento a la derecha y abajo
-		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
-		if(array.size()==1) {
-			nuevaArray.add(array.get(0));
-			return nuevaArray;
-		}
-		for(int i=array.size()-1; i>=0; i--) { //va solo hasta el ante ultimo
-			if(i==0) {
-				nuevaArray.add(array.get(i)); //cuando llega al ultimo
-				return nuevaArray;
-			}
-			if(array.get(i).equals(array.get(i-1))) {
-			//if(array.get(i)==array.get(i+1)) {
-				int suma= (array.get(i)+array.get(i-1)); //los sumo
-				nuevaArray.add(suma);
-				i--; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
-				this.puntos+= suma; //a los puntos le agrego la suma
-				if(this.maximoNumEnElTablero<suma) { // si pasa esto, entonces encontre un numero mas grande
-					this.maximoNumEnElTablero= suma;
-				}
-				if(2048==suma) { //si la suma es 2048 entonces finaliza el juego
-					this.gameOver= true;
-				}
-			}
-			else {
-				nuevaArray.add(array.get(i));
-				}
-		}
-		return nuevaArray;
-	}
-	
 	public void moverIzquierda() {
 
 		if(!this.gameOver ) {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
 				moverFilaIzquierda(this.tabla[numFila],numFila);
 			}
-		
-				insertarRandom();	
-			
+
+			insertarRandom();	
+
 		}
 
 	}
@@ -260,7 +159,7 @@ public class Tablero {
 			this.diccionario.replace(new Point( numFila, i), this.tabla[numFila][i]);
 		}
 	}
-	
+
 	public void moverDerecha() {
 		if(!this.gameOver) {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
@@ -286,8 +185,24 @@ public class Tablero {
 			this.diccionario.replace(new Point( numFila, i), this.tabla[numFila][i] );
 		}
 	}
-	
-	
+
+	private ArrayList<Integer> columnaToArray(int[][]matriz, int columna) {
+		ArrayList<Integer>  columnaArray= new ArrayList<Integer>();
+
+		if(columna<0 || columna>matriz[0].length ) {
+			//suponiendo que la matriz es cuadrada
+			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
+		}
+
+		for(int fila=0; fila<matriz.length; fila++) {
+			if(matriz[fila][columna]!=0) { //solo agrego aquellos que no son 0
+				columnaArray.add(matriz[fila][columna]);
+			}
+
+		}
+		return columnaArray;
+	}
+
 	private ArrayList<Integer> filaToArrayList(int[] array){
 		//devuelve arraylist integer sin 0
 		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
@@ -298,20 +213,72 @@ public class Tablero {
 		}
 		return nuevaArray;
 	}
-	
-	private boolean laMatrizEsCuadrada(int[][] mat) {
-		boolean todasIguales=true;
-		int cantDeFilas= mat.length; 
-		for (int[] fila : mat) {
-			if( fila.length == cantDeFilas ) {
-				todasIguales= todasIguales&& true;
+
+	private ArrayList<Integer> sumarNumerosIguales(ArrayList<Integer> array){
+		//solo suma si estan uno al lado del otro
+		//suma de izquierda a derecha
+		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
+		if(array.size()==1) {
+			nuevaArray.add(array.get(0));
+			return nuevaArray;
+		}
+		for(int i=0; i<=array.size()-1; i++) { //va solo hasta el ante ultimo
+			if(i==array.size()-1) {
+				nuevaArray.add(array.get(i)); //cuando llega al ultimo
+				return nuevaArray;
+			}
+			if(array.get(i).equals(array.get(i+1))) {
+				//if(array.get(i)==array.get(i+1)) {
+				int suma= (array.get(i)+array.get(i+1)); //los sumo
+				nuevaArray.add(suma);
+				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
+				this.puntos+= suma; //a los puntos le agrego la suma
+				if(this.maximoNumEnElTablero<suma) { // si pasa esto, entonces encontre un numero mas grande
+					this.maximoNumEnElTablero= suma;
+				}
+				if(2048==suma) { //si la suma es 2048 entonces finaliza el juego
+					this.gameOver= true;
+				}
 			}
 			else {
-				todasIguales= todasIguales && false;
+				nuevaArray.add(array.get(i));
 			}
 		}
-		return todasIguales;
+		return nuevaArray;
 	}
+	
+	private ArrayList<Integer> sumarNumerosIgualesReves(ArrayList<Integer> array){
+		//suma de derecha a izquierda, ideal para el movimiento a la derecha y abajo
+		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
+		if(array.size()==1) {
+			nuevaArray.add(array.get(0));
+			return nuevaArray;
+		}
+		for(int i=array.size()-1; i>=0; i--) { //va solo hasta el ante ultimo
+			if(i==0) {
+				nuevaArray.add(array.get(i)); //cuando llega al ultimo
+				return nuevaArray;
+			}
+			if(array.get(i).equals(array.get(i-1))) {
+				//if(array.get(i)==array.get(i+1)) {
+				int suma= (array.get(i)+array.get(i-1)); //los sumo
+				nuevaArray.add(suma);
+				i--; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
+				this.puntos+= suma; //a los puntos le agrego la suma
+				if(this.maximoNumEnElTablero<suma) { // si pasa esto, entonces encontre un numero mas grande
+					this.maximoNumEnElTablero= suma;
+				}
+				if(2048==suma) { //si la suma es 2048 entonces finaliza el juego
+					this.gameOver= true;
+				}
+			}
+			else {
+				nuevaArray.add(array.get(i));
+			}
+		}
+		return nuevaArray;
+	}
+
 	public void insertarRandom() {
 		ArrayList<Point> iPosibles= new ArrayList<Point>();
 		for (Point elem: this.diccionario.keySet()) {
@@ -326,10 +293,29 @@ public class Tablero {
 			this.tabla[iPosibles.get(iRandom_delArray).x][iPosibles.get(iRandom_delArray).y]= this.NUM_RANDOM_POSIBLES[numRandom]; //a la casilla random, le asigno el numero random
 		}
 		else {
-//			if(!puedeSumar()) {
-//				this.gameOver=true;
-//			}
+			//			if(!puedeSumar()) {
+			//				this.gameOver=true;
+			//			}
 		}
+	}
+
+	private int[][] generarMatrizCuadradaAlAzar(int cantidadFilas){
+		//inicializa todo con 0
+		int [][] array= new int[cantidadFilas][cantidadFilas];
+		int[] numPosibles= {2,4};
+		for(int fila= 0; fila<array.length;fila++) {
+			for(int elem=0; elem<array.length; elem++) {
+				array[fila][elem]= 0;
+			}
+		}
+
+		for(int i=0; i<2; i++) {
+			int filaRandom= (int) (Math.random()* (cantidadFilas) ); //un numero al azar que va de 0 a cantidadFila
+			int columRandom= (int) (Math.random()* (cantidadFilas) );
+			int iNumRandom= (int) (Math.random()* (2) );
+			array[filaRandom][columRandom]= numPosibles[iNumRandom];
+		}
+		return array;
 	}
 	
 	public ArrayList<Integer> matrizToArray(){
@@ -341,36 +327,19 @@ public class Tablero {
 		}
 		return nueva;
 	}
-	public int getPuntos() {
-		return this.puntos;
-	}
-	
-	private int[][] generarMatrizCuadradaAlAzar(int cantidadFilas){
-		//inicializa todo con 0
-		int [][] array= new int[cantidadFilas][cantidadFilas];
-		int[] numPosibles= {2,4};
-		for(int fila= 0; fila<array.length;fila++) {
-			for(int elem=0; elem<array.length; elem++) {
-				array[fila][elem]= 0;
+
+	private boolean laMatrizEsCuadrada(int[][] mat) {
+		boolean todasIguales=true;
+		int cantDeFilas= mat.length; 
+		for (int[] fila : mat) {
+			if( fila.length == cantDeFilas ) {
+				todasIguales= todasIguales&& true;
+			}
+			else {
+				todasIguales= todasIguales && false;
 			}
 		}
-		
-		for(int i=0; i<2; i++) {
-			int filaRandom= (int) (Math.random()* (cantidadFilas) ); //un numero al azar que va de 0 a cantidadFila
-			int columRandom= (int) (Math.random()* (cantidadFilas) );
-			int iNumRandom= (int) (Math.random()* (2) );
-			array[filaRandom][columRandom]= numPosibles[iNumRandom];
-		}
-		return array;
-	}
-	public int[][] getTablero(){
-		return this.tabla;
-	}
-	public boolean getGameOver() {
-		return this.gameOver;
-	}
-	public int getMaximoNumEnElTablero() {
-		return this.maximoNumEnElTablero;
+		return todasIguales;
 	}
 	
 	public void puedeSumar() {
@@ -386,12 +355,11 @@ public class Tablero {
 			columArray= sumarNumerosIguales2(columnaToArray(this.tabla,i));
 			todasColum= todasColum || columArray.size()!=this.tabla.length;
 		}
-			if((!todasFilas && !todasColum)) {
-				this.gameOver=true;
-			}
-
-		
+		if((!todasFilas && !todasColum)) {
+			this.gameOver=true;
+		}
 	}
+
 	private ArrayList<Integer> sumarNumerosIguales2(ArrayList<Integer> array){
 		//solo suma si estan uno al lado del otro
 		//suma de izquierda a derecha
@@ -406,15 +374,44 @@ public class Tablero {
 				return nuevaArray;
 			}
 			if(array.get(i).equals(array.get(i+1))) {
-			//if(array.get(i)==array.get(i+1)) {
+				//if(array.get(i)==array.get(i+1)) {
 				int suma= (array.get(i)+array.get(i+1)); //los sumo
 				nuevaArray.add(suma);
 				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
 			}
 			else {
 				nuevaArray.add(array.get(i));
-				}
+			}
 		}
 		return nuevaArray;
+	}
+
+	public int getPuntos() {
+		return this.puntos;
+	}
+
+	public int[][] getTablero(){
+		return this.tabla;
+	}
+
+	public boolean getGameOver() {
+		return this.gameOver;
+	}
+
+	public int getMaximoNumEnElTablero() {
+		return this.maximoNumEnElTablero;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder tableroS= new StringBuilder();
+		for(int[] fila:this.tabla ) {
+			tableroS.append('|');
+			for(int elem : fila) {
+				tableroS.append(elem + "|"); //agrega el elem
+			}
+			tableroS.append('\n'); //agrega el salto en linea
+		}
+		return tableroS.toString();
 	}
 }
