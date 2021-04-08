@@ -48,7 +48,7 @@ public class Grafica {
 					Grafica window = new Grafica();
 					window.frame.setVisible(true);
 					window.cargarMenu(); //cargo el menu
-					
+					window.eventoClick();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -113,7 +113,7 @@ public class Grafica {
 	
 	private void cargarMenu() {
 		agregarPanel(this.menu); //agrego el menu (panel)
-		eventoClick();
+		//eventoClick();
 		frame.repaint();
 		frame.revalidate();
 	}
