@@ -408,7 +408,6 @@ public class Tablero {
 				return nuevaArray;
 			}
 			if(array.get(i).equals(array.get(i+1))) {
-				//if(array.get(i)==array.get(i+1)) {
 				int suma= (array.get(i)+array.get(i+1)); //los sumo
 				nuevaArray.add(suma);
 				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i

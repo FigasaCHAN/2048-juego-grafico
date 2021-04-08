@@ -39,8 +39,6 @@ public class Grafica {
 	MejoresJugadoresPanel mejoresJugadores;
 	private String nombreDeUsuario;
 	private boolean enGameOver;
-	private int cantDeMovimientosEnUnaDireccion;
-	private int cantMAXDeMovimientosEnUnaDireccion;
 	/**
 	 * Launch the application.
 	 */
@@ -98,8 +96,6 @@ public class Grafica {
 		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
 		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
 		agregarPanel(this.tableroGrafico); //agrego el tablero
-		this.cantMAXDeMovimientosEnUnaDireccion= modoDeJuegoSeleccionado;//tengo que limitar la cantidad de movimiento en una misma direccion el max va a ser la cant de filas/columnas
-		this.cantDeMovimientosEnUnaDireccion= 0;
 		//agregarMenuBar(); //agrego la barra de menu
 		cargarHub(nombreDeUsuario);//le paso el nombre que ingreso el usuario
 		frame.repaint(); //repinto
@@ -107,8 +103,6 @@ public class Grafica {
 	}
 
 	private void cargarMejoresJugadores() {
-		System.out.println("esta cargando");
-		//dejarDeMostrarMenuBar();
 		this.mejoresJugadores= new MejoresJugadoresPanel();
 		int puntajeJugador=this.tableroGrafico.tablero.getPuntos();
 		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
@@ -120,10 +114,10 @@ public class Grafica {
 
 	private void cargarMenu() {
 		agregarPanel(this.menu); //agrego el menu (panel)
-		//eventoClick();
 		frame.repaint();
 		frame.revalidate();
 	}
+	
 	private void cargarHub(String nombreDeUsuario) {
 		this.hub=new Hub(); //creo el hub
 		this.hub.setBounds(0, 0, 784, 35);//medidas del hub
@@ -132,12 +126,12 @@ public class Grafica {
 		frame.repaint();
 		frame.revalidate();
 	}
+	
 	private void eventoClick() {
 		//evento de click
-		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
+		this.menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 			public void actionPerformed(ActionEvent e) {
 				nombreDeUsuario= menu.txtFieldNombre.getText();
-				
 				if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
 					menu.mostrarErrorNombre(false);
 					cargarTablero(menu.getModoDeJuego()); //cargo el tablero
@@ -247,24 +241,21 @@ public class Grafica {
 		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				System.out.println(e.getKeyCode() + "xdd");
 				if(e.getKeyChar()=='w' || e.getKeyCode() == 38) { //38 es el code de la flecha arriba
-					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
+					System.out.println("teclaaaaa");
+					if(!tableroGrafico.perdioElJuego()) {
 						tableroGrafico.moverArriba();
 						actualizarPuntos();
-						cantDeMovimientosEnUnaDireccion=0;
 					}
-
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
 						timeOutGameOver();
 						enGameOver= true;
 					}
 				}
 				if(e.getKeyChar()=='a' || e.getKeyCode() == 37 ) { //39 es el code de la flecha izquierda
-					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
+					if(!tableroGrafico.perdioElJuego()) {
 						tableroGrafico.moverIzquierda();
 						actualizarPuntos();
-						cantDeMovimientosEnUnaDireccion=0;
 					}
 
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
@@ -273,23 +264,20 @@ public class Grafica {
 					}
 				}
 				if(e.getKeyChar()=='s' || e.getKeyCode() == 40) { //38 es el code de la flecha abajo
-					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
+					if(!tableroGrafico.perdioElJuego()) {
 						tableroGrafico.moverAbajo();
 						actualizarPuntos();
-						cantDeMovimientosEnUnaDireccion=0;
 					}
 
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
 						timeOutGameOver();
 						enGameOver= true;
-						cantDeMovimientosEnUnaDireccion=0;
 					}
 				}
 				if(e.getKeyChar()=='d' || e.getKeyCode() == 39) { //39 es el code de la flecha derecha
-					if(!tableroGrafico.perdioElJuego() && cantDeMovimientosEnUnaDireccion<=cantMAXDeMovimientosEnUnaDireccion) {
+					if(!tableroGrafico.perdioElJuego()) {
 						tableroGrafico.moverDerecha();
 						actualizarPuntos();
-						cantDeMovimientosEnUnaDireccion=0;
 					}
 
 					if(tableroGrafico.perdioElJuego() && !enGameOver) {
