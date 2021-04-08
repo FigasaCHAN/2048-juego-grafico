@@ -106,6 +106,7 @@ public class Grafica {
 		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
 		this.mejoresJugadores.mostrarJugadores();
 		agregarPanel(this.mejoresJugadores);	
+		dejarDeMostrarMenuBar();
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
 	}
@@ -206,5 +207,10 @@ public class Grafica {
 		});
 		menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));
 		menMovimiento.add(menuMovDerecha);
+	}
+	private void dejarDeMostrarMenuBar() {
+		frame.getJMenuBar().setVisible(false);
+		frame.repaint();
+		frame.revalidate();
 	}
 }

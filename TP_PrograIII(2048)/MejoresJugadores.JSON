@@ -1,16 +1,80 @@
 {
   "jugadores": [
     {
+      "nombre": "ssss",
+      "puntaje": 6016
+    },
+    {
+      "nombre": "ssss",
+      "puntaje": 6016
+    },
+    {
+      "nombre": "FigasaCHAN",
+      "puntaje": 1304
+    },
+    {
       "nombre": "Nicolas",
       "puntaje": 1044
+    },
+    {
+      "nombre": "Figa",
+      "puntaje": 964
     },
     {
       "nombre": "Nicoos",
       "puntaje": 716
     },
     {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "dd",
+      "puntaje": 592
+    },
+    {
+      "nombre": "figa",
+      "puntaje": 564
+    },
+    {
       "nombre": "example",
       "puntaje": 452
+    },
+    {
+      "nombre": "sadasads",
+      "puntaje": 1084
     }
   ]
 }
