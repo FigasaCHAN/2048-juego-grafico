@@ -96,7 +96,8 @@ public class Grafica {
 		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
 		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
 		agregarPanel(this.tableroGrafico); //agrego el tablero
-		agregarMenuBar(); //agrego la barra de menu
+	
+		//agregarMenuBar(); //agrego la barra de menu
 		cargarHub(nombreDeUsuario);//le paso el nombre que ingreso el usuario
 		frame.repaint(); //repinto
 		frame.revalidate();//revalido
@@ -104,7 +105,7 @@ public class Grafica {
 
 	private void cargarMejoresJugadores() {
 		System.out.println("esta cargando");
-		dejarDeMostrarMenuBar();
+		//dejarDeMostrarMenuBar();
 		this.mejoresJugadores= new MejoresJugadoresPanel();
 		int puntajeJugador=this.tableroGrafico.tablero.getPuntos();
 		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
@@ -132,16 +133,19 @@ public class Grafica {
 		//evento de click
 		menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 			public void actionPerformed(ActionEvent e) {
-				nombreDeUsuario= menu.txtFieldNombre.getText(); 
+				nombreDeUsuario= menu.txtFieldNombre.getText();
+				
 				if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
 					menu.mostrarErrorNombre(false);
 					cargarTablero(menu.getModoDeJuego()); //cargo el tablero
+					agregarEventosTeclado();//despues de cargar el tablero, agrego los eventos del teclado
 				}else {
 					menu.mostrarErrorNombre(true);
 				}
 			}
 		});
 	}
+	/*
 	private void agregarMenuBar() { //agrega la barra del menu
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -150,7 +154,7 @@ public class Grafica {
 		menuBar.add(menMovimiento);
 
 		JMenuItem menuMovArriba = new JMenuItem("Arriba");
-		menuMovArriba.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0)); //el acceso directo 
+		//menuMovArriba.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0)); //el acceso directo 
 		menuMovArriba.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { 
 
@@ -183,7 +187,7 @@ public class Grafica {
 
 			}
 		});
-		menuMovAbajo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0));
+		//menuMovAbajo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0));
 		menMovimiento.add(menuMovAbajo);
 
 		JMenuItem menuMovIzquierda = new JMenuItem("Izquierda");
@@ -200,7 +204,7 @@ public class Grafica {
 
 			}
 		});
-		menuMovIzquierda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
+		//menuMovIzquierda.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0));
 		menMovimiento.add(menuMovIzquierda);
 
 		JMenuItem menuMovDerecha = new JMenuItem("Derecha");
@@ -218,10 +222,10 @@ public class Grafica {
 
 			}
 		});
-		menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));
+		//menuMovDerecha.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0));
 		menMovimiento.add(menuMovDerecha);
 	}
-
+*/
 	private void timeOutGameOver() {
 		System.out.println("ESTA LLAMANDO AL TIME OUT");
 		new Timer().schedule(new TimerTask() {
@@ -231,9 +235,63 @@ public class Grafica {
 			}
 		}, 3000);
 	}
-	private void dejarDeMostrarMenuBar() {
+	/*private void dejarDeMostrarMenuBar() {
 		frame.getJMenuBar().setVisible(false);
 		frame.repaint();
+		frame.revalidate();
+	}*/
+	private void agregarEventosTeclado(){
+		frame.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				System.out.println(e.getKeyCode() + "xdd");
+				if(e.getKeyChar()=='w' || e.getKeyCode() == 38) { //38 es el code de la flecha arriba
+					if(!tableroGrafico.perdioElJuego()) {
+						tableroGrafico.moverArriba();
+						actualizarPuntos();
+					}
+
+					if(tableroGrafico.perdioElJuego() && !enGameOver) {
+						timeOutGameOver();
+						enGameOver= true;
+					}
+				}
+				if(e.getKeyChar()=='a' || e.getKeyCode() == 37) { //39 es el code de la flecha izquierda
+					if(!tableroGrafico.perdioElJuego()) {
+						tableroGrafico.moverIzquierda();
+						actualizarPuntos();
+					}
+
+					if(tableroGrafico.perdioElJuego() && !enGameOver) {
+						timeOutGameOver();
+						enGameOver= true;
+					}
+				}
+				if(e.getKeyChar()=='s' || e.getKeyCode() == 40) { //38 es el code de la flecha abajo
+					if(!tableroGrafico.perdioElJuego()) {
+						tableroGrafico.moverAbajo();
+						actualizarPuntos();
+					}
+
+					if(tableroGrafico.perdioElJuego() && !enGameOver) {
+						timeOutGameOver();
+						enGameOver= true;
+					}
+				}
+				if(e.getKeyChar()=='d' || e.getKeyCode() == 39) { //39 es el code de la flecha derecha
+					if(!tableroGrafico.perdioElJuego()) {
+						tableroGrafico.moverDerecha();
+						actualizarPuntos();
+					}
+
+					if(tableroGrafico.perdioElJuego() && !enGameOver) {
+						timeOutGameOver();
+						enGameOver= true;
+					}
+				}
+			}
+		});
+		frame.requestFocus(); //le devuelvo el foco a la ventana para que pueda tomar los eventos
 		frame.revalidate();
 	}
 }
