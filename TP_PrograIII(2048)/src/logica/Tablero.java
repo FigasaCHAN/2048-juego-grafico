@@ -56,7 +56,7 @@ public class Tablero {
 				//suponiendo que la matriz es cuadrada
 				moverColumArriba(columna);
 			}
-			
+			insertarRandom();
 		}
 		
 		
@@ -104,8 +104,7 @@ public class Tablero {
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				moverColumAbajo(columna);
 			}				
-			insertarRandom();	
-				
+			insertarRandom();			
 		}
 		
 		
