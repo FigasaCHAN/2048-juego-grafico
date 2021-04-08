@@ -85,7 +85,7 @@ public class MejoresJugadoresPanel extends JPanel {
 				indexMaximo++;
 			}
 		}
-		
+		table.setEnabled(false); //para que no sea posible editarla desde la pantalla 
 		add(table);
 	}
 	
