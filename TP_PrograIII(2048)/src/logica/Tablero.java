@@ -13,7 +13,7 @@ public class Tablero {
 	private int puntos;
 	private boolean gameOver;
 	private int maximoNumEnElTablero; //me va a servir para determinar si el jugador gano o perdio
-
+	private boolean direccionIzq,direccionDerecha,direccionArriba,direccionAbajo; //variables que me sirven para controlar el insertar random
 	public Tablero(int [][] mat) {
 		if(mat.length==0 || mat==null) {
 			throw new RuntimeException("Para crear el tablero la matriz no tiene que estar vacia ni debe ser null");
@@ -35,6 +35,10 @@ public class Tablero {
 		this.puntos=0;
 		this.gameOver= false;
 		this.maximoNumEnElTablero= 0;
+		this.direccionIzq= false;
+		this.direccionDerecha= false;
+		this.direccionAbajo= false;
+		this.direccionArriba= false;
 	}
 
 	public Tablero(int cantidadFilas) {
@@ -46,6 +50,10 @@ public class Tablero {
 		this.puntos= tableroAux.puntos;
 		this.gameOver= tableroAux.gameOver;
 		this.maximoNumEnElTablero= tableroAux.maximoNumEnElTablero;
+		this.direccionIzq= tableroAux.direccionIzq;
+		this.direccionDerecha= tableroAux.direccionDerecha;
+		this.direccionAbajo= tableroAux.direccionArriba;
+		this.direccionArriba= tableroAux.direccionAbajo;
 	}
 
 	public void moverArriba() {
@@ -57,7 +65,14 @@ public class Tablero {
 				//suponiendo que la matriz es cuadrada
 				moverColumArriba(columna);
 			}
-			insertarRandom();
+			if(!this.direccionArriba) { //si me muevo para arriba y anteriormente no me movi para arriba
+				insertarRandom(); //inserto el random
+			}
+			//vuelvo false a todas las direcciones
+			this.direccionIzq= false;
+			this.direccionDerecha= false;
+			this.direccionAbajo= false;
+			this.direccionArriba= true; //excepto arriba porque me movi para arriba
 		}
 
 
@@ -101,7 +116,14 @@ public class Tablero {
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				moverColumAbajo(columna);
 			}				
-			insertarRandom();			
+			if(!this.direccionAbajo) { //si me muevo para arriba y anteriormente no me movi para abajo
+				insertarRandom(); //inserto el random
+			}
+			//vuelvo false a todas las direcciones
+			this.direccionIzq= false;
+			this.direccionDerecha= false;
+			this.direccionAbajo= true; //excepto arriba porque me movi para abajo		
+			this.direccionArriba= false; 
 		}
 	}
 
@@ -137,9 +159,14 @@ public class Tablero {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
 				moverFilaIzquierda(this.tabla[numFila],numFila);
 			}
-
-			insertarRandom();	
-
+			if(!this.direccionIzq) { //si me muevo para arriba y anteriormente no me movi hacia la izquierda
+				insertarRandom(); //inserto el random
+			}
+			//vuelvo false a todas las direcciones
+			this.direccionIzq= true;//excepto arriba porque me movi hacia la izquierda
+			this.direccionDerecha= false;
+			this.direccionAbajo= false;
+			this.direccionArriba= false; 
 		}
 
 	}
@@ -165,7 +192,14 @@ public class Tablero {
 			for(int numFila=0; numFila<this.tabla.length;numFila++) {
 				moverFilaDerecha(this.tabla[numFila],numFila);
 			}			
-			insertarRandom();					
+			if(!this.direccionDerecha) { //si me muevo para arriba y anteriormente no me movi hacia la derecha
+				insertarRandom(); //inserto el random
+			}
+			//vuelvo false a todas las direcciones
+			this.direccionIzq= false;
+			this.direccionDerecha= true; //excepto arriba porque me movi hacia la derecha		
+			this.direccionAbajo= false;
+			this.direccionArriba= false; 	
 		}
 
 	}
