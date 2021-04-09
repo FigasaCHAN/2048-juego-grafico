@@ -7,6 +7,7 @@ import multimedia.Fuente;
 import java.awt.Font;
 
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class Hub extends JPanel {
 	private JLabel labelNombreDeUsuario, labelPuntaje;
