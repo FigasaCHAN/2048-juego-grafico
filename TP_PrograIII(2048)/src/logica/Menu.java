@@ -8,7 +8,7 @@ public class Menu {
 	private static boolean contieneNumeros(String nombre) {
 		
 		for(char caracter:nombre.toCharArray()) {
-		   if( Character.isDigit(caracter)) {
+		   if(!Character.isLetter(caracter) || Character.isDigit(caracter)) {
 			   return true;
 		   }	
 		}

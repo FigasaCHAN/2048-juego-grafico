@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 public class MenuPanel extends JPanel {
 	public JTextField txtFieldNombre;
 	public JButton  btnJugar,btn4x4,btn5x5,btn6x6;
-	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
+	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelMensajeError;
 	private JLabel lblErrorNombre,cartelModoDeJuegoSeleccionado;
 	private int modoDeJuego=4; //el modo por defaul es 4x4
 
@@ -32,6 +32,7 @@ public class MenuPanel extends JPanel {
 		this.pixelNum= fuente.generarFuente("Pixel.ttf", 50);
 		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 20);
 		this.pixelCarteles= fuente.generarFuente("Pixel.ttf", 16);
+		this.pixelMensajeError= fuente.generarFuente("Pixel.ttf", 15);
 		setLayout(null);
 		
 		//Num 2 titulo
@@ -111,11 +112,14 @@ public class MenuPanel extends JPanel {
 		btnJugar.setBounds(224, 401, 307, 60);
 		add(btnJugar);
 		
-		lblErrorNombre = new JLabel("El nombre solo puede contener caracteres alfabeticos");
+		lblErrorNombre = new JLabel("El nombre solo puede contener letras");
 		lblErrorNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblErrorNombre.setForeground(new Color(255, 255, 255));
 		lblErrorNombre.setBackground(new Color(255, 0, 0));
 		lblErrorNombre.setOpaque(true);
-		lblErrorNombre.setBounds(185, 376, 404, 14);
+		
+		lblErrorNombre.setBounds(185, 376, 404, 18);
+		lblErrorNombre.setFont(this.pixelMensajeError);
 		add(lblErrorNombre);
 		lblErrorNombre.setVisible(false);
 		
