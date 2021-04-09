@@ -5,7 +5,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import logica.Jugador;
-import logica.MejoresJugadoresJSON;
+import logica.MejoresJugadores;
+
 import multimedia.Fuente;
 
 import java.awt.ComponentOrientation;
@@ -18,7 +19,7 @@ import java.awt.Color;
 public class MejoresJugadoresPanel extends JPanel {
 	private final JTable table = new JTable();
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
-	private MejoresJugadoresJSON mejoresJugadores;
+	private MejoresJugadores mejoresJugadores;
 	private ArrayList<Jugador> jugadoresLeidos;
 	private DefaultTableModel model;
 	/**
@@ -43,7 +44,7 @@ public class MejoresJugadoresPanel extends JPanel {
 		
 		model.setColumnIdentifiers(columnas);
 		
-		this.mejoresJugadores=new MejoresJugadoresJSON();
+		this.mejoresJugadores=new MejoresJugadores();
 	
 		table.setBackground(new Color(220, 220, 220));
 		table.setRowMargin(5);
@@ -72,7 +73,7 @@ public class MejoresJugadoresPanel extends JPanel {
 	}
 	
 	public void mostrarJugadores() {
-		this.jugadoresLeidos=mejoresJugadores.obtenerJugadoresJSON();
+		this.jugadoresLeidos=mejoresJugadores.obtenerJugadores();
 		Object[] datosJugador=new Object[3];
 		int indexMaximo=0;
 		for(Jugador jugador:jugadoresLeidos) {
@@ -91,7 +92,7 @@ public class MejoresJugadoresPanel extends JPanel {
 	
 	public void registrarPuntajeJugador(String nombre,int puntaje) {
 		Jugador nuevoJugador=new Jugador(nombre,puntaje);
-		this.mejoresJugadores.agregarJugadorAJSON(nuevoJugador);
+		this.mejoresJugadores.agregarJugadorAlArchivo(nuevoJugador);
 		
 	}
 }
