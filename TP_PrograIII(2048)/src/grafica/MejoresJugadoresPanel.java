@@ -18,8 +18,9 @@ import java.awt.Color;
 
 public class MejoresJugadoresPanel extends JPanel {
 	private final JTable table = new JTable();
-	private Font pixelNum,pixelNombreUsuario,pixelCarteles;
+	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelVolverMenu;
 	private MejoresJugadores mejoresJugadores;
+	private JLabel lblGameOver,lblMejoresPuntajes;
 	private ArrayList<Jugador> jugadoresLeidos;
 	private DefaultTableModel model;
 	/**
@@ -31,6 +32,7 @@ public class MejoresJugadoresPanel extends JPanel {
 		this.pixelNum= fuente.generarFuente("Pixel.ttf", 50);
 		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 20);
 		this.pixelCarteles= fuente.generarFuente("Pixel.ttf", 16);
+		this.pixelVolverMenu= fuente.generarFuente("Pixel.ttf", 15);
 		setLayout(null);
 		
 		this.setBounds(0, 0, 784, 561);
@@ -56,20 +58,30 @@ public class MejoresJugadoresPanel extends JPanel {
 
 		model.addRow(filas.toArray());
 		
-		table.setBounds(72, 154, 624, 264);
+		table.setBounds(92, 154, 604, 264);
 		
 			
-		JLabel lblGameOver = new JLabel("GAME OVER");
+		lblGameOver = new JLabel("GAME OVER");
 		lblGameOver.setFont(this.pixelNum);
 		lblGameOver.setBounds(256, 11, 293, 68);
+		this.lblGameOver.setVisible(false);
 		add(lblGameOver);
 		
-		JLabel lblMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
+		lblMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
 		lblMejoresPuntajes.setFont(this.pixelNombreUsuario);
 		lblMejoresPuntajes.setBounds(292, 90, 264, 42);
 		add(lblMejoresPuntajes);
 		
+		JLabel lblVolverMenu = new JLabel("Presione la tecla 'Esc' para volver al menu");
+		lblVolverMenu.setBounds(190, 433, 411, 14);
+		lblVolverMenu.setFont(pixelVolverMenu);
+		add(lblVolverMenu);
 		
+		
+	}
+	
+	public void mostrarLabelGameOver(boolean opcion) {
+		this.lblGameOver.setVisible(opcion);
 	}
 	
 	public void mostrarJugadores() {

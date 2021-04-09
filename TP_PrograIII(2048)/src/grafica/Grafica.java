@@ -115,11 +115,15 @@ public class Grafica {
 		this.frame.revalidate();
 	}
 
-	private void cargarMejoresJugadores() {
+	private void cargarMejoresJugadores(boolean opcion) {
 		this.mejoresJugadores= new MejoresJugadoresPanel();
-		int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
-		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
+	
+		if(opcion==true) {	
+			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
+			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
+		}
 		this.mejoresJugadores.mostrarJugadores();
+		this.mejoresJugadores.mostrarLabelGameOver(opcion);
 		agregarPanel(this.mejoresJugadores);	
 		this.frame.repaint(); //repinto
 		this.frame.revalidate();//revalido
@@ -129,7 +133,7 @@ public class Grafica {
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {								
-				cargarMejoresJugadores();
+				cargarMejoresJugadores(true);
 			}
 		}, 3000);
 	}
@@ -145,6 +149,12 @@ public class Grafica {
 				}else {
 					menu.mostrarErrorNombre(true);
 				}
+			}
+		});
+		
+		this.menu.btnMejoresJugadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cargarMejoresJugadores(false);
 			}
 		});
 	}

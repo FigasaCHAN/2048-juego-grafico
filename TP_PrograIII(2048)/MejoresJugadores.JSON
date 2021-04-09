@@ -1,12 +1,16 @@
 {
   "jugadores": [
     {
+      "nombre": "Nicolas",
+      "puntaje": 3036
+    },
+    {
       "nombre": "FigasaCHAN",
       "puntaje": 96
     },
     {
-      "nombre": "Nicolas",
-      "puntaje": 3036
+      "nombre": "Ejemplo",
+      "puntaje": 656
     }
   ]
 }

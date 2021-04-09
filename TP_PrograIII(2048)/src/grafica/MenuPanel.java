@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 
 public class MenuPanel extends JPanel {
 	public JTextField txtFieldNombre;
-	public JButton  btnJugar,btn4x4,btn5x5,btn6x6;
+	public JButton  btnJugar,btn4x4,btn5x5,btn6x6,btnMejoresJugadores;
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelMensajeError;
 	private JLabel lblErrorNombre,cartelModoDeJuegoSeleccionado;
 	private int modoDeJuego=4; //el modo por defaul es 4x4
@@ -164,6 +164,15 @@ public class MenuPanel extends JPanel {
 		btn6x6.setBackground(new Color(255, 140, 0));
 		btn6x6.setFont(this.pixelCarteles);
 		add(this.btn6x6);
+		
+		btnMejoresJugadores = new JButton("Mejores Puntajes");
+		btnMejoresJugadores.setFont(null);
+		btnMejoresJugadores.setBorderPainted(false);
+		btnMejoresJugadores.setBorder(new LineBorder(new Color(222, 184, 135)));
+		btnMejoresJugadores.setBackground(new Color(255, 140, 0));
+		btnMejoresJugadores.setBounds(224, 472, 307, 47);
+		btnMejoresJugadores.setFont(this.pixelCarteles);
+		add(btnMejoresJugadores);
 		
 		
 	}
