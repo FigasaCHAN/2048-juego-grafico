@@ -49,7 +49,7 @@ public class Grafica {
 					Grafica window = new Grafica();
 					window.frame.setVisible(true);
 					window.cargarMenu(); //cargo el menu
-					window.eventoClick();
+					window.eventoClick();		
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -92,6 +92,7 @@ public class Grafica {
 	}
 
 	private void cargarMenu() {	
+		this.enGameOver= false;
 		agregarPanel(this.menu); //agrego el menu (panel)
 		menu.txtFieldNombre.setText(""); //limpia el input 
 		this.frame.repaint();
@@ -122,8 +123,7 @@ public class Grafica {
 			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
 			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
 		}
-		
-		agregarEventoVolverMenu();		
+	//	agregarEventoVolverMenu();		
 		this.mejoresJugadores.mostrarJugadores();
 		this.mejoresJugadores.mostrarLabelGameOver(opcion);
 		agregarPanel(this.mejoresJugadores);	
@@ -150,6 +150,7 @@ public class Grafica {
 					menu.mostrarErrorNombre(false);
 					cargarTablero(menu.getModoDeJuego()); //cargo el tablero
 					agregarEventosTeclado();//despues de cargar el tablero, agrego los eventos del teclado
+					agregarEventoVolverMenu();		
 				}else {
 					menu.mostrarErrorNombre(true);
 				}
@@ -159,6 +160,7 @@ public class Grafica {
 		this.menu.btnMejoresJugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarMejoresJugadores(false);
+				agregarEventoVolverMenu();		
 			}
 		});
 	}
@@ -210,7 +212,8 @@ public class Grafica {
 						enGameOver= true;
 					}
 				}
-
+			
+				
 			}
 		});
 		this.frame.requestFocus(); //le devuelvo el foco a la ventana para que pueda tomar los eventos
@@ -219,13 +222,12 @@ public class Grafica {
 	
 	private void agregarEventoVolverMenu() {
 		System.out.println("entro");
-		this.enGameOver= false;
+	//	this.enGameOver= false;
 		this.frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()==27) { //cuando se presione la tecla Esc
 					cargarMenu();
-				
 				}
 			}
 		
