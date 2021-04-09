@@ -120,12 +120,12 @@ public class Grafica {
 		if(opcion==true) {	
 			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
 			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
-		}
-		
+		}else{
+			agregarEventoVolverMenu();
+		}		
 		this.mejoresJugadores.mostrarJugadores();
 		this.mejoresJugadores.mostrarLabelGameOver(opcion);
 		agregarPanel(this.mejoresJugadores);	
-		agregarEventoVolverMenu();
 		this.frame.repaint(); //repinto
 		this.frame.revalidate();//revalido
 		

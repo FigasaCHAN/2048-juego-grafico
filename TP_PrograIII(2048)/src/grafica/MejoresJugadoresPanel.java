@@ -20,7 +20,7 @@ public class MejoresJugadoresPanel extends JPanel {
 	private final JTable table = new JTable();
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelVolverMenu;
 	private MejoresJugadores mejoresJugadores;
-	private JLabel lblGameOver,lblMejoresPuntajes;
+	private JLabel lblGameOver,lblMejoresPuntajes,lblVolverMenu;
 	private ArrayList<Jugador> jugadoresLeidos;
 	private DefaultTableModel model;
 	/**
@@ -72,7 +72,7 @@ public class MejoresJugadoresPanel extends JPanel {
 		lblMejoresPuntajes.setBounds(292, 90, 264, 42);
 		add(lblMejoresPuntajes);
 		
-		JLabel lblVolverMenu = new JLabel("Presione la tecla 'Esc' para volver al menu");
+		lblVolverMenu = new JLabel("Presione la tecla 'Esc' para volver al menu");
 		lblVolverMenu.setBounds(190, 433, 411, 14);
 		lblVolverMenu.setFont(pixelVolverMenu);
 		add(lblVolverMenu);
@@ -82,6 +82,7 @@ public class MejoresJugadoresPanel extends JPanel {
 	
 	public void mostrarLabelGameOver(boolean opcion) {
 		this.lblGameOver.setVisible(opcion);
+		this.lblVolverMenu.setVisible(!opcion);
 	}
 	
 	public void mostrarJugadores() {
