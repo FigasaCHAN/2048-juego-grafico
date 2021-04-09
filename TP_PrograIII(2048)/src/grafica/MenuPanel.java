@@ -95,6 +95,7 @@ public class MenuPanel extends JPanel {
 		lbl_IngresarNombre.setFont(this.pixelCarteles);
 		lbl_IngresarNombre.setBorder(new LineBorder(new Color(222, 184, 135)));
 		lbl_IngresarNombre.setBounds(175, 297, 412, 28);
+		
 		add(lbl_IngresarNombre);
 		
 		//cartel modo de juego seleccionado

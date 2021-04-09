@@ -82,7 +82,6 @@ public class MejoresJugadoresPanel extends JPanel {
 	
 	public void mostrarLabelGameOver(boolean opcion) {
 		this.lblGameOver.setVisible(opcion);
-		this.lblVolverMenu.setVisible(!opcion);
 	}
 	
 	public void mostrarJugadores() {

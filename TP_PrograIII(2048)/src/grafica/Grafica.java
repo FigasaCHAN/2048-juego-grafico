@@ -91,8 +91,9 @@ public class Grafica {
 
 	}
 
-	private void cargarMenu() {
+	private void cargarMenu() {	
 		agregarPanel(this.menu); //agrego el menu (panel)
+		menu.txtFieldNombre.setText(""); //limpia el input 
 		this.frame.repaint();
 		this.frame.revalidate();
 	}
@@ -120,9 +121,9 @@ public class Grafica {
 		if(opcion==true) {	
 			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
 			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
-		}else{
-			agregarEventoVolverMenu();
-		}		
+		}
+		
+		agregarEventoVolverMenu();		
 		this.mejoresJugadores.mostrarJugadores();
 		this.mejoresJugadores.mostrarLabelGameOver(opcion);
 		agregarPanel(this.mejoresJugadores);	
@@ -218,11 +219,13 @@ public class Grafica {
 	
 	private void agregarEventoVolverMenu() {
 		System.out.println("entro");
+		this.enGameOver= false;
 		this.frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()==27) { //cuando se presione la tecla Esc
 					cargarMenu();
+				
 				}
 			}
 		
