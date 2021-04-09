@@ -5,7 +5,7 @@ import java.util.stream.IntStream;
 
 public class Menu {
 	
-	private static boolean contieneNumeros(String nombre) {
+	private static boolean tieneCaracteresNoValidos(String nombre) {
 		
 		for(char caracter:nombre.toCharArray()) {
 		   if(!Character.isLetter(caracter) || Character.isDigit(caracter)) {
@@ -17,7 +17,7 @@ public class Menu {
 	
 	public static boolean validarNombreJugador(String nombre) {
 		
-		if(nombre.contains(" ") || contieneNumeros(nombre) || nombre.isEmpty()) {
+		if(nombre.contains(" ") || tieneCaracteresNoValidos(nombre) || nombre.isEmpty()) {
 			return false;
 		}else {		
 			return true;
