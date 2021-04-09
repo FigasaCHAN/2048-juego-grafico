@@ -115,18 +115,21 @@ public class Grafica {
 		this.frame.revalidate();
 	}
 
-	private void cargarMejoresJugadores(boolean opcion) {
+	private void cargarMejoresJugadores(boolean opcion) {	
 		this.mejoresJugadores= new MejoresJugadoresPanel();
-	
 		if(opcion==true) {	
 			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
 			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
 		}
+		
 		this.mejoresJugadores.mostrarJugadores();
 		this.mejoresJugadores.mostrarLabelGameOver(opcion);
 		agregarPanel(this.mejoresJugadores);	
+		agregarEventoVolverMenu();
 		this.frame.repaint(); //repinto
 		this.frame.revalidate();//revalido
+		
+		
 	}
 
 	private void timeOutGameOver() {
@@ -206,9 +209,26 @@ public class Grafica {
 						enGameOver= true;
 					}
 				}
+
 			}
 		});
 		this.frame.requestFocus(); //le devuelvo el foco a la ventana para que pueda tomar los eventos
+		this.frame.revalidate();
+	}
+	
+	private void agregarEventoVolverMenu() {
+		System.out.println("entro");
+		this.frame.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode()==27) { //cuando se presione la tecla Esc
+					cargarMenu();
+				}
+			}
+		
+		});	
+		
+		this.frame.requestFocus(); 
 		this.frame.revalidate();
 	}
 }
