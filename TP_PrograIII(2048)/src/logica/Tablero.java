@@ -14,6 +14,7 @@ public class Tablero {
 	private boolean gameOver;
 	private int maximoNumEnElTablero; //me va a servir para determinar si el jugador gano o perdio
 	private boolean direccionIzq,direccionDerecha,direccionArriba,direccionAbajo; //variables que me sirven para controlar el insertar random
+	
 	public Tablero(int [][] mat) {
 		if(mat.length==0 || mat==null) {
 			throw new RuntimeException("Para crear el tablero la matriz no tiene que estar vacia ni debe ser null");
@@ -44,6 +45,7 @@ public class Tablero {
 	public Tablero(int cantidadFilas) {
 		int[][] array= generarMatrizCuadradaAlAzar(cantidadFilas); 
 		Tablero tableroAux= new Tablero(array);
+		
 		this.tabla= tableroAux.tabla;
 		this.diccionario= tableroAux.diccionario;
 		this.NUM_RANDOM_POSIBLES= tableroAux.NUM_RANDOM_POSIBLES;
@@ -57,9 +59,7 @@ public class Tablero {
 	}
 
 	public void moverArriba() {
-		if(this.tabla.length==0) {
-			throw new RuntimeException("La matriz no puede estar vacia");
-		}
+		
 		if(!this.gameOver) {
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				//suponiendo que la matriz es cuadrada
@@ -79,11 +79,7 @@ public class Tablero {
 	}
 
 	private void moverColumArriba(int columna) {
-		if(columna<0 || columna>this.tabla[0].length ) {
-			//suponiendo que la matriz es cuadrada
-			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
-		}
-
+		
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(this.tabla, columna) ); 
 		//O(3*n + 12)
 		int iArrayList=0; //indice del arrayList de columna
@@ -109,9 +105,7 @@ public class Tablero {
 	}
 
 	public void moverAbajo() {
-		if(this.tabla.length==0) {
-			throw new RuntimeException("La matriz no puede estar vacia");
-		}
+
 		if(!this.gameOver) {
 			for(int columna= 0; columna<this.tabla[0].length; columna++) {
 				moverColumAbajo(columna);
@@ -128,23 +122,16 @@ public class Tablero {
 	}
 
 	private void moverColumAbajo(int columna) {
-		if(columna<0 || columna>this.tabla[0].length ) {
-			//suponiendo que la matriz es cuadrada
-			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
-		}
 
 		ArrayList<Integer> arrayColumna= sumarNumerosIgualesReves( columnaToArray(this.tabla, columna) ); 
 		int iArrayList=0; //indice del arrayList de columna, agarro el primero ya que la lista esta al reves (los primeros numeros son los ultimos que tengo que agregar
 		int cantElemArrayList= arrayColumna.size(); //la cantidad de elem que tengo que agregar 
+		
 		for(int fila=this.tabla.length-1; fila>=0;fila--) { //reemplazo los valores de atras para adelante 
-
 			if(cantElemArrayList>0) {
-
 				this.tabla[fila][columna]= arrayColumna.get(iArrayList);
-
 				iArrayList++; //sumo el indice para no chequear el siguiente
 				cantElemArrayList--; //resto la cantidad de elem
-
 			}
 			else {
 				this.tabla[fila][columna]=0;
@@ -222,17 +209,10 @@ public class Tablero {
 
 	private ArrayList<Integer> columnaToArray(int[][]matriz, int columna) {
 		ArrayList<Integer>  columnaArray= new ArrayList<Integer>();
-
-		if(columna<0 || columna>matriz[0].length ) {
-			//suponiendo que la matriz es cuadrada
-			throw new RuntimeException("La columna tiene que ser >=0 && <CantidadDeColumna");
-		}
-
 		for(int fila=0; fila<matriz.length; fila++) {
 			if(matriz[fila][columna]!=0) { //solo agrego aquellos que no son 0
 				columnaArray.add(matriz[fila][columna]);
 			}
-
 		}
 		return columnaArray;
 	}
@@ -262,7 +242,6 @@ public class Tablero {
 				return nuevaArray;
 			}
 			if(array.get(i).equals(array.get(i+1))) {
-				//if(array.get(i)==array.get(i+1)) {
 				int suma= (array.get(i)+array.get(i+1)); //los sumo
 				nuevaArray.add(suma);
 				i++; //incremento el i para no fijarme el siguiente, al finalizar el ciclo tambien va a sumar i
@@ -323,13 +302,7 @@ public class Tablero {
 		int iRandom_delArray =  (int) (Math.random()* (iPosibles.size()) ); //num random para un i 
 		int numRandom =  (int) (Math.random()* 2); //va a ser 0 o 1 y lo voy a utilizar para seleccionar un elem del array de numerosRandom(2 o 4)
 		if(iPosibles.size()!=0) {
-			//this.gameOver=true;
 			this.tabla[iPosibles.get(iRandom_delArray).x][iPosibles.get(iRandom_delArray).y]= this.NUM_RANDOM_POSIBLES[numRandom]; //a la casilla random, le asigno el numero random
-		}
-		else {
-			//			if(!puedeSumar()) {
-			//				this.gameOver=true;
-			//			}
 		}
 	}
 

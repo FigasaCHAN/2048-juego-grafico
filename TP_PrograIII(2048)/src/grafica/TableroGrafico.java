@@ -27,18 +27,10 @@ public class TableroGrafico extends JPanel {
 	 */
 	
 
-	public TableroGrafico(int cantDeFila) {/*
-		int[][] matrizTablero= new int [][]{  //creo la matriz provisoria aca
-			{1024,0,0,0},
-			{0,0,0,0},
-			{0,0,0,0},
-			{0,0,0,1024}
-	
-		};
-		this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;
-		this.tablero= new Tablero(matrizTablero);*/
+	public TableroGrafico(int cantDeFila) {
+		
 		this.tablero= new Tablero(cantDeFila);
-		int[][] matrizTablero= this.tablero.getTablero();
+		int[][] matrizTablero= this.tablero.getTablero(); //la voy a usar solo para inicializar los JLabel
 		this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;
 		this.colorTablero= new Color(252,181,255);
 		this.colorN2=new Color(248,91,255);
@@ -52,15 +44,11 @@ public class TableroGrafico extends JPanel {
 		this.colorN512=new Color(115,100,216);
 		this.colorN1024=new Color(100,161,216);
 		this.colorN2048=new Color(52,150,183);
-		
-		
-		
 		this.listLabel= new ArrayList<JLabel>();
-
+		
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setLayout(new GridLayout(CANT_DE_FILAS_Y_COLUMNA, CANT_DE_FILAS_Y_COLUMNA, 0, 0)); //defino la cantidad de filas y colum que va a tener el layout
-
-
+		
 		for(int  [] fila: matrizTablero) {
 			for(int  elem : fila) {
 				JLabel elemento; //defino el label nuevo
@@ -88,28 +76,29 @@ public class TableroGrafico extends JPanel {
 			}
 		}
 	}
-	public void moverIzquierda() {
 	
+	public void moverIzquierda() {
 		this.tablero.moverIzquierda();
 		actualizar();
 	}
+	
 	public void moverDerecha() {
-		
 		this.tablero.moverDerecha();
 		actualizar();
 	}
-	public void moverArriba() {
 	
+	public void moverArriba() {
 		this.tablero.moverArriba();
 		actualizar();
 	}
+	
 	public void moverAbajo() {
-		
 		this.tablero.moverAbajo();
 		actualizar();
 	}
+	
 	public void actualizar() {
-		this.tablero.puedeSumar();
+		this.tablero.puedeSumar();//va a actualizar el game over del tablero logico
 		ArrayList<Integer> tableroArray= this.tablero.matrizToArray();
 	    int indice= 0;
 		for(JLabel elem: this.listLabel) {
@@ -161,8 +150,6 @@ public class TableroGrafico extends JPanel {
 	}
 	
 	public boolean perdioElJuego() {
-		
-		
 		return this.tablero.getGameOver();
 	}
 }

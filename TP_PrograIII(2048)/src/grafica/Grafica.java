@@ -80,7 +80,7 @@ public class Grafica {
 	}
 
 	void actualizarPuntos() {
-		this.hub.actualizarPuntaje(tableroGrafico.tablero.getPuntos());
+		this.hub.actualizarPuntaje(this.tableroGrafico.tablero.getPuntos());
 	}
 	
 	private void agregarPanel(JPanel panel) {
@@ -90,30 +90,20 @@ public class Grafica {
 		this.frame.getContentPane().revalidate(); // revalido esto es importante ya que el frame tiene que fijarse el estado de sus componentes
 
 	}
-	
-	private void cargarTablero(int modoDeJuegoSeleccionado) {
-		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
-		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
-		agregarPanel(this.tableroGrafico); //agrego el tablero
-		cargarHub(nombreDeUsuario);//le paso el nombre que ingreso el usuario
-		this.frame.repaint(); //repinto
-		this.frame.revalidate();//revalido
-	}
-
-	private void cargarMejoresJugadores() {
-		this.mejoresJugadores= new MejoresJugadoresPanel();
-		int puntajeJugador=this.tableroGrafico.tablero.getPuntos();
-		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
-		this.mejoresJugadores.mostrarJugadores();
-		agregarPanel(this.mejoresJugadores);	
-		this.frame.repaint(); //repinto
-		this.frame.revalidate();//revalido
-	}
 
 	private void cargarMenu() {
 		agregarPanel(this.menu); //agrego el menu (panel)
 		this.frame.repaint();
 		this.frame.revalidate();
+	}
+
+	private void cargarTablero(int modoDeJuegoSeleccionado) {
+		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
+		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
+		agregarPanel(this.tableroGrafico); //agrego el tablero
+		cargarHub(this.nombreDeUsuario);//le paso el nombre que ingreso el usuario
+		this.frame.repaint(); //repinto
+		this.frame.revalidate();//revalido
 	}
 	
 	private void cargarHub(String nombreDeUsuario) {
@@ -123,6 +113,25 @@ public class Grafica {
 		this.hub.setNombreDeUsuario(nombreDeUsuario); //le paso el nombre de usuario
 		this.frame.repaint();
 		this.frame.revalidate();
+	}
+
+	private void cargarMejoresJugadores() {
+		this.mejoresJugadores= new MejoresJugadoresPanel();
+		int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
+		this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
+		this.mejoresJugadores.mostrarJugadores();
+		agregarPanel(this.mejoresJugadores);	
+		this.frame.repaint(); //repinto
+		this.frame.revalidate();//revalido
+	}
+
+	private void timeOutGameOver() {
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {								
+				cargarMejoresJugadores();
+			}
+		}, 3000);
 	}
 	
 	private void eventoClick() {
@@ -138,16 +147,6 @@ public class Grafica {
 				}
 			}
 		});
-	}
-	
-	private void timeOutGameOver() {
-		System.out.println("ESTA LLAMANDO AL TIME OUT");
-		new Timer().schedule(new TimerTask() {
-			@Override
-			public void run() {								
-				cargarMejoresJugadores();
-			}
-		}, 3000);
 	}
 	
 	private void agregarEventosTeclado(){

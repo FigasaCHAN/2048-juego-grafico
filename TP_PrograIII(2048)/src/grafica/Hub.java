@@ -12,8 +12,9 @@ public class Hub extends JPanel {
 	private JLabel labelNombreDeUsuario, labelPuntaje;
 	private Font pixelNum,pixelNombreUsuario;
 	private String nombreDeUsuario;
+	private Fuente fuente;
 	public Hub() {
-		Fuente fuente= new Fuente();
+		this.fuente= new Fuente();
 		this.pixelNum= fuente.generarFuente("Pixel.ttf", 30);
 		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 30);
 		
