@@ -163,12 +163,6 @@ public class MenuPanel extends JPanel {
 		
 		
 	}
-
-	
-	private boolean esNombreValido() {
-		return Menu.validarNombreJugador(this.txtFieldNombre.getText());
-	}
-	
 	public void mostrarErrorNombre(boolean opcion) {
 		this.lblErrorNombre.setVisible(opcion);
 	}
