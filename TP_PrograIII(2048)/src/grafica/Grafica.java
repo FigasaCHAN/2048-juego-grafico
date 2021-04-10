@@ -38,7 +38,6 @@ public class Grafica {
 	Hub hub;
 	MenuPanel menu;
 	MejoresJugadoresPanel mejoresJugadores;
-	private KeyAdapter  keyAdapter;
 	private String nombreDeUsuario;
 	private boolean enGameOver;
 	/**
@@ -94,7 +93,7 @@ public class Grafica {
 	}
 
 	private void cargarMenu() {	
-		this.frame.removeKeyListener(keyAdapter);
+		//this.frame.removeKeyListener(keyAdapter);
 		this.enGameOver= false;
 		agregarPanel(this.menu); //agrego el menu (panel)
 		menu.txtFieldNombre.setText(""); //limpia el input 
@@ -126,10 +125,10 @@ public class Grafica {
 			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
 			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
 		}
-	//	agregarEventoVolverMenu();		
 		this.mejoresJugadores.mostrarJugadores();
 		this.mejoresJugadores.mostrarLabelGameOver(opcion);
-		agregarPanel(this.mejoresJugadores);	
+		agregarPanel(this.mejoresJugadores);
+		agregarEventoVolverMenu();		
 		this.frame.repaint(); //repinto
 		this.frame.revalidate();//revalido
 		
@@ -169,7 +168,7 @@ public class Grafica {
 	}
 	
 	private void agregarEventosTeclado(){
-		 keyAdapter=new KeyAdapter() {
+		frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyChar()=='w' || e.getKeyCode() == 38) { //38 es el code de la flecha arriba
@@ -215,11 +214,9 @@ public class Grafica {
 						enGameOver= true;
 					}
 				}
-			
-				
 			}
-		};
-		this.frame.addKeyListener(keyAdapter);
+		});
+		
 		this.frame.requestFocus(); //le devuelvo el foco a la ventana para que pueda tomar los eventos
 		this.frame.revalidate();
 	}
@@ -232,13 +229,12 @@ public class Grafica {
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()==27) { //cuando se presione la tecla Esc
 					cargarMenu();
-					menu.txtFieldNombre.requestFocus(); //le doy el foco al nombre de usuario, esto va a evitar que 
+					menu.txtFieldNombre.requestFocus(); //le doy el foco al nombre de usuario
 				}
 			}
 		
 		});	
-		
-		//this.frame.requestFocus(); 
+		this.frame.requestFocus(); //le devuelvo el foco a la ventana
 		this.frame.revalidate();
 	}
 }
