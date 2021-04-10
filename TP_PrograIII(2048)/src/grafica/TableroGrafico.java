@@ -22,6 +22,7 @@ public class TableroGrafico extends JPanel {
 	private final int CANT_DE_FILAS_Y_COLUMNA;
 	//private Color colorTablero;
 	//private final Color colorN2,colorN4,colorN8,colorN16,colorN32,colorN64,colorN128,colorN256,colorN512,colorN1024,colorN2048;
+	private Color colorBorde;
 	ArrayList<JLabel> listLabel;
 	private ImageIcon fondo, n2, n4, n8, n16,n32,n64,n128,n256,n512,n1024,n2048;
 	/**
@@ -59,7 +60,7 @@ public class TableroGrafico extends JPanel {
 		this.n512 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num512.png "));
 		this.n1024 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num1024.png "));
 		this.n2048 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num2048.png "));
-		
+		this.colorBorde= new Color(212,174,240);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setLayout(new GridLayout(CANT_DE_FILAS_Y_COLUMNA, CANT_DE_FILAS_Y_COLUMNA, 0, 0)); //defino la cantidad de filas y colum que va a tener el layout
 		
@@ -88,7 +89,7 @@ public class TableroGrafico extends JPanel {
 				}
 				elemento.setFont(new Font("Tahoma", Font.PLAIN, 80)); //Forma 
 				elemento.setHorizontalAlignment(SwingConstants.CENTER); //Centramos los numeros 
-				elemento.setBorder(new LineBorder(Color.PINK, 4)); //Borde
+				elemento.setBorder(new LineBorder(this.colorBorde, 4)); //Borde
 				add(elemento); //agrego el elem al panel
 				this.listLabel.add(elemento); //lo agrego al arraylist
 			}

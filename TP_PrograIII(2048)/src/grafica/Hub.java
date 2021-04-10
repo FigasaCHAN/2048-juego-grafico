@@ -8,6 +8,7 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Hub extends JPanel {
 	private JLabel labelNombreDeUsuario, labelPuntaje;
@@ -22,15 +23,23 @@ public class Hub extends JPanel {
 		setLayout(null);
 		
 		this.nombreDeUsuario="Username";
+		
+		labelPuntaje = new JLabel("Puntos: 0");
+		labelPuntaje.setForeground(Color.WHITE);
+		labelPuntaje.setFont(this.pixelNombreUsuario);
+		labelPuntaje.setBounds(401, 0, 383, 31);
+		//labelPuntaje.
+		add(labelPuntaje);
 		labelNombreDeUsuario = new JLabel(this.nombreDeUsuario);
 		labelNombreDeUsuario.setFont(this.pixelNum);
 		labelNombreDeUsuario.setBounds(10, 0, 381, 31);
+		labelNombreDeUsuario.setForeground(Color.WHITE);
 		add(labelNombreDeUsuario);
 		
-		labelPuntaje = new JLabel("Puntos: 0");
-		labelPuntaje.setFont(this.pixelNombreUsuario);
-		labelPuntaje.setBounds(401, 0, 383, 31);
-		add(labelPuntaje);
+		JLabel imagenHub = new JLabel("New label");
+		imagenHub.setIcon(new ImageIcon(Hub.class.getResource("/multimedia/imagenes/hub.png")));
+		imagenHub.setBounds(0, -14, 784, 56);
+		add(imagenHub);
 		
 
 	}

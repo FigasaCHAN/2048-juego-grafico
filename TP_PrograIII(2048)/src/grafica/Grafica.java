@@ -102,7 +102,7 @@ public class Grafica {
 
 	private void cargarTablero(int modoDeJuegoSeleccionado) {
 		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
-		this.tableroGrafico.setBounds(0, 35, 784, 504); //lo doy las medidas , al alto le tengo que restar 22p de la barra de menu y 35p del hub
+		this.tableroGrafico.setBounds(0, 35, 784, 525); //lo doy las medidas , al alto le tengo que restar 35px del hub
 		agregarPanel(this.tableroGrafico); //agrego el tablero
 		cargarHub(this.nombreDeUsuario);//le paso el nombre que ingreso el usuario
 		this.frame.repaint(); //repinto
@@ -229,12 +229,13 @@ public class Grafica {
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()==27) { //cuando se presione la tecla Esc
 					cargarMenu();
+					menu.txtFieldNombre.requestFocus(); //le doy el foco al nombre de usuario, esto va a evitar que 
 				}
 			}
 		
 		});	
 		
-		this.frame.requestFocus(); 
+		//this.frame.requestFocus(); 
 		this.frame.revalidate();
 	}
 }
