@@ -96,7 +96,7 @@ public class Grafica {
 		limpiarEventosTablero();
 		this.enGameOver= false;
 		agregarPanel(this.menu); //agrego el menu (panel)
-		menu.txtFieldNombre.setText(""); //limpia el input 
+		menu.getTxtFieldNombre().setText(""); //limpia el input 
 		this.frame.repaint();
 		this.frame.revalidate();
 	}
@@ -146,9 +146,9 @@ public class Grafica {
 	}
 	
 	private void eventoClick() {
-		this.menu.btnJugar.addActionListener(new ActionListener() { //al boton del menu le agrega el evento
+		this.menu.getBtnJugar().addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 			public void actionPerformed(ActionEvent e) {
-				nombreDeUsuario= menu.txtFieldNombre.getText();
+				nombreDeUsuario= menu.getTxtFieldNombre().getText();
 				if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
 					menu.mostrarErrorNombre(false);
 					cargarTablero(menu.getModoDeJuego()); //cargo el tablero
@@ -160,7 +160,7 @@ public class Grafica {
 			}
 		});
 		
-		this.menu.btnMejoresJugadores.addActionListener(new ActionListener() {
+		this.menu.getBtnMejoresJugadores().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cargarMejoresJugadores(false);
 				agregarEventoVolverMenu();		
@@ -229,7 +229,8 @@ public class Grafica {
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()==27) { //cuando se presione la tecla Esc
 					cargarMenu();
-					menu.txtFieldNombre.requestFocus(); //le doy el foco al nombre de usuario
+					menu.getTxtFieldNombre().requestFocus();//le doy el foco al nombre de usuario
+					//menu.txtFieldNombre.requestFocus(); 
 				}
 			}
 		

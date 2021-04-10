@@ -24,8 +24,8 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
 public class MenuPanel extends JPanel {
-	public JTextField txtFieldNombre;
-	public JButton  btnJugar,btn4x4,btn5x5,btn6x6,btnMejoresJugadores;
+	private JTextField txtFieldNombre;
+	private JButton  btnJugar,btn4x4,btn5x5,btn6x6,btnMejoresJugadores;
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelMensajeError;
 	private JLabel lblErrorNombre,cartelModoDeJuegoSeleccionado;
 	private int modoDeJuego=4; //el modo por defaul es 4x4
@@ -211,4 +211,24 @@ public class MenuPanel extends JPanel {
 	public int getModoDeJuego() {
 		return this.modoDeJuego;
 	}
+	public JTextField getTxtFieldNombre() {
+		return txtFieldNombre;
+	}
+	public void setTxtFieldNombre(JTextField txtFieldNombre) {
+		this.txtFieldNombre = txtFieldNombre;
+	}
+	public JButton getBtnJugar() {
+		return btnJugar;
+	}
+	public void setBtnJugar(JButton btnJugar) {
+		this.btnJugar = btnJugar;
+	}
+	public JButton getBtnMejoresJugadores() {
+		return btnMejoresJugadores;
+	}
+	public void setBtnMejoresJugadores(JButton btnMejoresJugadores) {
+		this.btnMejoresJugadores = btnMejoresJugadores;
+	}
+	
+	
 }
