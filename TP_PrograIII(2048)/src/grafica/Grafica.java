@@ -39,6 +39,7 @@ public class Grafica {
 	private MenuPanel menu;
 	private MejoresJugadoresPanel mejoresJugadores;
 	private String nombreDeUsuario;
+	private KeyAdapter eventosTablero;
 	private boolean enGameOver;
 	/**
 	 * Launch the application.
@@ -93,7 +94,7 @@ public class Grafica {
 	}
 
 	private void cargarMenu() {	
-
+		limpiarEventosTablero();
 		this.enGameOver= false;
 		agregarPanel(this.menu); //agrego el menu (panel)
 		menu.txtFieldNombre.setText(""); //limpia el input 
@@ -119,7 +120,8 @@ public class Grafica {
 		this.frame.revalidate();
 	}
 
-	private void cargarMejoresJugadores(boolean opcion) {	
+	private void cargarMejoresJugadores(boolean opcion) {
+		limpiarEventosTablero();
 		this.mejoresJugadores= new MejoresJugadoresPanel();
 		if(opcion==true) {	
 			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
@@ -168,7 +170,7 @@ public class Grafica {
 	}
 	
 	private void agregarEventosTeclado(){
-		frame.addKeyListener(new KeyAdapter() {
+		this.eventosTablero=new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyChar()=='w' || e.getKeyCode() == 38) { //38 es el code de la flecha arriba
@@ -215,8 +217,9 @@ public class Grafica {
 					}
 				}
 			}
-		});
+		};
 		
+		this.frame.addKeyListener(this.eventosTablero);	
 		this.frame.requestFocus(); //le devuelvo el foco a la ventana para que pueda tomar los eventos
 		this.frame.revalidate();
 	}
@@ -234,5 +237,9 @@ public class Grafica {
 		});	
 		this.frame.requestFocus(); //le devuelvo el foco a la ventana
 		this.frame.revalidate();
+	}
+	
+	private void limpiarEventosTablero() {
+		this.frame.removeKeyListener(this.eventosTablero);
 	}
 }
