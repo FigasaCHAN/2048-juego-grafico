@@ -34,7 +34,6 @@ public class Grafica {
 
 	private JFrame frame;
 	private TableroGrafico tableroGrafico;
-	private JLabel puntajes; 
 	private Hub hub;
 	private MenuPanel menu;
 	private MejoresJugadoresPanel mejoresJugadores;

@@ -10,13 +10,9 @@ import java.util.Collections;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
-
-
 public class MejoresJugadores {
 	private ArrayList<Jugador> jugadores;
-	
-	
+		
 	public MejoresJugadores() {
 		this.jugadores=new ArrayList<>();
 	}
