@@ -1,9 +1,16 @@
 package logica;
 
-import java.util.ArrayList;
-import java.util.stream.IntStream;
-
 public class Menu {
+
+	public static boolean validarNombreJugador(String nombre) {
+		
+		if(nombre.contains(" ") || tieneCaracteresNoValidos(nombre) || nombre.isEmpty()) {
+			return false;
+		}else {		
+			return true;
+		}
+	}
+	
 	
 	private static boolean tieneCaracteresNoValidos(String nombre) {
 		
@@ -13,15 +20,6 @@ public class Menu {
 		   }	
 		}
 		return false;
-	}
-	
-	public static boolean validarNombreJugador(String nombre) {
-		
-		if(nombre.contains(" ") || tieneCaracteresNoValidos(nombre) || nombre.isEmpty()) {
-			return false;
-		}else {		
-			return true;
-		}
 	}
 
 }
