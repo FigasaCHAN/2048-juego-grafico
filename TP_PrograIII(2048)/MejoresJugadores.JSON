@@ -1,5 +1,16 @@
 {
   "jugadores": [
-    
+    {
+      "nombre": "Nicoo",
+      "puntaje": 700
+    },
+    {
+      "nombre": "Nicoo",
+      "puntaje": 700
+    },
+    {
+      "nombre": "Nicoo",
+      "puntaje": 700
+    }
   ]
 }

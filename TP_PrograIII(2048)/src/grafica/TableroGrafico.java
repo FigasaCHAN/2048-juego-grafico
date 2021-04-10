@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 public class TableroGrafico extends JPanel {
 	Tablero tablero;
 	private final int CANT_DE_FILAS_Y_COLUMNA;
+	private int[][] matrizTablero;
 	//private Color colorTablero;
 	//private final Color colorN2,colorN4,colorN8,colorN16,colorN32,colorN64,colorN128,colorN256,colorN512,colorN1024,colorN2048;
 	private Color colorBorde;
@@ -33,7 +34,7 @@ public class TableroGrafico extends JPanel {
 	public TableroGrafico(int cantDeFila) {
 		
 		this.tablero= new Tablero(cantDeFila);
-		int[][] matrizTablero= this.tablero.getTablero(); //la voy a usar solo para inicializar los JLabel
+		this.matrizTablero= this.tablero.getTablero(); //la voy a usar solo para inicializar los JLabel
 		this.CANT_DE_FILAS_Y_COLUMNA= matrizTablero.length;/*
 		this.colorTablero= new Color(252,181,255);
 		this.colorN2=new Color(248,91,255);
@@ -48,23 +49,15 @@ public class TableroGrafico extends JPanel {
 		this.colorN1024=new Color(100,161,216);
 		this.colorN2048=new Color(52,150,183);*/
 		this.listLabel= new ArrayList<JLabel>();
-		this.fondo = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/fondo.png "));
-		this.n2 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num2.png "));
-		this.n4 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num4.png "));
-		this.n8 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num8.png "));
-		this.n16 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num16.png "));
-		this.n32 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num32.png "));
-		this.n64 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num64.png "));
-		this.n128 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num128.png "));
-		this.n256 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num256.png "));
-		this.n512 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num512.png "));
-		this.n1024 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num1024.png "));
-		this.n2048 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num2048.png "));
+		cargarImagenesFondoYCasilleros();
 		this.colorBorde= new Color(212,174,240);
 		setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		setLayout(new GridLayout(CANT_DE_FILAS_Y_COLUMNA, CANT_DE_FILAS_Y_COLUMNA, 0, 0)); //defino la cantidad de filas y colum que va a tener el layout
-		
-		for(int  [] fila: matrizTablero) {
+		cargarCasilleros();
+	}
+
+	private void cargarCasilleros() {
+		for(int  [] fila: this.matrizTablero) {
 			for(int  elem : fila) {
 				JLabel elemento; //defino el label nuevo
 				elemento = new JLabel("");
@@ -94,6 +87,21 @@ public class TableroGrafico extends JPanel {
 				this.listLabel.add(elemento); //lo agrego al arraylist
 			}
 		}
+	}
+
+	private void cargarImagenesFondoYCasilleros() {
+		this.fondo = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/fondo.png "));
+		this.n2 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num2.png "));
+		this.n4 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num4.png "));
+		this.n8 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num8.png "));
+		this.n16 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num16.png "));
+		this.n32 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num32.png "));
+		this.n64 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num64.png "));
+		this.n128 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num128.png "));
+		this.n256 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num256.png "));
+		this.n512 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num512.png "));
+		this.n1024 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num1024.png "));
+		this.n2048 = new ImageIcon(TableroGrafico.class.getResource("/multimedia/imagenes/num2048.png "));
 	}
 	
 	public void moverIzquierda() {
