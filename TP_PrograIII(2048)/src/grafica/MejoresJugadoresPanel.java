@@ -50,41 +50,41 @@ public class MejoresJugadoresPanel extends JPanel {
 		
 		this.mejoresJugadores=new MejoresJugadores();
 	
-		table.setBackground(new Color(220, 220, 220));
-		table.setRowMargin(5);
-		table.setShowGrid(false);
-		table.setFont(this.pixelCarteles);
-		
-		table.setModel(model);
-		table.setRowHeight(45);
+		this.table.setBackground(new Color(220, 220, 220));
+		this.table.setRowMargin(5);
+		this.table.setShowGrid(false);
+		this.table.setFont(this.pixelCarteles);
+
+		this.table.setModel(model);
+		this.table.setRowHeight(45);
 
 		model.addRow(filas.toArray());
 		
-		table.setBounds(92, 154, 604, 264);
+		this.table.setBounds(92, 154, 604, 264);
 		
 			
-		lblGameOver = new JLabel("GAME OVER");
-		lblGameOver.setFont(this.pixelNum);
-		lblGameOver.setBounds(256, 11, 293, 68);
-		lblGameOver.setForeground(new Color(255, 255, 255));
+		this.lblGameOver = new JLabel("GAME OVER");
+		this.lblGameOver.setFont(this.pixelNum);
+		this.lblGameOver.setBounds(256, 11, 293, 68);
+		this.lblGameOver.setForeground(new Color(255, 255, 255));
 		this.lblGameOver.setVisible(false);
 		add(lblGameOver);
 		
-		lblMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
-		lblMejoresPuntajes.setFont(this.pixelNombreUsuario);
-		lblMejoresPuntajes.setBounds(292, 90, 264, 42);
-		lblMejoresPuntajes.setForeground(new Color(255, 255, 255));
-		add(lblMejoresPuntajes);
+		this.lblMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
+		this.lblMejoresPuntajes.setFont(this.pixelNombreUsuario);
+		this.lblMejoresPuntajes.setBounds(292, 90, 264, 42);
+		this.lblMejoresPuntajes.setForeground(new Color(255, 255, 255));
+		add(this.lblMejoresPuntajes);
 		
-		lblVolverMenu = new JLabel("Presione la tecla 'Esc' para volver al menu");
-		lblVolverMenu.setBounds(190, 433, 411, 14);
-		lblVolverMenu.setFont(pixelVolverMenu);
-		lblVolverMenu.setForeground(new Color(255, 255, 255));
-		add(lblVolverMenu);
+		this.lblVolverMenu = new JLabel("Presione la tecla 'Esc' para volver al menu");
+		this.lblVolverMenu.setBounds(190, 433, 411, 14);
+		this.lblVolverMenu.setFont(this.pixelVolverMenu);
+		this.lblVolverMenu.setForeground(new Color(255, 255, 255));
+		add(this.lblVolverMenu);
 		
 		this.imagenFondo = new JLabel("");
-		imagenFondo.setIcon(new ImageIcon(MenuPanel.class.getResource("/multimedia/imagenes/fondoMenu.png")));
-		imagenFondo.setBounds(0, 0, 784, 561);
+		this.imagenFondo.setIcon(new ImageIcon(MenuPanel.class.getResource("/multimedia/imagenes/fondoMenu.png")));
+		this.imagenFondo.setBounds(0, 0, 784, 561);
 	
 		
 		
@@ -108,12 +108,12 @@ public class MejoresJugadoresPanel extends JPanel {
 				indexMaximo++;
 			}
 		}
-		table.setEnabled(false); //para que no sea posible editarla desde la pantalla 
-		table.setBackground(new Color(102, 51, 153));
-		table.setForeground(new Color(255, 255, 255));
-		table.setOpaque(true);
-		add(table);
-		add(imagenFondo);
+		this.table.setEnabled(false); //para que no sea posible editarla desde la pantalla 
+		this.table.setBackground(new Color(102, 51, 153));
+		this.table.setForeground(new Color(255, 255, 255));
+		this.table.setOpaque(true);
+		add(this.table);
+		add(this.imagenFondo);
 	}
 	
 	public void registrarPuntajeJugador(String nombre,int puntaje) {
