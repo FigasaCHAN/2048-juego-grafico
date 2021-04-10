@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 
 public class Hub extends JPanel {
-	private JLabel labelNombreDeUsuario, labelPuntaje;
+	private JLabel labelNombreDeUsuario, labelPuntaje,imagenHub;
 	private Font pixelNum,pixelNombreUsuario;
 	private String nombreDeUsuario;
 	private Fuente fuente;
@@ -22,23 +22,22 @@ public class Hub extends JPanel {
 		
 		setLayout(null);
 		
-		this.nombreDeUsuario="Username";
+		this.nombreDeUsuario="Username";//nombre default
 		
-		labelPuntaje = new JLabel("Puntos: 0");
-		labelPuntaje.setForeground(Color.WHITE);
-		labelPuntaje.setFont(this.pixelNombreUsuario);
-		labelPuntaje.setBounds(401, 0, 383, 31);
-		//labelPuntaje.
+		this.labelPuntaje = new JLabel("Puntos: 0");
+		this.labelPuntaje.setForeground(Color.WHITE);
+		this.labelPuntaje.setFont(this.pixelNombreUsuario);
+		this.labelPuntaje.setBounds(401, 0, 383, 31);
 		add(labelPuntaje);
-		labelNombreDeUsuario = new JLabel(this.nombreDeUsuario);
-		labelNombreDeUsuario.setFont(this.pixelNum);
-		labelNombreDeUsuario.setBounds(10, 0, 381, 31);
-		labelNombreDeUsuario.setForeground(Color.WHITE);
+		this.labelNombreDeUsuario = new JLabel(this.nombreDeUsuario);
+		this.labelNombreDeUsuario.setFont(this.pixelNum);
+		this.labelNombreDeUsuario.setBounds(10, 0, 381, 31);
+		this.labelNombreDeUsuario.setForeground(Color.WHITE);
 		add(labelNombreDeUsuario);
 		
-		JLabel imagenHub = new JLabel("New label");
-		imagenHub.setIcon(new ImageIcon(Hub.class.getResource("/multimedia/imagenes/hub.png")));
-		imagenHub.setBounds(0, -14, 784, 56);
+		this.imagenHub = new JLabel("");
+		this.imagenHub.setIcon(new ImageIcon(Hub.class.getResource("/multimedia/imagenes/hub.png")));
+		this.imagenHub.setBounds(0, -14, 784, 56);
 		add(imagenHub);
 		
 
