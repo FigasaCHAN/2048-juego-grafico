@@ -8,7 +8,7 @@ import java.util.Map;
 public class Tablero {
 
 	private int [][] tabla;
-	public Map<Point, Integer> diccionario;
+	private Map<Point, Integer> casillas;
 	final byte[] NUM_RANDOM_POSIBLES;
 	private int puntos;
 	private boolean gameOver;
@@ -27,10 +27,10 @@ public class Tablero {
 		}
 		this.NUM_RANDOM_POSIBLES= new byte[]{2,4}; //los numeros randoms posibles que puedo agregar
 		this.tabla=mat;
-		this.diccionario= new HashMap<Point,Integer>();
+		this.casillas= new HashMap<Point,Integer>();
 		for (int iFila= 0; iFila<mat.length; iFila++) { //al diccionario le agrego todos los puntos con sus valores correspondientes
 			for(int iColumna= 0;iColumna<mat[iFila].length;iColumna++ ) {
-				diccionario.put(new Point(iFila,iColumna), mat[iFila][iColumna]);
+				casillas.put(new Point(iFila,iColumna), mat[iFila][iColumna]);
 			}
 		}
 		this.puntos=0;
@@ -47,7 +47,7 @@ public class Tablero {
 		Tablero tableroAux= new Tablero(array);
 		
 		this.tabla= tableroAux.tabla;
-		this.diccionario= tableroAux.diccionario;
+		this.casillas= tableroAux.casillas;
 		this.NUM_RANDOM_POSIBLES= tableroAux.NUM_RANDOM_POSIBLES;
 		this.puntos= tableroAux.puntos;
 		this.gameOver= tableroAux.gameOver;
@@ -100,7 +100,7 @@ public class Tablero {
 			else {
 				this.tabla[fila][columna]=0;
 			}
-			this.diccionario.replace(new Point(fila,columna), this.tabla[fila][columna]); //reemplazo la key del punto
+			this.casillas.replace(new Point(fila,columna), this.tabla[fila][columna]); //reemplazo la key del punto
 		}
 	}
 
@@ -136,7 +136,7 @@ public class Tablero {
 			else {
 				this.tabla[fila][columna]=0;
 			}
-			this.diccionario.replace(new Point(fila,columna),this.tabla[fila][columna]);
+			this.casillas.replace(new Point(fila,columna),this.tabla[fila][columna]);
 		}
 	}
 
@@ -170,7 +170,7 @@ public class Tablero {
 			else {
 				this.tabla[numFila][i]= 0;
 			}
-			this.diccionario.replace(new Point( numFila, i), this.tabla[numFila][i]);
+			this.casillas.replace(new Point( numFila, i), this.tabla[numFila][i]);
 		}
 	}
 
@@ -203,7 +203,7 @@ public class Tablero {
 			else {
 				this.tabla[numFila][i]= 0;
 			}
-			this.diccionario.replace(new Point( numFila, i), this.tabla[numFila][i] );
+			this.casillas.replace(new Point( numFila, i), this.tabla[numFila][i] );
 		}
 	}
 
@@ -294,8 +294,8 @@ public class Tablero {
 
 	public void insertarRandom() {
 		ArrayList<Point> iPosibles= new ArrayList<Point>();
-		for (Point elem: this.diccionario.keySet()) {
-			if(this.diccionario.get(elem)==0) {
+		for (Point elem: this.casillas.keySet()) {
+			if(this.casillas.get(elem)==0) {
 				iPosibles.add(elem);
 			}
 		}
