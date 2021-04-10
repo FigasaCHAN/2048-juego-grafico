@@ -38,6 +38,7 @@ public class Grafica {
 	Hub hub;
 	MenuPanel menu;
 	MejoresJugadoresPanel mejoresJugadores;
+	private KeyAdapter  keyAdapter;
 	private String nombreDeUsuario;
 	private boolean enGameOver;
 	/**
@@ -93,6 +94,7 @@ public class Grafica {
 	}
 
 	private void cargarMenu() {	
+		this.frame.removeKeyListener(keyAdapter);
 		this.enGameOver= false;
 		agregarPanel(this.menu); //agrego el menu (panel)
 		menu.txtFieldNombre.setText(""); //limpia el input 
@@ -167,7 +169,7 @@ public class Grafica {
 	}
 	
 	private void agregarEventosTeclado(){
-		this.frame.addKeyListener(new KeyAdapter() {
+		 keyAdapter=new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyChar()=='w' || e.getKeyCode() == 38) { //38 es el code de la flecha arriba
@@ -216,7 +218,8 @@ public class Grafica {
 			
 				
 			}
-		});
+		};
+		this.frame.addKeyListener(keyAdapter);
 		this.frame.requestFocus(); //le devuelvo el foco a la ventana para que pueda tomar los eventos
 		this.frame.revalidate();
 	}
