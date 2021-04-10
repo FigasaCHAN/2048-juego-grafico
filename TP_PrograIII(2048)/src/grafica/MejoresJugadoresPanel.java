@@ -10,6 +10,8 @@ import logica.MejoresJugadores;
 import multimedia.Fuente;
 
 import java.awt.ComponentOrientation;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -20,7 +22,7 @@ public class MejoresJugadoresPanel extends JPanel {
 	private final JTable table = new JTable();
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelVolverMenu;
 	private MejoresJugadores mejoresJugadores;
-	private JLabel lblGameOver,lblMejoresPuntajes,lblVolverMenu;
+	private JLabel lblGameOver,lblMejoresPuntajes,lblVolverMenu,imagenFondo;
 	private ArrayList<Jugador> jugadoresLeidos;
 	private DefaultTableModel model;
 	/**
@@ -64,18 +66,26 @@ public class MejoresJugadoresPanel extends JPanel {
 		lblGameOver = new JLabel("GAME OVER");
 		lblGameOver.setFont(this.pixelNum);
 		lblGameOver.setBounds(256, 11, 293, 68);
+		lblGameOver.setForeground(new Color(255, 255, 255));
 		this.lblGameOver.setVisible(false);
 		add(lblGameOver);
 		
 		lblMejoresPuntajes = new JLabel("MEJORES PUNTAJES");
 		lblMejoresPuntajes.setFont(this.pixelNombreUsuario);
 		lblMejoresPuntajes.setBounds(292, 90, 264, 42);
+		lblMejoresPuntajes.setForeground(new Color(255, 255, 255));
 		add(lblMejoresPuntajes);
 		
 		lblVolverMenu = new JLabel("Presione la tecla 'Esc' para volver al menu");
 		lblVolverMenu.setBounds(190, 433, 411, 14);
 		lblVolverMenu.setFont(pixelVolverMenu);
+		lblVolverMenu.setForeground(new Color(255, 255, 255));
 		add(lblVolverMenu);
+		
+		this.imagenFondo = new JLabel("");
+		imagenFondo.setIcon(new ImageIcon(MenuPanel.class.getResource("/multimedia/imagenes/fondoMenu.png")));
+		imagenFondo.setBounds(0, 0, 784, 561);
+	
 		
 		
 	}
@@ -99,7 +109,11 @@ public class MejoresJugadoresPanel extends JPanel {
 			}
 		}
 		table.setEnabled(false); //para que no sea posible editarla desde la pantalla 
+		table.setBackground(new Color(102, 51, 153));
+		table.setForeground(new Color(255, 255, 255));
+		table.setOpaque(true);
 		add(table);
+		add(imagenFondo);
 	}
 	
 	public void registrarPuntajeJugador(String nombre,int puntaje) {
