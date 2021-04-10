@@ -1,5 +1,12 @@
 {
   "jugadores": [
-    
+    {
+      "nombre": "ddd",
+      "puntaje": 608
+    },
+    {
+      "nombre": "ddd",
+      "puntaje": 584
+    }
   ]
 }
