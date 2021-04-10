@@ -33,11 +33,11 @@ import logica.Menu;
 public class Grafica {
 
 	private JFrame frame;
-	TableroGrafico tableroGrafico;
-	JLabel puntajes; 
-	Hub hub;
-	MenuPanel menu;
-	MejoresJugadoresPanel mejoresJugadores;
+	private TableroGrafico tableroGrafico;
+	private JLabel puntajes; 
+	private Hub hub;
+	private MenuPanel menu;
+	private MejoresJugadoresPanel mejoresJugadores;
 	private String nombreDeUsuario;
 	private boolean enGameOver;
 	/**
@@ -80,7 +80,7 @@ public class Grafica {
 		this.frame.setLocationRelativeTo(null);
 	}
 
-	void actualizarPuntos() {
+	private void actualizarPuntos() {
 		this.hub.actualizarPuntaje(this.tableroGrafico.tablero.getPuntos());
 	}
 	
@@ -93,7 +93,7 @@ public class Grafica {
 	}
 
 	private void cargarMenu() {	
-		//this.frame.removeKeyListener(keyAdapter);
+
 		this.enGameOver= false;
 		agregarPanel(this.menu); //agrego el menu (panel)
 		menu.txtFieldNombre.setText(""); //limpia el input 
@@ -222,8 +222,6 @@ public class Grafica {
 	}
 	
 	private void agregarEventoVolverMenu() {
-		System.out.println("entro");
-	//	this.enGameOver= false;
 		this.frame.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
