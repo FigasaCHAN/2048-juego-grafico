@@ -28,6 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.KeyStroke;
 
+import logica.Jugador;
 import logica.Menu;
 
 public class Grafica {
@@ -101,17 +102,17 @@ public class Grafica {
 		this.frame.revalidate();
 	}
 
-	private void cargarTablero(int modoDeJuegoSeleccionado) {
+	private void cargarTablero(Jugador jugador, int modoDeJuegoSeleccionado) {
 		this.tableroGrafico= new TableroGrafico(modoDeJuegoSeleccionado); //creo el tablero grafico
 		this.tableroGrafico.setBounds(0, 35, 784, 525); //lo doy las medidas , al alto le tengo que restar 35px del hub
 		agregarPanel(this.tableroGrafico); //agrego el tablero
-		cargarHub(this.nombreDeUsuario);//le paso el nombre que ingreso el usuario
+		cargarHub(jugador);//le paso el nombre que ingreso el usuario
 		this.frame.repaint(); //repinto
 		this.frame.revalidate();//revalido
 	}
 	
-	private void cargarHub(String nombreDeUsuario) {
-		this.hub=new Hub(); //creo el hub
+	private void cargarHub(Jugador jugador) {
+		this.hub=new Hub(jugador); //creo el hub
 		this.hub.setBounds(0, 0, 784, 35);//medidas del hub
 		this.frame.getContentPane().add(this.hub);//agrego el hub sin eliminar nada
 		this.hub.setNombreDeUsuario(nombreDeUsuario); //le paso el nombre de usuario
@@ -150,8 +151,9 @@ public class Grafica {
 			public void actionPerformed(ActionEvent e) {
 				nombreDeUsuario= menu.getTxtFieldNombre().getText();
 				if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
+					Jugador jugador= new Jugador(nombreDeUsuario, 0);
 					menu.mostrarErrorNombre(false);
-					cargarTablero(menu.getModoDeJuego()); //cargo el tablero
+					cargarTablero(jugador, menu.getModoDeJuego()); //cargo el tablero
 					agregarEventosTeclado();//despues de cargar el tablero, agrego los eventos del teclado
 					agregarEventoVolverMenu();		
 				}else {

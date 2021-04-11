@@ -17,7 +17,7 @@ public class Jugador implements Comparable{
 		return puntaje;
 	}
 	
-
+	
 	@Override
 	public int compareTo(Object o) {
 		int comparePuntaje=((Jugador)o).getPuntaje();

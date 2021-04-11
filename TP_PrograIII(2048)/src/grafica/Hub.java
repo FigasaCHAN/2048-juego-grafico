@@ -2,6 +2,7 @@ package grafica;
 
 import javax.swing.JPanel;
 
+import logica.Jugador;
 import multimedia.Fuente;
 
 import java.awt.Font;
@@ -16,7 +17,8 @@ public class Hub extends JPanel {
 	private String nombreDeUsuario;
 	private Fuente fuente;
 	Color colorTexto;
-	public Hub() {
+	
+	public Hub(Jugador jugador) {
 		this.fuente= new Fuente();
 		this.pixelNum= fuente.generarFuente("Pixel.ttf", 30);
 		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 30);
@@ -24,7 +26,7 @@ public class Hub extends JPanel {
 		setLayout(null);
 		
 		this.colorTexto= Color.WHITE;
-		this.nombreDeUsuario="Username";//nombre default
+		this.nombreDeUsuario= jugador.getNombre();
 		this.labelPuntaje = new JLabel("Puntos: 0");
 		this.labelPuntaje.setForeground(colorTexto);
 		this.labelPuntaje.setFont(this.pixelNombreUsuario);
