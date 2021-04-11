@@ -51,6 +51,10 @@ public class Hub extends JPanel {
 		this.jugador.setPuntaje(puntos);
 		this.labelPuntaje.setText("Puntos: " + Integer.toString(puntos));
 	}
+
+	public String getNombreDeUsuario() {
+		return this.nombreDeUsuario;
+	}
 	public void setNombreDeUsuario(String nombreDeUsuario) {
 		this.nombreDeUsuario= nombreDeUsuario;
 		this.labelNombreDeUsuario.setText(this.nombreDeUsuario);
@@ -58,4 +62,8 @@ public class Hub extends JPanel {
 	public Jugador getJugador() {
 		return this.jugador;
 	}
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
+	}
+	
 }
