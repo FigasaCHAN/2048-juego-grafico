@@ -15,6 +15,7 @@ public class Hub extends JPanel {
 	private JLabel labelNombreDeUsuario, labelPuntaje,imagenHub;
 	private Font pixelNum,pixelNombreUsuario;
 	private String nombreDeUsuario;
+	private Jugador jugador;
 	private Fuente fuente;
 	Color colorTexto;
 	
@@ -26,6 +27,7 @@ public class Hub extends JPanel {
 		setLayout(null);
 		
 		this.colorTexto= Color.WHITE;
+		this.jugador= jugador;
 		this.nombreDeUsuario= jugador.getNombre();
 		this.labelPuntaje = new JLabel("Puntos: 0");
 		this.labelPuntaje.setForeground(colorTexto);
@@ -46,10 +48,14 @@ public class Hub extends JPanel {
 
 	}
 	public void actualizarPuntaje(int puntos) {
+		this.jugador.setPuntaje(puntos);
 		this.labelPuntaje.setText("Puntos: " + Integer.toString(puntos));
 	}
 	public void setNombreDeUsuario(String nombreDeUsuario) {
 		this.nombreDeUsuario= nombreDeUsuario;
 		this.labelNombreDeUsuario.setText(this.nombreDeUsuario);
+	}
+	public Jugador getJugador() {
+		return this.jugador;
 	}
 }

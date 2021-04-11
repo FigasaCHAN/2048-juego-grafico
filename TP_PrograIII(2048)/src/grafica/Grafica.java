@@ -124,8 +124,8 @@ public class Grafica {
 		limpiarEventosTablero();
 		this.mejoresJugadores= new MejoresJugadoresPanel();
 		if(opcion==true) {	
-			int puntajeJugador= this.tableroGrafico.getPuntosDelTablero();
-			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
+			//int puntajeJugador= this.tableroGrafico.getPuntosDelTablero();
+			this.mejoresJugadores.registrarPuntajeJugador(this.hub.getJugador());
 		}
 		this.mejoresJugadores.mostrarJugadores();
 		this.mejoresJugadores.mostrarLabelGameOver(opcion);

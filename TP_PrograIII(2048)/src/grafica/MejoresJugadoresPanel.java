@@ -116,9 +116,8 @@ public class MejoresJugadoresPanel extends JPanel {
 		add(this.imagenFondo);
 	}
 	
-	public void registrarPuntajeJugador(String nombre,int puntaje) {
-		Jugador nuevoJugador=new Jugador(nombre,puntaje);
-		this.mejoresJugadores.agregarJugadorAlArchivo(nuevoJugador);
+	public void registrarPuntajeJugador(Jugador jugador) {
+		this.mejoresJugadores.agregarJugadorAlArchivo(jugador);
 		
 	}
 }

@@ -16,7 +16,9 @@ public class Jugador implements Comparable{
 	public int getPuntaje() {
 		return puntaje;
 	}
-	
+	public void setPuntaje(int puntos) {
+		this.puntaje=puntos;
+	}
 	
 	@Override
 	public int compareTo(Object o) {
