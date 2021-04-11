@@ -15,6 +15,7 @@ public class Hub extends JPanel {
 	private Font pixelNum,pixelNombreUsuario;
 	private String nombreDeUsuario;
 	private Fuente fuente;
+	Color colorTexto;
 	public Hub() {
 		this.fuente= new Fuente();
 		this.pixelNum= fuente.generarFuente("Pixel.ttf", 30);
@@ -22,17 +23,17 @@ public class Hub extends JPanel {
 		
 		setLayout(null);
 		
+		this.colorTexto= Color.WHITE;
 		this.nombreDeUsuario="Username";//nombre default
-		
 		this.labelPuntaje = new JLabel("Puntos: 0");
-		this.labelPuntaje.setForeground(Color.WHITE);
+		this.labelPuntaje.setForeground(colorTexto);
 		this.labelPuntaje.setFont(this.pixelNombreUsuario);
 		this.labelPuntaje.setBounds(401, 0, 383, 31);
 		add(labelPuntaje);
 		this.labelNombreDeUsuario = new JLabel(this.nombreDeUsuario);
 		this.labelNombreDeUsuario.setFont(this.pixelNum);
 		this.labelNombreDeUsuario.setBounds(10, 0, 381, 31);
-		this.labelNombreDeUsuario.setForeground(Color.WHITE);
+		this.labelNombreDeUsuario.setForeground(colorTexto);
 		add(labelNombreDeUsuario);
 		
 		this.imagenHub = new JLabel("");

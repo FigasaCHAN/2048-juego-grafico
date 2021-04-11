@@ -74,12 +74,9 @@ public class Tablero {
 			this.direccionAbajo= false;
 			this.direccionArriba= true; //excepto arriba porque me movi para arriba
 		}
-
-
 	}
 
 	private void moverColumArriba(int columna) {
-		
 		ArrayList<Integer> arrayColumna= sumarNumerosIguales ( columnaToArray(this.tabla, columna) ); 
 		//O(3*n + 12)
 		int iArrayList=0; //indice del arrayList de columna
@@ -292,7 +289,7 @@ public class Tablero {
 		return nuevaArray;
 	}
 
-	public void insertarRandom() {
+	private void insertarRandom() {
 		ArrayList<Point> iPosibles= new ArrayList<Point>();
 		for (Point elem: this.casillas.keySet()) {
 			if(this.casillas.get(elem)==0) {

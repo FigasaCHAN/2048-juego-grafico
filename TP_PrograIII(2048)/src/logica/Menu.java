@@ -10,8 +10,7 @@ public class Menu {
 			return true;
 		}
 	}
-	
-	
+
 	private static boolean tieneCaracteresNoValidos(String nombre) {
 		
 		for(char caracter:nombre.toCharArray()) {

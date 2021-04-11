@@ -27,67 +27,73 @@ public class MenuPanel extends JPanel {
 	private JTextField txtFieldNombre;
 	private JButton  btnJugar,btn4x4,btn5x5,btn6x6,btnMejoresJugadores;
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelMensajeError;
-	private JLabel lblErrorNombre,cartelModoDeJuegoSeleccionado;
+	private JLabel lblErrorNombre,cartelModoDeJuegoSeleccionado,cartelN2,cartelN0,cartelN4,cartelN8,cartelIngresarNombre;
 	private int modoDeJuego=4; //el modo por defaul es 4x4
 	private JLabel imagenFondo;
-
+	private Color colorCartelesNum,colorLetrasEnCarteles, btnModoDeJuego, colorBtnJugar, coloBtnMejoresJugadores;
+	private Fuente fuente;
 	public MenuPanel() {
 		//Fuente
-		Fuente fuente= new Fuente();
+		this.fuente= new Fuente();
 		this.pixelNum= fuente.generarFuente("Pixel.ttf", 50);
 		this.pixelNombreUsuario= fuente.generarFuente("Pixel.ttf", 20);
 		this.pixelCarteles= fuente.generarFuente("Pixel.ttf", 16);
 		this.pixelMensajeError= fuente.generarFuente("Pixel.ttf", 15);
 		setLayout(null);
 		
+		this.colorCartelesNum= new Color(102, 51, 153);
+		this.colorLetrasEnCarteles= new Color(255, 255, 255);
+		this.btnModoDeJuego= new Color(51, 0, 204);
+		this.colorBtnJugar= new Color(0, 128, 128);
+		this.coloBtnMejoresJugadores=new Color(154, 205, 50);
+		
 		//Num 2 titulo
-		JLabel lblNewLabel = new JLabel("2");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(this.pixelNum);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBorder(new LineBorder(new Color(218, 165, 32)));
-		lblNewLabel.setOpaque(true);
-		lblNewLabel.setBackground(new Color(102, 51, 153));
-		lblNewLabel.setBounds(192, 129, 88, 93);
-		add(lblNewLabel);
+		this.cartelN2 = new JLabel("2");
+		this.cartelN2.setForeground(this.colorLetrasEnCarteles);
+		this.cartelN2.setFont(this.pixelNum);
+		this.cartelN2.setHorizontalAlignment(SwingConstants.CENTER);
+		this.cartelN2.setBorder(new LineBorder(new Color(218, 165, 32)));
+		this.cartelN2.setOpaque(true);
+		this.cartelN2.setBackground(this.colorCartelesNum);
+		this.cartelN2.setBounds(192, 129, 88, 93);
+		add(this.cartelN2);
 		
 		//Num 0 titulo
-		JLabel lblNewLabel_1 = new JLabel("0");
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(this.pixelNum);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBorder(new LineBorder(new Color(222, 184, 135)));
-		lblNewLabel_1.setBackground(new Color(102, 51, 153));
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBounds(290, 129, 88, 93);
-		add(lblNewLabel_1);
+		this.cartelN0 = new JLabel("0");
+		this.cartelN0.setForeground(this.colorLetrasEnCarteles);
+		this.cartelN0.setFont(this.pixelNum);
+		this.cartelN0.setHorizontalAlignment(SwingConstants.CENTER);
+		this.cartelN0.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.cartelN0.setBackground(this.colorCartelesNum);
+		this.cartelN0.setOpaque(true);
+		this.cartelN0.setBounds(290, 129, 88, 93);
+		add(this.cartelN0);
 		
 		//Num 4 titulo
-		JLabel lblNewLabel_2 = new JLabel("4");
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setFont(this.pixelNum);
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBackground(new Color(102, 51, 153));
-		lblNewLabel_2.setBorder(new LineBorder(new Color(222, 184, 135)));
-		lblNewLabel_2.setOpaque(true);
-		lblNewLabel_2.setBounds(388, 129, 88, 93);
-		add(lblNewLabel_2);
+		this.cartelN4 = new JLabel("4");
+		this.cartelN4.setForeground(this.colorLetrasEnCarteles);
+		this.cartelN4.setFont(this.pixelNum);
+		this.cartelN4.setHorizontalAlignment(SwingConstants.CENTER);
+		this.cartelN4.setBackground(this.colorCartelesNum);
+		this.cartelN4.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.cartelN4.setOpaque(true);
+		this.cartelN4.setBounds(388, 129, 88, 93);
+		add(this.cartelN4);
 		
 		//Num 8 titulo
-		JLabel lblNewLabel_3 = new JLabel("8");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(this.pixelNum);
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setOpaque(true);
-		lblNewLabel_3.setBackground(new Color(102, 51, 153));
-		lblNewLabel_3.setBorder(new LineBorder(new Color(222, 184, 135)));
-		lblNewLabel_3.setBounds(486, 129, 88, 93);
-		add(lblNewLabel_3);
+		this.cartelN8 = new JLabel("8");
+		this.cartelN8.setForeground(this.colorLetrasEnCarteles);
+		this.cartelN8.setFont(this.pixelNum);
+		this.cartelN8.setHorizontalAlignment(SwingConstants.CENTER);
+		this.cartelN8.setOpaque(true);
+		this.cartelN8.setBackground(this.colorCartelesNum);
+		this.cartelN8.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.cartelN8.setBounds(486, 129, 88, 93);
+		add(this.cartelN8);
 		
 		//Campo de Texto
-		txtFieldNombre = new JTextField();
-		
-		txtFieldNombre.addFocusListener(new FocusAdapter() {//si estoy en cima del textField
+		this.txtFieldNombre = new JTextField();
+		this.txtFieldNombre.addFocusListener(new FocusAdapter() {//si estoy en cima del textField
 			@Override
 			public void focusGained(FocusEvent e) {
 				txtFieldNombre.setBackground(new Color(255, 153, 255));
@@ -97,111 +103,109 @@ public class MenuPanel extends JPanel {
 				txtFieldNombre.setBackground(new Color(153, 51, 204)); //vuelve al color original
 			}
 		});
-		txtFieldNombre.setBackground(new Color(153, 51, 204));
-		txtFieldNombre.setForeground(new Color(255, 255, 255));
-		txtFieldNombre.setFont(this.pixelNombreUsuario);
-		txtFieldNombre.setName("");
-		txtFieldNombre.setBounds(175, 336, 412, 36);
-		txtFieldNombre.setColumns(10);
-		add(txtFieldNombre);
+		this.txtFieldNombre.setBackground(new Color(153, 51, 204));
+		this.txtFieldNombre.setForeground(this.colorLetrasEnCarteles);
+		this.txtFieldNombre.setFont(this.pixelNombreUsuario);
+		this.txtFieldNombre.setName("");
+		this.txtFieldNombre.setBounds(175, 336, 412, 36);
+		this.txtFieldNombre.setColumns(10);
+		add(this.txtFieldNombre);
 		
 		//Cartel de ingresarNombre
-		JLabel lbl_IngresarNombre = new JLabel("Ingresa tu nombre: ");
-		lbl_IngresarNombre.setForeground(Color.WHITE);
-		lbl_IngresarNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl_IngresarNombre.setFont(this.pixelCarteles);
-		//lbl_IngresarNombre.setBorder(new LineBorder(new Color(222, 184, 135)));
-		lbl_IngresarNombre.setBounds(175, 297, 412, 28);
+		this.cartelIngresarNombre = new JLabel("Ingresa tu nombre: ");
+		this.cartelIngresarNombre.setForeground(this.colorLetrasEnCarteles);
+		this.cartelIngresarNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		this.cartelIngresarNombre.setFont(this.pixelCarteles);
+		this.cartelIngresarNombre.setBounds(175, 297, 412, 28);
 		
-		add(lbl_IngresarNombre);
+		add(this.cartelIngresarNombre);
 		
 		//cartel modo de juego seleccionado
 		this.cartelModoDeJuegoSeleccionado = new JLabel("Modo de juego seleccionado: 4x4");
-		cartelModoDeJuegoSeleccionado.setForeground(Color.WHITE);
+		this.cartelModoDeJuegoSeleccionado.setForeground(this.colorLetrasEnCarteles);
 		this.cartelModoDeJuegoSeleccionado.setBounds(10, 538, 449, 23);
 		this.cartelModoDeJuegoSeleccionado.setFont(this.pixelCarteles);
 		add(this.cartelModoDeJuegoSeleccionado);
 		
 		//Boton jugar
-		btnJugar = new JButton("Jugar");
-		btnJugar.setForeground(new Color(255, 255, 255));
-		btnJugar.setBorderPainted(false);
-		btnJugar.setBorder(new LineBorder(new Color(222, 184, 135)));
-		btnJugar.setBackground(new Color(0, 128, 128));
-		btnJugar.setFont(this.pixelCarteles);
-		btnJugar.setBounds(224, 401, 307, 60);
-		add(btnJugar);
+		this.btnJugar = new JButton("Jugar");
+		this.btnJugar.setForeground(this.colorLetrasEnCarteles);
+		this.btnJugar.setBorderPainted(false);
+		this.btnJugar.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.btnJugar.setBackground(this.colorBtnJugar);
+		this.btnJugar.setFont(this.pixelCarteles);
+		this.btnJugar.setBounds(224, 401, 307, 60);
+		add(this.btnJugar);
 		
-		lblErrorNombre = new JLabel("El nombre solo puede contener letras");
-		lblErrorNombre.setHorizontalAlignment(SwingConstants.CENTER);
-		lblErrorNombre.setForeground(new Color(255, 255, 255));
-		lblErrorNombre.setBackground(new Color(255, 0, 0));
-		lblErrorNombre.setOpaque(true);
-		
-		lblErrorNombre.setBounds(192, 376, 382, 18);
-		lblErrorNombre.setFont(this.pixelMensajeError);
-		add(lblErrorNombre);
-		lblErrorNombre.setVisible(false);
-		
+		this.lblErrorNombre = new JLabel("El nombre solo puede contener letras");
+		this.lblErrorNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		this.lblErrorNombre.setForeground(this.colorLetrasEnCarteles);
+		this.lblErrorNombre.setBackground(new Color(255, 0, 0));
+		this.lblErrorNombre.setOpaque(true);
+		this.lblErrorNombre.setBounds(192, 376, 382, 18);
+		this.lblErrorNombre.setFont(this.pixelMensajeError);
+		add(this.lblErrorNombre);
+		this.lblErrorNombre.setVisible(false);
+		//botones modo de juego
 		this.btn4x4 = new JButton("4x4");
-		btn4x4.setForeground(new Color(255, 255, 255));
-		btn4x4.addActionListener(new ActionListener() {
+		this.btn4x4.setForeground(this.colorLetrasEnCarteles);
+		this.btn4x4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cartelModoDeJuegoSeleccionado.setText("Modo de juego seleccionado: 4x4");
 				modoDeJuego= 4;
 			}
 		});
-		btn4x4.setBounds(686, 11, 89, 36);
-		btn4x4.setBorderPainted(false);
-		btn4x4.setBorder(new LineBorder(new Color(222, 184, 135)));
-		btn4x4.setBackground(new Color(51, 0, 204));
-		btn4x4.setFont(this.pixelCarteles);
-		add(btn4x4);
+		this.btn4x4.setBounds(686, 11, 89, 36);
+		this.btn4x4.setBorderPainted(false);
+		this.btn4x4.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.btn4x4.setBackground(this.btnModoDeJuego);
+		this.btn4x4.setFont(this.pixelCarteles);
+		add(this.btn4x4);
 		
 		this.btn5x5 = new JButton("5x5");
-		btn5x5.setForeground(new Color(255, 255, 255));
-		btn5x5.addActionListener(new ActionListener() {
+		this.btn5x5.setForeground(this.colorLetrasEnCarteles);
+		this.btn5x5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cartelModoDeJuegoSeleccionado.setText("Modo de juego seleccionado: 5x5");
 				modoDeJuego= 5;
 			}
 		});
-		btn5x5.setBounds(686, 58, 89, 36);
-		btn5x5.setBorderPainted(false);
-		btn5x5.setBorder(new LineBorder(new Color(222, 184, 135)));
-		btn5x5.setBackground(new Color(51, 0, 204));
-		btn5x5.setFont(this.pixelCarteles);
-		add(btn5x5);
+		this.btn5x5.setBounds(686, 58, 89, 36);
+		this.btn5x5.setBorderPainted(false);
+		this.btn5x5.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.btn5x5.setBackground(this.btnModoDeJuego);
+		this.btn5x5.setFont(this.pixelCarteles);
+		add(this.btn5x5);
 		
 		this.btn6x6 = new JButton("6x6");
-		btn6x6.setForeground(new Color(255, 255, 255));
-		btn6x6.addActionListener(new ActionListener() {
+		this.btn6x6.setForeground(this.colorLetrasEnCarteles);
+		this.btn6x6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cartelModoDeJuegoSeleccionado.setText("Modo de juego seleccionado: 6x6");
 				modoDeJuego= 6;
 			}
 		});
-		btn6x6.setBounds(686, 102, 89, 36);
-		btn6x6.setBorderPainted(false);
-		btn6x6.setBorder(new LineBorder(new Color(222, 184, 135)));
-		btn6x6.setBackground(new Color(51, 0, 204));
-		btn6x6.setFont(this.pixelCarteles);
+		this.btn6x6.setBounds(686, 102, 89, 36);
+		this.btn6x6.setBorderPainted(false);
+		this.btn6x6.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.btn6x6.setBackground(this.btnModoDeJuego);
+		this.btn6x6.setFont(this.pixelCarteles);
 		add(this.btn6x6);
+		//boton mejores jugadores
+		this.btnMejoresJugadores = new JButton("Mejores Puntajes");
+		this.btnMejoresJugadores.setForeground(this.colorLetrasEnCarteles);
+		this.btnMejoresJugadores.setFont(null);
+		this.btnMejoresJugadores.setBorderPainted(false);
+		this.btnMejoresJugadores.setBorder(new LineBorder(new Color(222, 184, 135)));
+		this.btnMejoresJugadores.setBackground(this.coloBtnMejoresJugadores);
+		this.btnMejoresJugadores.setBounds(224, 472, 307, 47);
+		this.btnMejoresJugadores.setFont(this.pixelCarteles);
+		add(this.btnMejoresJugadores);
 		
-		btnMejoresJugadores = new JButton("Mejores Puntajes");
-		btnMejoresJugadores.setForeground(new Color(255, 255, 255));
-		btnMejoresJugadores.setFont(null);
-		btnMejoresJugadores.setBorderPainted(false);
-		btnMejoresJugadores.setBorder(new LineBorder(new Color(222, 184, 135)));
-		btnMejoresJugadores.setBackground(new Color(154, 205, 50));
-		btnMejoresJugadores.setBounds(224, 472, 307, 47);
-		btnMejoresJugadores.setFont(this.pixelCarteles);
-		add(btnMejoresJugadores);
-		
-		imagenFondo = new JLabel("");
-		imagenFondo.setIcon(new ImageIcon(MenuPanel.class.getResource("/multimedia/imagenes/fondoMenu.png")));
-		imagenFondo.setBounds(0, 0, 784, 561);
-		add(imagenFondo);
+		this.imagenFondo = new JLabel("");
+		this.imagenFondo.setIcon(new ImageIcon(MenuPanel.class.getResource("/multimedia/imagenes/fondoMenu.png")));
+		this.imagenFondo.setBounds(0, 0, 784, 561);
+		add(this.imagenFondo);
 		
 		
 	}
@@ -212,19 +216,19 @@ public class MenuPanel extends JPanel {
 		return this.modoDeJuego;
 	}
 	public JTextField getTxtFieldNombre() {
-		return txtFieldNombre;
+		return this.txtFieldNombre;
 	}
 	public void setTxtFieldNombre(JTextField txtFieldNombre) {
 		this.txtFieldNombre = txtFieldNombre;
 	}
 	public JButton getBtnJugar() {
-		return btnJugar;
+		return this.btnJugar;
 	}
 	public void setBtnJugar(JButton btnJugar) {
 		this.btnJugar = btnJugar;
 	}
 	public JButton getBtnMejoresJugadores() {
-		return btnMejoresJugadores;
+		return this.btnMejoresJugadores;
 	}
 	public void setBtnMejoresJugadores(JButton btnMejoresJugadores) {
 		this.btnMejoresJugadores = btnMejoresJugadores;
