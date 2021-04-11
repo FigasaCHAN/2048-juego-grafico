@@ -18,11 +18,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class TableroGrafico extends JPanel {
-	Tablero tablero;
+	private Tablero tablero;
 	private final int CANT_DE_FILAS_Y_COLUMNA;
 	private int[][] matrizTablero;
 	private Color colorBorde;
-	ArrayList<JLabel> listLabel;
+	private ArrayList<JLabel> listLabel;
 	private ImageIcon fondo, n2, n4, n8, n16,n32,n64,n128,n256,n512,n1024,n2048;
 	/**
 	 * Create the panel.
@@ -145,8 +145,13 @@ public class TableroGrafico extends JPanel {
 		}
 	}
 	
+	public int getPuntosDelTablero() {
+		return this.tablero.getPuntos();
+	}
 	public boolean perdioElJuego() {
 		return this.tablero.getGameOver();
 	}
+
+	
 }
 

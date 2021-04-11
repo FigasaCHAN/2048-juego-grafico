@@ -81,7 +81,7 @@ public class Grafica {
 	}
 
 	private void actualizarPuntos() {
-		this.hub.actualizarPuntaje(this.tableroGrafico.tablero.getPuntos());
+		this.hub.actualizarPuntaje(this.tableroGrafico.getPuntosDelTablero());
 	}
 	
 	private void agregarPanel(JPanel panel) {
@@ -123,7 +123,7 @@ public class Grafica {
 		limpiarEventosTablero();
 		this.mejoresJugadores= new MejoresJugadoresPanel();
 		if(opcion==true) {	
-			int puntajeJugador= this.tableroGrafico.tablero.getPuntos();
+			int puntajeJugador= this.tableroGrafico.getPuntosDelTablero();
 			this.mejoresJugadores.registrarPuntajeJugador(this.nombreDeUsuario, puntajeJugador);
 		}
 		this.mejoresJugadores.mostrarJugadores();
