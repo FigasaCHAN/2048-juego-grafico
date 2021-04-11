@@ -31,7 +31,7 @@ public class MejoresJugadores {
 									
 		String jsonPretty = mejoresJugadores.generarJSON();
 		mejoresJugadores.guardarJSON(jsonPretty, "MejoresJugadores.JSON");
-		System.out.println("Registro");
+
 	}
 	
 	
