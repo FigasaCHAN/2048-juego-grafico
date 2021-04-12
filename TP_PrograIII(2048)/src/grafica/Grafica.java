@@ -1,7 +1,6 @@
 package grafica;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.KeyAdapter;
@@ -30,7 +29,7 @@ public class Grafica {
 			public void run() {
 				try {
 					Grafica window = new Grafica();
-					window.frame.setVisible(true);
+					window.getFrame().setVisible(true);
 					window.cargarMenu(); //cargo el menu
 					window.eventoClick();		
 				} catch (Exception e) {
@@ -74,7 +73,7 @@ public class Grafica {
 
 	}
 
-	private void cargarMenu() {	
+	public void cargarMenu() {	//public porque es una funcion vital
 		limpiarEventosTablero();
 		this.enGameOver= false;
 		agregarPanel(this.menu); //agrego el menu (panel)
@@ -127,7 +126,7 @@ public class Grafica {
 		}, 3000);
 	}
 	
-	private void eventoClick() {
+	private void eventoClick() {//public porque es la funcion principal de evento
 		this.menu.getBtnJugar().addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 			public void actionPerformed(ActionEvent e) {
 				nombreDeUsuario= menu.getTxtFieldNombre().getText();
@@ -225,4 +224,13 @@ public class Grafica {
 	private void limpiarEventosTablero() {
 		this.frame.removeKeyListener(this.eventosTablero);
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	
 }
