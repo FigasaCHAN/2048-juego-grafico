@@ -28,7 +28,7 @@ public class MenuPanel extends JPanel {
 	private JButton  btnJugar,btn4x4,btn5x5,btn6x6,btnMejoresJugadores;
 	private Font pixelNum,pixelNombreUsuario,pixelCarteles,pixelMensajeError;
 	private JLabel lblErrorNombre,cartelModoDeJuegoSeleccionado,cartelN2,cartelN0,cartelN4,cartelN8,cartelIngresarNombre;
-	private int modoDeJuego=4; //el modo por defaul es 4x4
+	private int modoDeJuego;
 	private JLabel imagenFondo;
 	private Color colorCartelesNum,colorLetrasEnCarteles, btnModoDeJuego, colorBtnJugar, coloBtnMejoresJugadores;
 	private Fuente fuente;
@@ -207,7 +207,7 @@ public class MenuPanel extends JPanel {
 		this.imagenFondo.setBounds(0, 0, 784, 561);
 		add(this.imagenFondo);
 		
-		
+		this.modoDeJuego=4;
 	}
 	public void mostrarErrorNombre(boolean opcion) {
 		this.lblErrorNombre.setVisible(opcion);
