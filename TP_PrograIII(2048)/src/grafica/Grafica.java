@@ -150,7 +150,7 @@ public class Grafica {
 		this.menu.getBtnJugar().addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 			public void actionPerformed(ActionEvent e) {
 				nombreDeUsuario= menu.getTxtFieldNombre().getText();
-				if(Menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
+				if(menu.validarNombreJugador(nombreDeUsuario)) {	//hace la comprobacion del nombre del usuario
 					Jugador jugador= new Jugador(nombreDeUsuario, 0);
 					menu.mostrarErrorNombre(false);
 					cargarTablero(jugador, menu.getModoDeJuego()); //cargo el tablero

@@ -9,7 +9,7 @@ public class Tablero {
 
 	private int [][] tabla;
 	private Map<Point, Integer> casillas;
-	final byte[] NUM_RANDOM_POSIBLES;
+	private final byte[] NUM_RANDOM_POSIBLES;
 	private int puntos;
 	private boolean gameOver;
 	private int maximoNumEnElTablero; //me va a servir para determinar si el jugador gano o perdio

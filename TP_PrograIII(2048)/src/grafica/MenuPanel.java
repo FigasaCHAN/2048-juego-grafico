@@ -233,6 +233,8 @@ public class MenuPanel extends JPanel {
 	public void setBtnMejoresJugadores(JButton btnMejoresJugadores) {
 		this.btnMejoresJugadores = btnMejoresJugadores;
 	}
-	
+	public boolean validarNombreJugador(String nombre) {
+		return Menu.validarNombreJugador(nombre);
+	}
 	
 }
