@@ -126,7 +126,7 @@ public class Grafica {
 		}, 3000);
 	}
 	
-	private void eventoClick() {//public porque es la funcion principal de evento
+	public void eventoClick() {//public porque es la funcion principal de evento
 		this.menu.getBtnJugar().addActionListener(new ActionListener() { //al boton del menu le agrega el evento
 			public void actionPerformed(ActionEvent e) {
 				nombreDeUsuario= menu.getTxtFieldNombre().getText();
