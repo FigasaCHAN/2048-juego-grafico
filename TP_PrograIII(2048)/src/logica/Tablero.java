@@ -352,11 +352,11 @@ public class Tablero {
 		ArrayList<Integer> filaArray;
 		ArrayList<Integer> columArray;
 		for(int[] fila:this.tabla) {
-			filaArray= sumarNumerosIguales2(filaToArrayList(fila));
+			filaArray= sumaSoloNumerosIguales(filaToArrayList(fila));
 			todasFilas= todasFilas || filaArray.size()!=fila.length; //si filaArray es distinto del length de la fila, significa que pudo sumar 
 		}
 		for(int i= 0; i<this.tabla.length;i++) {
-			columArray= sumarNumerosIguales2(columnaToArray(this.tabla,i));
+			columArray= sumaSoloNumerosIguales(columnaToArray(this.tabla,i));
 			todasColum= todasColum || columArray.size()!=this.tabla.length;
 		}
 		if((!todasFilas && !todasColum)) {
@@ -364,7 +364,7 @@ public class Tablero {
 		}
 	}
 
-	private ArrayList<Integer> sumarNumerosIguales2(ArrayList<Integer> array){
+	private ArrayList<Integer> sumaSoloNumerosIguales(ArrayList<Integer> array){
 		//solo suma si estan uno al lado del otro
 		//suma de izquierda a derecha
 		ArrayList<Integer> nuevaArray= new ArrayList<Integer>();
