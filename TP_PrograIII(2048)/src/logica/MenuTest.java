@@ -1,7 +1,6 @@
 package logica;
 
 import static org.junit.Assert.*;
-import logica.Menu;
 import org.junit.Test;
 
 public class MenuTest {

@@ -3,17 +3,11 @@ package grafica;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import logica.Jugador;
 import logica.MejoresJugadores;
-
 import multimedia.Fuente;
-
-import java.awt.ComponentOrientation;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.awt.Color;

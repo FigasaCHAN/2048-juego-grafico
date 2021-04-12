@@ -3,33 +3,14 @@ package grafica;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
-import java.awt.Component;
-
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JLayeredPane;
-import javax.swing.JProgressBar;
-import java.awt.Button;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import javax.swing.KeyStroke;
-
 import logica.Jugador;
-import logica.Menu;
 
 public class Grafica {
 

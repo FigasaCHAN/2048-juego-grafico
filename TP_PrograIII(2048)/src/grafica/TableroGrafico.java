@@ -3,17 +3,11 @@ package grafica;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
 import logica.Tablero;
-
-import java.awt.GridBagLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -100,7 +94,7 @@ public class TableroGrafico extends JPanel {
 		actualizar();
 	}
 	
-	public void actualizar() {
+	private void actualizar() {
 		this.tablero.puedeSumar();//va a actualizar el game over del tablero logico
 		ArrayList<Integer> tableroArray= this.tablero.matrizToArray();
 	    int indice= 0;
